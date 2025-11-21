@@ -76,9 +76,26 @@ namespace SV22T1080013.Admin.Controllers
             return View("Edit", product);
         }
 
-        public IActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
-            return View();
+            var product = await ProductDataService.ProductDB.GetAsync(id);
+            if (product == null) { 
+                return RedirectToAction("Index");
+            }
+
+            var model = new ProductEditModel()
+            {
+                ProductID = product.ProductID,
+                Photo = product.Photo,
+                CategoryID = product.CategoryID,
+                SupplierID = product.SupplierID,
+                ProductName = product.ProductName,
+                ProductDescription = product.ProductDescription,
+                IsSelling = product.IsSelling,
+                Price = product.Price,
+                Unit = product.Unit,
+            };
+            return View(model);
         }
 
         [HttpPost]

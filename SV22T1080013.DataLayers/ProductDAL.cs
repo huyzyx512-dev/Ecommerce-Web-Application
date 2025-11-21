@@ -140,9 +140,21 @@ namespace SV22T1080013.DataLayers
         /// <param name="data"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public Task<bool> UpdateAsync(Product data)
+        public async Task<int> UpdateAsync(Product data)
         {
-            throw new NotImplementedException();
+            using var connection = await OpenConnectionAsync();
+            string sql = @"UPDATE Products
+                            SET ProductName = @ProductName,
+	                            ProductDescription = @ProductDescription,
+	                            CategoryID = @CategoryID,
+	                            SupplierID = @SupplierID,
+	                            Unit = @Unit,
+	                            Price = @Price,
+	                            IsSelling = @IsSelling,
+	                            Photo = @Photo
+                            WHERE ProductID = @ProductID;
+                            SELECT SCOPE_IDENTITY();";
+            return await connection.ExecuteScalarAsync<int>(sql: sql, param: data, commandType: System.Data.CommandType.Text);
         }
         /// <summary>
         /// 

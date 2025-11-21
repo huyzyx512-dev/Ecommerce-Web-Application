@@ -8,6 +8,10 @@
 [Dd]ebug/
 [Rr]elease/
 
+# Ignore build folders
+bin/
+obj/
+
 # Các thư mục chứa package của NuGet (nếu có)
 packages/
 
