@@ -1,4 +1,5 @@
-﻿@{
+﻿@model ProductEditModel
+@{
 
 }
 
@@ -14,62 +15,61 @@
     </div>
 
     <div class="box-body">
-        <form class="form-horizontal" action="#" method="post" enctype="multipart/form-data">
-
+        <form class="form-horizontal" action="~/Product/SaveData" method="post" enctype="multipart/form-data">
+            <input type="hidden" asp-for="ProductID"/>
             <div class="form-group">
                 <label class="control-label col-sm-2">Tên mặt hàng:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" autofocus>
+                    <input type="text" class="form-control" autofocus asp-for="ProductName">
+                    <span asp-validation-for="ProductName"></span>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-sm-2">Mô tả:</label>
                 <div class="col-sm-10">
-                    <textarea class="form-control" rows="3"></textarea>
+                    <textarea class="form-control" rows="3" asp-for="ProductDescription"></textarea>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-sm-2">Loại hàng:</label>
                 <div class="col-sm-10">
-                    <select class="form-control">
-                        <option>-- Loại hàng --</option>
-                        <option>Mỹ phẩm</option>
-                        <option>Thực phẩm</option>
+                    <select class="form-control" asp-for="CategoryID" asp-items="await SelectListHelper.Categories()">
                     </select>
+                    <span asp-validation-for="CategoryID"></span>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-sm-2">Nhà cung cấp:</label>
                 <div class="col-sm-10">
-                    <select class="form-control">
-                        <option>-- Nhà cung cấp --</option>
-                        <option>Công ty TNHH Thành Công</option>
-                        <option>Vina Foods</option>
+                    <select class="form-control" asp-for="SupplierID" asp-items="await SelectListHelper.Suppliers()">
                     </select>
+                    <span asp-validation-for="SupplierID"></span>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-sm-2">Đơn vị tính:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" asp-for="Unit">
+                    <span asp-validation-for="Unit"></span>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-sm-2">Giá hàng:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" asp-for="Price">
+                    <span asp-validation-for="Price"></span>
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="col-lg-offset-2 col-sm-10">
                     <div class="checkbox">
-                        <label><input type="checkbox" value="true" checked>Hiện đang được bán</label>
+                        <label><input type="checkbox" value="true" @nameof(Model.IsSelling) checked>Hiện đang được bán</label>
                     </div>
                 </div>
             </div>
@@ -77,14 +77,15 @@
             <div class="form-group">
                 <label class="control-label col-sm-2">Ảnh minh họa:</label>
                 <div class="col-sm-10">
-                    <input type="file" class="form-control" accept="image/*"
-                           onchange="document.getElementById('Photo').src = window.URL.createObjectURL(this.files[0])" />
+                    <input type="hidden" asp-for="Photo"/>
+                    <input type="file" class="form-control" accept="image/*" asp-for="UploadPhoto"
+                           onchange="document.getElementById('imgPhoto').src = window.URL.createObjectURL(this.files[0])"  />
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="col-lg-offset-2 col-sm-10">
-                    <img id="Photo" src="~/images/products/macbook.png" class="img img-bordered" style="width:200px" />
+                    <img id="imgPhoto" src="~/images/products/@Model.Photo" class="img img-bordered" style="width:200px" />
                 </div>
             </div>
 

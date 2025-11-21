@@ -114,9 +114,24 @@ namespace SV22T1080013.DataLayers
         /// <param name="data"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public Task<int> AddAsync(Product data)
+        public async Task<int> AddAsync(Product data)
         {
-            throw new NotImplementedException();
+            using var connection = await OpenConnectionAsync();
+            var sql = @"INSERT INTO Products(ProductName, ProductDescription, CategoryID, SupplierID, Unit, Price, IsSelling, Photo)
+                        VALUES (@ProductName,@ProductDescription,@CategoryID,@SupplierID,@Unit,@Price,@IsSelling,@Photo);
+                        SELECT SCOPE_IDENTITY();";
+            var parameters = new
+            {
+                data.ProductName,
+                data.ProductDescription,
+                data.CategoryID,
+                data.SupplierID,
+                data.Unit,
+                data.Price,
+                data.IsSelling,
+                data.Photo
+            };
+            return await connection.ExecuteScalarAsync<int>(sql: sql, param: data, commandType: System.Data.CommandType.Text);
         }
 
         /// <summary>

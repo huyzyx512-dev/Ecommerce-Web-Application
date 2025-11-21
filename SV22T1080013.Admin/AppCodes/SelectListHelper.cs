@@ -28,7 +28,7 @@ namespace SV22T1080013.Admin
         public static async Task<IEnumerable<SelectListItem>> Categories()
         {
             var list = new List<SelectListItem>();
-            list.Add(new SelectListItem() { Value = "", Text = "-- Chọn loại hàng --" });
+            list.Add(new SelectListItem() { Value = "0", Text = "-- Chọn loại hàng --" });
             foreach (var item in await CommonDataService.CategoryDB.GetCategoriesAsync())
             {
                 list.Add(new SelectListItem() { Value = item.CategoryID.ToString(), Text = item.CategoryName });
@@ -43,7 +43,7 @@ namespace SV22T1080013.Admin
         public static async Task<IEnumerable<SelectListItem>> Suppliers()
         {
             var list = new List<SelectListItem>();
-            list.Add(new SelectListItem() { Value = "", Text = "-- Chọn nhà cung cấp --" });
+            list.Add(new SelectListItem() { Value = "0", Text = "-- Chọn nhà cung cấp --" });
             foreach (var item in await CommonDataService.SupplierDB.ListAsync())
             {
                 list.Add(new SelectListItem() { Value = item.SupplierID.ToString(), Text = item.SupplierName });
