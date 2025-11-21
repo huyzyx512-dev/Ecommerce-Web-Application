@@ -21,6 +21,7 @@ packages/
 
 # Thư mục cấu hình và cache của Visual Studio
 .vs/
+.gitignore
 
 # File cấu hình Solution User Options (tùy chỉnh của người dùng)
 *.suo
