@@ -1,1 +1,62 @@
+#--------------------------------------------------------------------------------
+# CÁC THƯ MỤC VÀ FILE BUILD (BẮT BUỘC)
+#--------------------------------------------------------------------------------
+
+# Thư mục build output và các thư mục tạm thời của compiler
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+
+# Các thư mục chứa package của NuGet (nếu có)
+packages/
+
+#--------------------------------------------------------------------------------
+# CÁC THƯ MỤC CỦA VISUAL STUDIO / IDE
+#--------------------------------------------------------------------------------
+
+# Thư mục cấu hình và cache của Visual Studio
 .vs/
+
+# File cấu hình Solution User Options (tùy chỉnh của người dùng)
+*.suo
+*.user
+*.pdb
+*.suo.bak
+*.suo.user
+
+# Tệp dự án web và MVC (file tạm thời)
+*.publishproj
+
+# Các thư mục cho các công cụ Code Analysis
+CodeAnalysisLog.xml
+FxCopResults.xml
+
+#--------------------------------------------------------------------------------
+# LOGS VÀ THƯ MỤC KHÁC
+#--------------------------------------------------------------------------------
+
+# Các tệp log và dữ liệu tạm thời
+[Tt]emp/
+[Ll]og/
+*.log
+*.bak
+*.ncb
+*.scc
+*.vssscc
+
+# Các file liên quan đến Docker
+# Nếu bạn dùng Docker, hãy bỏ comment các dòng này
+# Dockerfile.orig
+# docker-compose.override.yml
+# .dockerignore
+
+#--------------------------------------------------------------------------------
+# FILES TẠM THỜI CỦA .NET CORE / .NET
+#--------------------------------------------------------------------------------
+
+# Thư mục chứa các công cụ .NET Core
+.tools/
+
+# Thư mục chứa công cụ kiểm tra (test)
+TestResults/
