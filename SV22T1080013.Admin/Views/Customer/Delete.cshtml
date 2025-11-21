@@ -1,0 +1,75 @@
+﻿@model Customer
+@{
+    ViewBag.Title = "Xóa khách hàng";
+}
+<div class="box box-danger">
+    <div class="box-body">
+        <form action="~/Customer/Delete/@Model.CustomerID" method="post">
+
+            <div class="form-group">
+                <label>Tên khách hàng:</label>
+                <p class="form-control-static">@Model.CustomerName</p>
+            </div>
+
+            <div class="form-group">
+                <label>Tên giao dịch:</label>
+                <p class="form-control-static">@Model.ContactName</p>
+            </div>
+
+            <div class="form-group">
+                <label>Điện thoại:</label>
+                <p class="form-control-static">@Model.Phone</p>
+            </div>
+
+            <div class="form-group">
+                <label>Email:</label>
+                <p class="form-control-static">@Model.Email</p>
+            </div>
+
+            <div class="form-group">
+                <label>Địa chỉ:</label>
+                <p class="form-control-static">@Model.Address</p>
+            </div>
+
+            <div class="form-group">
+                <label>Tỉnh/thành:</label>
+                <p class="form-control-static">@Model.Province</p>
+            </div>
+
+            <div class="form-group">
+                <label>Trạng thái:</label>
+                @if (Model.IsLocked)
+                {
+                    <p class="form-control-static">
+                        Khách hàng đang bị khóa tài khoản
+                    </p>
+                }
+                else
+                {
+
+                    <p class="form-control-static">
+                        Khách hàng đang hoạt động
+                    </p>
+                }
+            </div>
+
+            <div class="form-group text-right">
+                @if (await SV22T1080013.BusinessLayers.CommonDataService.CustomerDB.InUsedAsync(Model.CustomerID))
+                {
+                    <p>Không được phép khách hàng có đơn hàng</p>
+                }
+                else
+                {
+                    <button type="submit" class="btn btn-danger">
+                        <i class="fa fa-trash"></i>
+                        Xóa dữ liệu
+                    </button>
+                }
+                <a href="~/Customer" class="btn btn-default">
+                    Quay lại
+                </a>
+            </div>
+
+        </form>
+    </div>
+</div>

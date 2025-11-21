@@ -1,0 +1,59 @@
+﻿@model PaginationSearchResult<Shipper>
+@{
+    Layout = null;
+}
+
+
+<div>
+    <p style="margin:10px 0 10px 0">
+        Có <strong>@Model.RowCount</strong> người giao hàng trong tổng số <strong>@Model.PageCount</strong> trang
+    </p>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover table-striped">
+            <thead>
+                <tr class="bg-primary">
+                    <th>Tên người giao hàng</th>
+                    <th>Điện thoại</th>
+                    <th style="width:80px"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var sp in Model.Data)
+                {
+                    <tr>
+                        <td>@sp.ShipperName</td>
+                        <td>@sp.Phone</td>
+                        <td class="text-right">
+                            <a href="~/Shipper/Edit/@sp.ShipperID" class="btn btn-xs btn-info">
+                                <i class="fa fa-edit"></i>
+                            </a>
+                            <a href="~/Shipper/Delete/@sp.ShipperID" class="btn btn-xs btn-danger">
+                                <i class="fa fa-remove"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    @if (Model.PageCount > 1)
+    {
+        <div class="text-center">
+            <ul class="pagination">
+                @for (int i = 1; i <= Model.PageCount; i++)
+                {
+                    if (i == Model.Page)
+                    {
+                        <li class="active"><a href="#">@i</a></li>
+                    }
+                    else
+                    {
+                        <li><a href="javascript:;" onclick="searchData(@i)">@i</a></li>
+                    }
+                }
+            </ul>
+        </div>
+    }
+</div>
