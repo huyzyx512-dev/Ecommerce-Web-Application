@@ -162,9 +162,30 @@ namespace SV22T1080013.Admin.Controllers
             }
         }
 
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            return View();
+            try
+            {
+                if (Request.Method == "POST")
+                {
+                    await ProductDataService.ProductDB.DeleteAsync(id);
+                    return RedirectToAction("Index", "Product");
+                }
+                else
+                {
+                    var model = await ProductDataService.ProductDB.GetAsync(id);
+                    if (model == null)
+                    {
+                        return RedirectToAction("Product");
+                    }
+                    return View(model);
+                }
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("Error",ex.Message);
+                return RedirectToAction("Product");
+            }
         }
 
 
@@ -218,7 +239,7 @@ namespace SV22T1080013.Admin.Controllers
         {
             try
             {
-                if (model.UpLoadPhoto==null && model.Photo == null)
+                if (model.UpLoadPhoto == null && model.Photo == null)
                     ModelState.AddModelError(nameof(model.UpLoadPhoto), "Vui lòng chọn ảnh");
                 if (string.IsNullOrWhiteSpace(model.Description))
                     ModelState.AddModelError(nameof(model.Description), "Mô tả/Tiêu đề không thể bỏ trống");

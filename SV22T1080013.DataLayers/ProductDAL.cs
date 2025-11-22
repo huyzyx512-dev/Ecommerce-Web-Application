@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using Microsoft.Data.SqlClient;
 using SV22T1080013.DomainModels;
 using System;
 using System.Collections.Generic;
@@ -160,7 +161,6 @@ namespace SV22T1080013.DataLayers
         //    return await connection.ExecuteScalarAsync<int>(sql: sql, param: data, commandType: System.Data.CommandType.Text);
         //}
 
-
         public async Task<int> UpdateAsync(Product data)
         {
             using var connection = await OpenConnectionAsync();
@@ -184,24 +184,46 @@ namespace SV22T1080013.DataLayers
         }
 
         /// <summary>
-        /// Xóa photo product
+        /// Xóa sản phầm, ảnh và các thuộc tính liên quan đến mặt hàng
         /// </summary>
         /// <param name="productID"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public Task<bool> DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(int ProductID)
         {
-            throw new NotImplementedException();
+            const string sql = @"
+                                BEGIN TRANSACTION;
+                                BEGIN TRY
+                                    DELETE FROM ProductPhotos WHERE ProductID = @ProductID;
+                                    DELETE FROM ProductAttributes WHERE ProductID = @ProductID;
+                                    DELETE FROM Products WHERE ProductID = @ProductID;
+                                    COMMIT TRANSACTION;
+                                END TRY
+                                BEGIN CATCH
+                                    ROLLBACK TRANSACTION;
+                                    THROW;
+                                END CATCH";
+
+            using var connection = await OpenConnectionAsync();
+            var affectedRows = await connection.ExecuteAsync(sql, new { ProductID },commandType: System.Data.CommandType.Text );
+
+            return affectedRows > 0;
         }
+
         /// <summary>
-        /// 
+        /// Kiểm tra xem mặt hàng 
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public Task<bool> InUsedAsync(int id)
+        public async Task<bool> InUsedAsync(int id)
         {
-            throw new NotImplementedException();
+            using var connection = await OpenConnectionAsync();
+            string sql = @"IF (EXISTS (SELECT * FROM OrderDetails WHERE ProductID = @id))
+	                        SELECT 1;
+                        ELSE 
+	                        SELECT 0;";
+            return await connection.ExecuteScalarAsync<bool>(sql, new { id }, commandType: System.Data.CommandType.Text);
         }
 
         /// <summary>

@@ -1,59 +1,74 @@
 ﻿@{
     ViewBag.Title = "Xóa mặt hàng";
 }
-
+@model Product
 <div class="box box-primary">
-
     <div class="box-body">
-        <form class="form-horizontal" action="#" method="post">
-
+        <form class="form-horizontal" action="~/Product/Delete/@Model.ProductID" method="POST">
             <div class="form-group">
                 <label class="control-label col-sm-2">Tên mặt hàng:</label>
                 <div class="col-sm-10">
-                    <p class="form-control-static">Macbook Pro 15" M2 2023</p>
+                    <p class="form-control-static">@Model.ProductName</p>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-sm-2">Mô tả:</label>
                 <div class="col-sm-10">
-                    <a href="d:\y4hk1\web_application\c_sharp\sv22t1080013\sv22t1080013.admin\views\product\delete.cshtml">d:\y4hk1\web_application\c_sharp\sv22t1080013\sv22t1080013.admin\views\product\delete.cshtml</a>
-                    <p class="form-control-static">Macbook Pro 15" M2 2023</p>
+                    <p class="form-control-static">@Model.ProductDescription</p>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-sm-2">Đơn vị tính:</label>
                 <div class="col-sm-10">
-                    <p class="form-control-static">Cái</p>
+                    <p class="form-control-static">@Model.Unit</p>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-sm-2">Giá hàng:</label>
                 <div class="col-sm-10">
-                    <p class="form-control-static">45,000,000</p>
+                    <p class="form-control-static">@Model.Price.ToString("N0") VND</p>
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="col-lg-offset-2 col-sm-10">
-                    <img id="Photo" src="~/images/products/macbook.png" class="img img-bordered" style="width:200px" />
+                    <img id="Photo" src="~/images/products/@Model.Photo" class="img img-bordered" style="width:200px" />
                 </div>
             </div>
 
             <div class="form-group">
+                @Html.ValidationMessage("Error")
+            </div>
+
+            <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-danger">
-                        <i class="fa fa-trash"></i> Xác nhận xóa
-                    </button>
-                    <a class="btn btn-default" href="~/Product">
-                        Quay lại
-                    </a>
+                    @if (await SV22T1080013.BusinessLayers.ProductDataService.ProductDB.InUsedAsync(Model.ProductID))
+                    {
+                        <!-- CẢNH BÁO: Không được xóa -->
+                        <div class="alert alert-danger alert-dismissible fade in" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4><i class="icon fa fa-ban"></i> Không thể xóa mặt hàng này!</h4>
+                            <p>
+                                <strong>@Model.ProductName</strong> hiện đang tồn tại trong một hoặc nhiều đơn hàng.<br>
+                                Bạn chỉ có thể xóa mặt hàng khi <u>không có đơn hàng nào</u> sử dụng nó.
+                            </p>
+                        </div>
+                    }
+                    else
+                    {
+                        <button type="button" class="btn btn-danger"
+                                onclick="if(confirm('Bạn có chắc chắn muốn xóa mặt hàng \" @Model.ProductName\" không?\n\nHành động này KHÔNG THỂ HOÀN TÁC!')) this.form.submit();">
+                            <i class="fa fa-trash"></i> Xác nhận xóa
+                        </button>
+                    }
+                    <a class="btn btn-default" asp-controller="Product" asp-action="Index">Quay lại</a>
                 </div>
             </div>
         </form>
-
     </div>
-
 </div>
