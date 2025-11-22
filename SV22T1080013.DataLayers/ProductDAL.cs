@@ -3,6 +3,7 @@ using SV22T1080013.DomainModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,7 +13,7 @@ namespace SV22T1080013.DataLayers
     {
         public ProductDAL(string connectionString) : base(connectionString)
         {
-        }   
+        }
         /// <summary>
         /// Tìm kiếm và lấy danh sách mặt hàng dưới dạng phân trang
         /// </summary>
@@ -178,58 +179,88 @@ namespace SV22T1080013.DataLayers
         }
 
         /// <summary>
-        /// 
+        /// Danh sách thuộc tính của sản phẩm
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">Mã sản phẩm</param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
         public async Task<IEnumerable<ProductAttribute>> ListAttributesAsync(int id)
         {
-            throw new NotImplementedException();
+            using var connection = await OpenConnectionAsync();
+            string sql = @"SELECT * FROM ProductAttributes 
+                            WHERE ProductID = @id ORDER BY DisplayOrder";
+            return await connection.QueryAsync<ProductAttribute>(sql, new { id }, commandType: System.Data.CommandType.Text);
         }
 
         /// <summary>
-        /// 
+        /// Lấy thuộc tính theo mã 
         /// </summary>
         /// <param name="attributeID"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public async Task<ProductAttribute?> GetAttributeAsync(long attributeID)
+        public async Task<ProductAttribute?> GetAttributeAsync(int attributeID)
         {
-            throw new NotImplementedException();
+            using var connection = await OpenConnectionAsync();
+            string sql = @"SELECT * FROM ProductAttributes WHERE AttributeID = @AttributeID";
+            return await connection.QueryFirstOrDefaultAsync<ProductAttribute>(sql, new { attributeID }, commandType: System.Data.CommandType.Text);
         }
 
         /// <summary>
-        /// 
+        /// Thêm thuộc tính mới 
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public async Task<long> AddAttributeAsync(ProductAttribute data)
+        public async Task<int> AddAttributeAsync(ProductAttribute data)
         {
-            throw new NotImplementedException();
+            using var connection = await OpenConnectionAsync();
+            string sql = @"INSERT INTO ProductAttributes(ProductID, AttributeName, AttributeValue, DisplayOrder)
+                            VALUES (@ProductID, @AttributeName, @AttributeValue, @DisplayOrder)
+                            SELECT SCOPE_IDENTITY();";
+            var parameter = new
+            {
+                data.ProductID,
+                data.AttributeName,
+                data.AttributeValue,
+                data.DisplayOrder
+            };
+            return await connection.ExecuteScalarAsync<int>(sql, parameter, commandType: System.Data.CommandType.Text);
         }
 
         /// <summary>
-        /// 
+        /// Chỉnh sửa thuộc tính
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public async Task<bool> UpdateAttributeAsync(ProductAttribute data)
+        public async Task<int> UpdateAttributeAsync(ProductAttribute data)
         {
-            throw new NotImplementedException();
+            using var connection = await OpenConnectionAsync();
+            string sql = @"UPDATE ProductAttributes
+                            SET AttributeName = @AttributeName, AttributeValue= @AttributeValue, DisplayOrder = @DisplayOrder  
+                            WHERE AttributeID = @AttributeID
+                            SELECT SCOPE_IDENTITY();";
+            var parameter = new
+            {
+                data.AttributeID,
+                data.AttributeName,
+                data.AttributeValue,
+                data.DisplayOrder
+            };
+            return await connection.ExecuteScalarAsync<int>(sql, parameter, commandType: System.Data.CommandType.Text);
         }
 
         /// <summary>
-        /// 
+        /// Xóa thuộc tính
         /// </summary>
         /// <param name="attributeID"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public bool DeleteAttribute(long attributeID)
+        public async Task<bool> DeleteAttribute(int attributeID)
         {
-            throw new NotImplementedException();
+            using var connection = await OpenConnectionAsync();
+            string sql = "DELETE FROM ProductAttributes WHERE AttributeID = @attributeID";
+            return await connection.ExecuteAsync(sql,new { attributeID }, commandType: System.Data.CommandType.Text) > 0;
         }
 
         /// <summary>

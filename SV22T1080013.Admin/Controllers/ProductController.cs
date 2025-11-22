@@ -79,7 +79,8 @@ namespace SV22T1080013.Admin.Controllers
         public async Task<IActionResult> Edit(int id)
         {
             var product = await ProductDataService.ProductDB.GetAsync(id);
-            if (product == null) { 
+            if (product == null)
+            {
                 return RedirectToAction("Index");
             }
 
@@ -121,11 +122,11 @@ namespace SV22T1080013.Admin.Controllers
                     ModelState.AddModelError(nameof(model.ProductName), "Tên sản phẩm không được để trống"); // <-- ModelState lưu trữ các thông báo lỗi
                 if (string.IsNullOrWhiteSpace(model.Unit))
                     ModelState.AddModelError(nameof(model.Unit), "Đơn vị tính không được để trống");
-                if (model.Price==0)
+                if (model.Price == 0)
                     ModelState.AddModelError(nameof(model.Price), "Giá không được để trống");
-                if (model.CategoryID==0)
+                if (model.CategoryID == 0)
                     ModelState.AddModelError(nameof(model.CategoryID), "Chọn loại hàng");
-                if (model.SupplierID==0)
+                if (model.SupplierID == 0)
                     ModelState.AddModelError(nameof(model.SupplierID), "Chọn nhà cung cấp");
                 #endregion
 
@@ -187,19 +188,30 @@ namespace SV22T1080013.Admin.Controllers
             }
         }
 
-        public IActionResult Attribute(int id, string method = "", int attributeId = 0)
+        public async Task<IActionResult> Attribute(int id, string method = "", int attributeId = 0)
         {
             switch (method.ToLower())
             {
                 case "add":
+                    var attribute = new ProductAttribute()
+                    {
+                        AttributeID = 0,
+                        ProductID = id
+                    };
                     ViewBag.Method = "add";
-                    return View();
+                    return View(attribute);
                 case "edit":
                     ViewBag.Method = "edit";
+                    var attributeUd = await ProductDataService.ProductDB.GetAttributeAsync(attributeId);
+                    if (attributeUd == null)
+                    {
+                        return Redirect($"/Product/Edit/{id}");
+                    }
                     ViewBag.PhotoId = attributeId;
-                    return View();
+                    return View(attributeUd);
                 case "delete":
                     //TODO: Xoá thuộc tính
+                    await ProductDataService.ProductDB.DeleteAttribute(attributeId);
                     return RedirectToAction("Edit", new { id = id });
                 default:
                     return RedirectToAction("Index");
@@ -207,5 +219,38 @@ namespace SV22T1080013.Admin.Controllers
             }
         }
 
+        [HttpPost]
+        public async Task<IActionResult> SaveDataAttribute(ProductAttribute model)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(model.AttributeName))
+                    ModelState.AddModelError(nameof(model.AttributeName), "Tên thuộc tính không thể bỏ trống");
+                if (string.IsNullOrWhiteSpace(model.AttributeValue))
+                    ModelState.AddModelError(nameof(model.AttributeValue), "Giá trị không thể bỏ trống");
+                if (model.DisplayOrder <= 0)
+                    ModelState.AddModelError(nameof(model.DisplayOrder), "Thứ tự hiển thị không thể bỏ trống");
+
+                if (!ModelState.IsValid) return View("Attribute", model);
+
+                //TODO: Fix lỗi Add, Update Attribute 
+                if (model.AttributeID == 0)
+                {
+                    // Add
+                    await ProductDataService.ProductDB.AddAttributeAsync(model);
+                }
+                else
+                {
+                    // Edit
+                    await ProductDataService.ProductDB.UpdateAttributeAsync(model);
+                }
+                return RedirectToAction("Edit", new { id = model.ProductID });
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("Error", ex.Message);
+                return RedirectToAction("Edit", new { id = model.ProductID });
+            }
+        }
     }
 }
