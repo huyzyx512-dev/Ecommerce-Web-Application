@@ -1,37 +1,42 @@
 ﻿@{
-
+    ViewBag.Title = ViewBag.Medthod == "add" ? "Bổ sung thuộc tính" : "Cập nhật thuộc tính ảnh";
 }
-
+@model ProductPhotoEditModel
 <div class="box box-primary">
     <div class="box-body">
-        <form class="form-horizontal" method="post" enctype="multipart/form-data" action="#">
-
+        <form class="form-horizontal" method="post" enctype="multipart/form-data" action="~/Product/SaveDataPhoto">
+            <input type="hidden" asp-for="PhotoID" />
+            <input type="hidden" asp-for="ProductID" />
             <div class="form-group">
                 <label class="control-label col-sm-2">Chọn file ảnh:</label>
                 <div class="col-sm-10">
-                    <input type="file" class="form-control" accept="image/*"
-                           onchange="document.getElementById('Photo').src = window.URL.createObjectURL(this.files[0])" />
+                    <input type="hidden" asp-for="Photo" />
+                    <input type="file" class="form-control" accept="image/*" asp-for="UpLoadPhoto"
+                           onchange="document.getElementById('imgPhoto').src = window.URL.createObjectURL(this.files[0])" />
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="col-lg-offset-2 col-sm-10">
                     <input type="hidden" value="photo.png" />
-                    <img id="Photo" src="~/images/products/macbook.png" class="img img-bordered" style="width:200px" />
+                    <img id="imgPhoto" src="~/images/products/@Model.Photo" class="img img-bordered" style="width:200px" />
+                    <span asp-validation-for="UpLoadPhoto"></span>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-sm-2">Mô tả:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" />
+                    <input type="text" class="form-control" asp-for="Description" />
+                    <span asp-validation-for="Description"></span>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-sm-2">Thứ tự hiển thị:</label>
                 <div class="col-sm-10">
-                    <input type="number" class="form-control" />
+                    <input type="number" class="form-control" asp-for="DisplayOrder" />
+                    <span asp-validation-for="DisplayOrder"></span>
                 </div>
             </div>
 
@@ -39,7 +44,7 @@
                 <div class="col-lg-offset-2 col-sm-10">
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" value="true" /> Không hiển thị ảnh
+                            <input type="checkbox" value="true" name="@nameof(Model.IsHidden)" /> Không hiển thị ảnh
                         </label>
                     </div>
                 </div>
@@ -51,7 +56,7 @@
                         <i class="fa fa-floppy-o"></i>
                         Lưu dữ liệu
                     </button>
-                    <a href="~/Product/Edit/123" class="btn btn-default">
+                    <a href="~/Product/Edit/@Model.ProductID" class="btn btn-default">
                         Quay lại
                     </a>
                 </div>

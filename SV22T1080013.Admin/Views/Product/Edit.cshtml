@@ -124,29 +124,29 @@
                     <th>Thứ tự hiển thị</th>
                     <th>Ẩn ảnh</th>
                     <th class="text-right">
-                        <a class="btn btn-xs btn-primary" href="~/Product/Photo/123?method=add">
+                        <a class="btn btn-xs btn-primary" href="~/Product/Photo/@Model.ProductID?method=add">
                             <i class="fa fa-plus"></i>
                         </a>
                     </th>
                 </tr>
             </thead>
             <tbody>
-                @for (int i = 1; i <= 3; i++)
+                @foreach(var item in await SV22T1080013.BusinessLayers.ProductDataService.ProductDB.ListPhotosAsync(@Model.ProductID))
                 {
                     <tr>
                         <td style="vertical-align:middle">
-                            <img src="~/Images/Products/macbook.png" alt="MacBookPro" style="width:100px" />
+                            <img src="~/images/products/@item.Photo" alt="MacBookPro" style="width:100px" />
                         </td>
                         <td style="vertical-align:middle;">
-                            MacBook Pro M2 15" - 2023
+                            @item.Description
                         </td>
-                        <td style="vertical-align:middle;">@i</td>
-                        <td style="vertical-align:middle;"></td>
+                        <td style="vertical-align:middle;">@item.DisplayOrder</td>
+                        <td style="vertical-align:middle;">@item.IsHidden</td>
                         <td style="vertical-align:middle; text-align:right">
-                            <a class="btn btn-xs btn-primary" href="~/Product/Photo/123?method=edit&photoId=456">
+                            <a class="btn btn-xs btn-primary" href="~/Product/Photo/@item.ProductID?method=edit&photoId=@item.PhotoID">
                                 <i class="fa fa-edit"></i>
                             </a>
-                            <a class="btn btn-xs btn-danger" href="~/Product/Photo/123?method=delete&photoId=456" onclick="return confirm('Xóa ảnh của mặt hàng hay không?')">
+                            <a class="btn btn-xs btn-danger" href="~/Product/Photo/@item.ProductID?method=delete&photoId=@item.PhotoID" onclick="return confirm('Xóa ảnh của mặt hàng hay không?')">
                                 <i class="fa fa-remove"></i>
                             </a>
                         </td>

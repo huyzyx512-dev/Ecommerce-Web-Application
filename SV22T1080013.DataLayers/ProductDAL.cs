@@ -2,10 +2,12 @@
 using SV22T1080013.DomainModels;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SV22T1080013.DataLayers
 {
@@ -110,7 +112,7 @@ namespace SV22T1080013.DataLayers
         }
 
         /// <summary>
-        /// 
+        /// Thêm mới product
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
@@ -141,24 +143,48 @@ namespace SV22T1080013.DataLayers
         /// <param name="data"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
+        //public async Task<int> UpdateAsync(Product data)
+        //{
+        //    using var connection = await OpenConnectionAsync();
+        //    string sql = @"UPDATE Products
+        //                    SET ProductName = @ProductName,
+        //                     ProductDescription = @ProductDescription,
+        //                     CategoryID = @CategoryID,
+        //                     SupplierID = @SupplierID,
+        //                     Unit = @Unit,
+        //                     Price = @Price,
+        //                     IsSelling = @IsSelling,
+        //                     Photo = @Photo
+        //                    WHERE ProductID = @ProductID;
+        //                    SELECT SCOPE_IDENTITY();";
+        //    return await connection.ExecuteScalarAsync<int>(sql: sql, param: data, commandType: System.Data.CommandType.Text);
+        //}
+
+
         public async Task<int> UpdateAsync(Product data)
         {
             using var connection = await OpenConnectionAsync();
-            string sql = @"UPDATE Products
-                            SET ProductName = @ProductName,
-	                            ProductDescription = @ProductDescription,
-	                            CategoryID = @CategoryID,
-	                            SupplierID = @SupplierID,
-	                            Unit = @Unit,
-	                            Price = @Price,
-	                            IsSelling = @IsSelling,
-	                            Photo = @Photo
-                            WHERE ProductID = @ProductID;
-                            SELECT SCOPE_IDENTITY();";
-            return await connection.ExecuteScalarAsync<int>(sql: sql, param: data, commandType: System.Data.CommandType.Text);
+
+            return await connection.ExecuteScalarAsync<int>(
+                sql: "Product_Update",
+                param: new
+                {
+                    data.ProductID,
+                    data.ProductName,
+                    data.ProductDescription,
+                    data.CategoryID,
+                    data.SupplierID,
+                    data.Unit,
+                    data.Price,
+                    data.IsSelling,
+                    data.Photo
+                },
+                commandType: CommandType.StoredProcedure
+            );
         }
+
         /// <summary>
-        /// 
+        /// Xóa photo product
         /// </summary>
         /// <param name="productID"></param>
         /// <returns></returns>
@@ -260,7 +286,7 @@ namespace SV22T1080013.DataLayers
         {
             using var connection = await OpenConnectionAsync();
             string sql = "DELETE FROM ProductAttributes WHERE AttributeID = @attributeID";
-            return await connection.ExecuteAsync(sql,new { attributeID }, commandType: System.Data.CommandType.Text) > 0;
+            return await connection.ExecuteAsync(sql, new { attributeID }, commandType: System.Data.CommandType.Text) > 0;
         }
 
         /// <summary>
@@ -271,7 +297,10 @@ namespace SV22T1080013.DataLayers
         /// <exception cref="NotImplementedException"></exception>
         public async Task<IEnumerable<ProductPhoto>> ListPhotosAsync(int id)
         {
-            throw new NotImplementedException();
+            using var connection = await OpenConnectionAsync();
+            string sql = @"SELECT * FROM ProductPhotos WHERE ProductID = @id
+                            ORDER BY DisplayOrder";
+            return await connection.QueryAsync<ProductPhoto>(sql, new { id }, commandType: System.Data.CommandType.Text);
         }
 
         /// <summary>
@@ -280,41 +309,67 @@ namespace SV22T1080013.DataLayers
         /// <param name="photoID"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public async Task<ProductPhoto?> GetPhotoAsync(long photoID)
+        public async Task<ProductPhoto?> GetPhotoAsync(int photoID)
         {
-            throw new NotImplementedException();
+            using var connection = await OpenConnectionAsync();
+            string sql = @"SELECT * FROM ProductPhotos WHERE PhotoID = @photoID";
+            return await connection.QueryFirstOrDefaultAsync<ProductPhoto>(sql, new { photoID }, commandType: System.Data.CommandType.Text);
         }
 
         /// <summary>
-        /// 
+        /// Thêm mới thuộc tính ảnh
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public async Task<long> AddPhotoAsync(ProductPhoto data)
+        public async Task<int> AddPhotoAsync(ProductPhoto data)
         {
-            throw new NotImplementedException();
+            using var connection = await OpenConnectionAsync();
+            string sql = @"INSERT INTO ProductPhotos(ProductID, Photo, Description, DisplayOrder, IsHidden)
+                            VALUES (@ProductID,@Photo,@Description,@DisplayOrder,@IsHidden)
+                            SELECT SCOPE_IDENTITY();";
+            var parameter = new
+            {
+                data.ProductID,
+                data.Photo,
+                data.Description,
+                data.DisplayOrder,
+                data.IsHidden
+            };
+            return await connection.ExecuteScalarAsync<int>(sql, parameter, commandType: System.Data.CommandType.Text);
         }
+
         /// <summary>
-        /// 
+        /// Cập nhật thuộc tính ảnh
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
         public async Task<bool> UpdatePhotoAsync(ProductPhoto data)
         {
-            throw new NotImplementedException();
+            using var connection = await OpenConnectionAsync();
+            string sql = @"UPDATE ProductPhotos
+                            SET ProductID=@ProductID,
+                                Photo=@Photo,
+                                Description=@Description,
+                                DisplayOrder=@DisplayOrder,
+                                IsHidden=@IsHidden
+                            WHERE PhotoID = @PhotoID";
+            return await connection.ExecuteAsync(sql, data, commandType: System.Data.CommandType.Text) > 0;
         }
 
         /// <summary>
-        /// 
+        /// Xóa ảnh khỏi ảnh phụ
         /// </summary>
         /// <param name="photoID"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
         public async Task<bool> DeletePhotoAsync(long photoID)
         {
-            throw new NotImplementedException();
+            using var connection = await OpenConnectionAsync();
+            string sql = @"DELETE FROM ProductPhotos
+                            WHERE PhotoID = @PhotoID";
+            return await connection.ExecuteAsync(sql, new { photoID }, commandType: System.Data.CommandType.Text) > 0;
         }
     }
 }

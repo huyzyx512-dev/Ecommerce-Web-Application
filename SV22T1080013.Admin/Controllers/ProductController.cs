@@ -168,23 +168,100 @@ namespace SV22T1080013.Admin.Controllers
         }
 
 
-        public IActionResult Photo(int id, string method = "", int photoId = 0)
+        public async Task<IActionResult> Photo(int id, string method = "", int photoId = 0)
         {
             switch (method.ToLower())
             {
                 case "add":
+                    var model = new ProductPhotoEditModel()
+                    {
+                        PhotoID = 0,
+                        ProductID = id,
+                        Photo = "nophoto.png"
+                    };
                     ViewBag.Method = "add";
-                    return View();
+                    return View(model);
                 case "edit":
                     ViewBag.Method = "edit";
                     ViewBag.PhotoId = photoId;
-                    return View();
+                    var modelUp = await ProductDataService.ProductDB.GetPhotoAsync(photoId);
+                    if (modelUp == null)
+                    {
+                        return RedirectToAction("Edit", new { id });
+                    }
+                    var photoUp = new ProductPhotoEditModel()
+                    {
+                        PhotoID = modelUp.PhotoID,
+                        Photo = modelUp.Photo,
+                        Description = modelUp.Description,
+                        DisplayOrder = modelUp.DisplayOrder,
+                        IsHidden = modelUp.IsHidden,
+                        ProductID = id
+                    };
+                    return View(photoUp);
                 case "delete":
                     // TODO: Xoá ảnh (hoàn thành đoạn code này ngày mai)
-                    return RedirectToAction("Edit", new { id = id });
+                    await ProductDataService.ProductDB.DeletePhotoAsync(photoId);
+                    return RedirectToAction("Edit", new { id });
                 default:
                     return RedirectToAction("Index");
 
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SaveDataPhoto(ProductPhotoEditModel model)
+        {
+            try
+            {
+                if (model.UpLoadPhoto==null && model.Photo == null)
+                    ModelState.AddModelError(nameof(model.UpLoadPhoto), "Vui lòng chọn ảnh");
+                if (string.IsNullOrWhiteSpace(model.Description))
+                    ModelState.AddModelError(nameof(model.Description), "Mô tả/Tiêu đề không thể bỏ trống");
+                if (model.DisplayOrder <= 0)
+                    ModelState.AddModelError(nameof(model.DisplayOrder), "Thứ tự hiển thị không thể bỏ trống");
+
+                if (!ModelState.IsValid) return View("Photo", model);
+
+                //Nếu có ảnh thì upload ảnh lên và lấy tên file ảnh mới upload cho Photo
+                if (model.UpLoadPhoto != null)
+                {
+                    string fileName = $"{DateTime.Now.Ticks}_{model.UpLoadPhoto.FileName}";
+                    string filePath = Path.Combine(ApplicationContext.WWWRootPath, @"images\products", fileName);
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await model.UpLoadPhoto.CopyToAsync(stream);
+                    }
+                    model.Photo = fileName;
+                }
+
+                var photo = new ProductPhoto()
+                {
+                    ProductID = model.ProductID,
+                    Photo = model.Photo,
+                    Description = model.Description,
+                    DisplayOrder = model.DisplayOrder,
+                    PhotoID = model.PhotoID,
+                    IsHidden = model.IsHidden,
+                };
+
+                //TODO: Fix lỗi Add, Update Attribute
+                if (model.PhotoID == 0)
+                {
+                    // Add
+                    await ProductDataService.ProductDB.AddPhotoAsync(photo);
+                }
+                else
+                {
+                    // Edit
+                    await ProductDataService.ProductDB.UpdatePhotoAsync(photo);
+                }
+                return RedirectToAction("Edit", new { id = photo.ProductID });
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("Error", ex.Message);
+                return RedirectToAction("Edit", new { id = model.ProductID });
             }
         }
 
@@ -205,14 +282,14 @@ namespace SV22T1080013.Admin.Controllers
                     var attributeUd = await ProductDataService.ProductDB.GetAttributeAsync(attributeId);
                     if (attributeUd == null)
                     {
-                        return Redirect($"/Product/Edit/{id}");
+                        return RedirectToAction("Edit", new { id });
                     }
                     ViewBag.PhotoId = attributeId;
                     return View(attributeUd);
                 case "delete":
                     //TODO: Xoá thuộc tính
                     await ProductDataService.ProductDB.DeleteAttribute(attributeId);
-                    return RedirectToAction("Edit", new { id = id });
+                    return RedirectToAction("Edit", new { id });
                 default:
                     return RedirectToAction("Index");
 
@@ -233,7 +310,6 @@ namespace SV22T1080013.Admin.Controllers
 
                 if (!ModelState.IsValid) return View("Attribute", model);
 
-                //TODO: Fix lỗi Add, Update Attribute 
                 if (model.AttributeID == 0)
                 {
                     // Add
