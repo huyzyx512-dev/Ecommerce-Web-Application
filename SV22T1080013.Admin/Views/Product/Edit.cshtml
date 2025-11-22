@@ -105,7 +105,7 @@
 
 </div>
 
-
+<!--Phần thuộc tính ảnh-->
 <div class="box box-info">
     <div class="box-header with-border ">
         <h3 class="box-title">Thư viện ảnh</h3>
@@ -146,20 +146,20 @@
                             <a class="btn btn-xs btn-primary" href="~/Product/Photo/@item.ProductID?method=edit&photoId=@item.PhotoID">
                                 <i class="fa fa-edit"></i>
                             </a>
-                            <a class="btn btn-xs btn-danger" href="~/Product/Photo/@item.ProductID?method=delete&photoId=@item.PhotoID" onclick="return confirm('Xóa ảnh của mặt hàng hay không?')">
+                            <button type="button" class="btn btn-xs btn-danger"
+                                    onclick="deletePhoto(@item.PhotoID, @item.ProductID, this)">
                                 <i class="fa fa-remove"></i>
-                            </a>
+                            </button>
                         </td>
                     </tr>
                 }
             </tbody>
         </table>
     </div>
-
 </div>
 
+<!--Hiển thị thuộc tính sản phẩm-->
 <div class="box box-info">
-
     <div class="box-header with-border ">
         <h3 class="box-title">Thuộc tính của mặt hàng</h3>
         <div class="box-tools pull-right">
@@ -194,9 +194,10 @@
                             <a class="btn btn-xs btn-primary" href="~/Product/Attribute/@Model.ProductID?method=edit&attributeId=@item.AttributeID">
                                 <i class="fa fa-edit"></i>
                             </a>
-                            <a class="btn btn-xs btn-danger" href="~/Product/Attribute/@Model.ProductID?method=delete&attributeId=@item.AttributeID" onclick="return confirm('Xóa thuộc tính này của mặt hàng?')">
+                            <button type="button" class="btn btn-xs btn-danger"
+                                    onclick="deleteAttribute(@item.AttributeID, @Model.ProductID, this)">
                                 <i class="fa fa-remove"></i>
-                            </a>
+                            </button>
                         </td>
                     </tr>
                 }
@@ -205,6 +206,52 @@
     </div>
     <div class="box-footer text-center">
     </div>
-
 </div>
 
+@section Scripts {
+    <script>
+        // XÓA ẢNH – HOẠT ĐỘNG 100%
+        function deletePhoto(photoId, productId, button) {
+            if (!confirm('Xóa ảnh này của mặt hàng?')) return;
+
+            fetch(`/Product/Photo/${productId}?method=delete&photoId=${photoId}&ajax=true`, {
+                method: 'GET'
+            })
+            .then(response => {
+                if (!response.ok) throw new Error('Network error');
+                return response.json();
+            })
+            .then(result => {
+                if (result.success) {
+                    button.closest('tr').remove();
+                    alert('Đã xóa ảnh thành công!');
+                } else {
+                    alert('Xóa thất bại!');
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                alert('Lỗi hệ thống! Vui lòng thử lại.');
+            });
+        }
+
+        // XÓA THUỘC TÍNH – HOẠT ĐỘNG 100%
+        function deleteAttribute(attributeId, productId, button) {
+            if (!confirm('Xóa thuộc tính này của mặt hàng?')) return;
+
+            fetch(`/Product/Attribute/${productId}?method=delete&attributeId=${attributeId}&ajax=true`, {
+                method: 'GET'
+            })
+            .then(response => response.json())  
+            .then(result => {
+                if (result.success) {
+                    button.closest('tr').remove();
+                    alert('Đã xóa thuộc tính thành công!');
+                } else {
+                    alert('Xóa thất bại!');
+                }
+            })
+            .catch(() => alert('Lỗi hệ thống!'));
+        }
+    </script>
+}

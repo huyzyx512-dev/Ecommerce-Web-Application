@@ -200,8 +200,12 @@ namespace SV22T1080013.Admin.Controllers
                     };
                     return View(photoUp);
                 case "delete":
-                    // TODO: Xoá ảnh (hoàn thành đoạn code này ngày mai)
-                    await ProductDataService.ProductDB.DeletePhotoAsync(photoId);
+                    var deleted = await ProductDataService.ProductDB.DeletePhotoAsync(photoId);
+
+                    if (Request.Query["ajax"].ToString() == "true")
+                    {
+                        return Json(new { success = deleted });
+                    }
                     return RedirectToAction("Edit", new { id });
                 default:
                     return RedirectToAction("Index");
@@ -287,8 +291,12 @@ namespace SV22T1080013.Admin.Controllers
                     ViewBag.PhotoId = attributeId;
                     return View(attributeUd);
                 case "delete":
-                    //TODO: Xoá thuộc tính
-                    await ProductDataService.ProductDB.DeleteAttribute(attributeId);
+                    var deleted = await ProductDataService.ProductDB.DeleteAttribute(attributeId);
+
+                    if (Request.Query["ajax"].ToString() == "true")
+                    {
+                        return Json(new { success = deleted });
+                    }
                     return RedirectToAction("Edit", new { id });
                 default:
                     return RedirectToAction("Index");
