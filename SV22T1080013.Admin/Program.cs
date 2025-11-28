@@ -1,4 +1,5 @@
-﻿using SV22T1080013.Admin;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
+using SV22T1080013.Admin;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,15 @@ builder.Services.AddSession(options =>
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(option =>
+                {
+                    option.Cookie.Name = "LiteCommerce.Admin";
+                    option.LoginPath = "/Admin/Account/Login";
+                    option.AccessDeniedPath = "/Admin/Account/AccessDenied";
+                    option.ExpireTimeSpan = TimeSpan.FromDays(30);
+                    option.SlidingExpiration = true;
+                });
 
 var app = builder.Build();
 

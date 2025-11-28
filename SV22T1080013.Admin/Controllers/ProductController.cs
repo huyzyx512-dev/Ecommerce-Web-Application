@@ -168,8 +168,74 @@ namespace SV22T1080013.Admin.Controllers
             {
                 if (Request.Method == "POST")
                 {
-                    await ProductDataService.ProductDB.DeleteAsync(id);
-                    return RedirectToAction("Index", "Product");
+                    try
+                    {
+                        // 1. Lấy thông tin sản phẩm để biết tên file ảnh
+                        var product = await ProductDataService.ProductDB.GetAsync(id);
+                        var photos = await ProductDataService.ProductDB.ListPhotosAsync(id);
+                        if (product == null)
+                        {
+                            return NotFound();
+                        }
+
+                        // 2. Xóa toàn bộ ảnh liên quan trong CSDL (ProductPhoto + ProductAttribute + Product)
+                        var deleted = await ProductDataService.ProductDB.DeleteAsync(id);
+                        if (!deleted)
+                        {
+                            TempData["Error"] = "Không thể xóa sản phẩm (có thể đang được sử dụng trong đơn hàng).";
+                            return RedirectToAction("Index");
+                        }
+
+                        // 3. XÓA FILE ẢNH CHÍNH TRÊN Ổ ĐĨA (nếu tồn tại và không phải ảnh mặc định)
+                        if (!string.IsNullOrWhiteSpace(product.Photo) &&
+                            product.Photo.Trim() != "nophoto.png" &&
+                            product.Photo.Trim() != "no-photo.png")
+                        {
+                            var filePath = Path.Combine(Directory.GetCurrentDirectory(),
+                                                       "wwwroot", "images", "products", product.Photo.Trim());
+
+                            if (System.IO.File.Exists(filePath))
+                            {
+                                try
+                                {
+                                    System.IO.File.Delete(filePath);
+                                    // Nếu bạn có thumbnail thì xóa luôn ở đây
+                                    // var thumbPath = Path.Combine(... "thumb", product.Photo);
+                                    // if (File.Exists(thumbPath)) File.Delete(thumbPath);
+                                }
+                                catch (Exception ex)
+                                {
+                                    // Ghi log nếu cần, nhưng không làm hỏng flow xóa CSDL
+                                    // _logger.LogWarning(ex, "Không thể xóa file ảnh: {FilePath}", filePath);
+                                }
+                            }
+                        }
+
+                        // 4. (Tùy chọn) XÓA TẤT CẢ ẢNH TRONG ProductPhoto TRÊN Ổ ĐĨA
+                        foreach (var photo in photos)
+                        {
+                            if (string.IsNullOrWhiteSpace(photo.Photo) ||
+                                photo.Photo.Trim() == "nophoto.png")
+                                continue;
+
+                            var photoPath = Path.Combine(Directory.GetCurrentDirectory(),
+                                                        "wwwroot", "images", "products", photo.Photo.Trim());
+
+                            if (System.IO.File.Exists(photoPath))
+                            {
+                                try { System.IO.File.Delete(photoPath); }
+                                catch { /* bỏ qua lỗi file */ }
+                            }
+                        }
+
+                        TempData["Success"] = $"Đã xóa sản phẩm \"{product.ProductName}\" và các file ảnh thành công!";
+                        return RedirectToAction("Index", "Product");
+                    }
+                    catch (Exception ex)
+                    {
+                        TempData["Error"] = "Lỗi khi xóa sản phẩm: " + ex.Message;
+                        return RedirectToAction("Index", "Product");
+                    }
                 }
                 else
                 {
@@ -183,7 +249,7 @@ namespace SV22T1080013.Admin.Controllers
             }
             catch (Exception ex)
             {
-                ModelState.AddModelError("Error",ex.Message);
+                ModelState.AddModelError("Error", ex.Message);
                 return RedirectToAction("Product");
             }
         }
