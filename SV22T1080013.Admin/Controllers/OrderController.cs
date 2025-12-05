@@ -69,13 +69,20 @@ namespace SV22T1080013.Admin.Controllers
 
         public IActionResult RemoveFromCart(int id)
         {
-            return View();
+            var items = GetSessionCart();
+            var item = items.Find(i => i.ProductID == id);
+            if (item != null)
+            {
+                items.Remove(item);
+                ApplicationContext.SetSessionData(CART, items);
+            }
+            return PartialView("GetCart", items);
         }
 
         public IActionResult ClearCart()
         {
             HttpContext.Session.Remove(CART);
-            return PartialView("GetCart", new List<OrderDetail>()); // trả về giỏ rỗng
+            return View("GetCart", new List<OrderDetail>()); // trả về giỏ rỗng
         }
             
         public IActionResult Init()

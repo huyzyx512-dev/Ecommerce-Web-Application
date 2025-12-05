@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using SV22T1080013.DomainModels;
+using System.Threading.Tasks;
 
 namespace SV22T1080013.DataLayers
 {
@@ -52,6 +53,13 @@ namespace SV22T1080013.DataLayers
             return await connection.QueryAsync<Customer>(sql, parameters, commandType: System.Data.CommandType.Text);
         }
 
+        public async Task<IEnumerable<Customer>> ListUserAsync()
+        {
+            using var connection = await OpenConnectionAsync();
+            string sql = "SELECT * FROM Customers ORDER BY CustomerName ASC";
+
+            return await connection.QueryAsync<Customer>(sql);
+        }
 
         /// <summary>
         /// Lấy thông tin khách hàng theo mã khách hàng
