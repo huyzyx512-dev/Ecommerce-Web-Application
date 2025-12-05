@@ -12,10 +12,10 @@ namespace SV22T1080013.Admin.Models
         /// <summary>
         /// Danh sách loại hàng
         /// </summary>
-        public required IEnumerable<Category> Categories { get; set; }
+        public IEnumerable<Category> Categories { get; set; }
         /// <summary>
         /// Danh sách nhà cung cấp
         /// </summary>
-        public required IEnumerable<Supplier> Suppliers { get; set; }
+        public IEnumerable<Supplier> Suppliers { get; set; }
     }
 }
