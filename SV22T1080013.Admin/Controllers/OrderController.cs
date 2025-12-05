@@ -74,9 +74,10 @@ namespace SV22T1080013.Admin.Controllers
 
         public IActionResult ClearCart()
         {
-            return View();
+            HttpContext.Session.Remove(CART);
+            return PartialView("GetCart", new List<OrderDetail>()); // trả về giỏ rỗng
         }
-
+            
         public IActionResult Init()
         {
             return View();

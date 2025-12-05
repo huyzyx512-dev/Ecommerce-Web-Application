@@ -42,7 +42,7 @@
        
             <div class="text-right">
                 @* <a href="d:\y4hk1\web_application\c_sharp\sv22t1080013\sv22t1080013.admin\views\order\create.cshtml">d:\y4hk1\web_application\c_sharp\sv22t1080013\sv22t1080013.admin\views\order\create.cshtml</a> *@
-                <a href="~/Order/ClearCart" class="btn btn-sm btn-danger" onclick="return confirm('Có muốn xóa giỏ hàng không?')">
+                <a href="~/Order/ClearCart" class="btn btn-sm btn-danger clear-cart" onclick="return confirm('Có muốn xóa giỏ hàng không?')">
                     <i class="fa fa-trash"></i> Xóa giỏ hàng
                 </a>
             </div>
@@ -150,6 +150,22 @@
                     $("#cart").html(data);
                 });
             }
+
+            // 5. Xóa toàn bộ giỏ hàng
+            $(document).on("click", ".clear-cart", function (e) {
+                e.preventDefault();
+
+                $.ajax({
+                    url: this.href,           // ~/Order/ClearCart
+                    method: "GET",            // hoặc POST nếu bạn đổi action thành [HttpPost]
+                    success: function () {
+                        getCart();            // reload lại phần giỏ hàng (hiển thị "Giỏ hàng trống")
+                    },
+                    error: function () {
+                        alert("Có lỗi khi xóa giỏ hàng!");
+                    }
+                });
+            });
 
             // Khởi chạy lần đầu
             searchProduct(1);
