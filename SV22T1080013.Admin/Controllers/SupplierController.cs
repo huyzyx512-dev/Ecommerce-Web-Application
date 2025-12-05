@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SV22T1080013.Admin.Models;
 using SV22T1080013.BusinessLayers;
 using SV22T1080013.DomainModels;
@@ -6,6 +7,7 @@ using System.Buffers;
 
 namespace SV22T1080013.Admin.Controllers
 {
+    [Authorize]
     public class SupplierController : Controller
     {
         private const int PAGESIZE = 10;

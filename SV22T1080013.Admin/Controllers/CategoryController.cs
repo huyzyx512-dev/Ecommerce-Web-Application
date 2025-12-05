@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using SV22T1080013.Admin.AppCodes;
 using SV22T1080013.Admin.Models;
 using SV22T1080013.BusinessLayers;
 using SV22T1080013.DomainModels;
 
 namespace SV22T1080013.Admin.Controllers
 {
+    [Authorize(Roles = $"{WebUserRoles.Administrator},{WebUserRoles.Employee}")]
     public class CategoryController : Controller
     {
         private const int PAGESIZE = 10;

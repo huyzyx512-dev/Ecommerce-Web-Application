@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Security.Claims;
 
-namespace SV22T1080013.Admin
+namespace SV22T1080013.Admin.AppCodes
 {
     /// <summary>
     /// Thông tin tài khoản người dùng được lưu trong phiên đăng nhập (cookie)
@@ -23,14 +23,14 @@ namespace SV22T1080013.Admin
         {
             get
             {
-                List<Claim> claims = new List<Claim>()
-                {
+                List<Claim> claims =
+                [
                     new Claim(nameof(UserId), UserId ?? ""),
                     new Claim(nameof(UserName), UserName ?? ""),
                     new Claim(nameof(DisplayName), DisplayName ?? ""),
                     new Claim(nameof(Email), Email ?? ""),
                     new Claim(nameof(Photo), Photo ?? "")
-                };
+                ];
                 if (Roles != null)
                     foreach (var role in Roles)
                         claims.Add(new Claim(ClaimTypes.Role, role));

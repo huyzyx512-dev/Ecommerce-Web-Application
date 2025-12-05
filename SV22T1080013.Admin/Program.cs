@@ -9,7 +9,6 @@ builder.Services.AddControllersWithViews().AddMvcOptions(option =>
 {
     option.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true; // Cho phép thuộc tính được null
 });
-
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {
@@ -18,14 +17,14 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie(option =>
-                {
-                    option.Cookie.Name = "LiteCommerce.Admin";
-                    option.LoginPath = "/Admin/Account/Login";
-                    option.AccessDeniedPath = "/Admin/Account/AccessDenied";
-                    option.ExpireTimeSpan = TimeSpan.FromDays(30);
-                    option.SlidingExpiration = true;
-                });
+.AddCookie(option =>
+{
+    option.Cookie.Name = "SV22T1080013.Admin";
+    option.LoginPath = "/Account/Login";
+    option.AccessDeniedPath = "/Account/AccessDenied";
+    option.ExpireTimeSpan = TimeSpan.FromDays(30);
+    option.SlidingExpiration = true;
+});
 
 var app = builder.Build();
 
@@ -35,10 +34,10 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Home/Error");
 }
 app.UseStaticFiles();
-
 app.UseRouting();
-app.UseSession();
+app.UseAuthentication();
 app.UseAuthorization();
+app.UseSession();
 
 // Khai báo Quy tắt Route 
 app.MapControllerRoute(

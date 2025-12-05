@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using SV22T1080013.Admin.AppCodes;
 using SV22T1080013.Admin.Models;
 using SV22T1080013.BusinessLayers;
 using SV22T1080013.DomainModels;
@@ -9,6 +11,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SV22T1080013.Admin.Controllers
 {
+    [Authorize(Roles = $"{WebUserRoles.Administrator}")]
     public class ProductController : Controller
     {
         private const string PRODUCT_SEARCH_CONDITION = "ProductSeachCondition";
