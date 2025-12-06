@@ -56,12 +56,12 @@ namespace SV22T1080013.DataLayers.SQLServer
                         order by RowNumber";
             var parameters = new
             {
-                page,
-                pageSize,
-                status,
-                fromTime,
-                toTime,
-                searchValue
+                Page = page,
+                PageSize = pageSize,
+                Status = status,
+                FromTime = fromTime,
+                ToTime = toTime,
+                SearchValue = searchValue
             };
             return await connection.QueryAsync<Order>(sql: sql, param: parameters, commandType: System.Data.CommandType.Text);
         }

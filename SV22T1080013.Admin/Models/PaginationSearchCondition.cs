@@ -42,4 +42,12 @@
         /// </summary>
         public int ProductID { get; set; }
     }
+
+    public class OrderSearchCondition : PaginationSearchCondition
+    {
+        public int StatusID { get; set; } 
+        public DateTime? FromTime { get; set; }
+        public DateTime? ToTime { get; set; }
+
+    }
 }

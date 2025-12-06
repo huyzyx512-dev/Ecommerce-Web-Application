@@ -3,18 +3,67 @@ using Microsoft.AspNetCore.Mvc;
 using SV22T1080013.Admin.Models;
 using SV22T1080013.BusinessLayers;
 using SV22T1080013.DomainModels;
+using System.Threading.Tasks;
 
 namespace SV22T1080013.Admin.Controllers
 {
     [Authorize]
     public class OrderController : Controller
     {
+        private const int PAGESIZE_PRODUCT = 4;
+        private const int PAGESIZE_ORDER = 20;
         private const string CART = "CART";
         private const string PRODUCT_SEARCH_FOR_SALE = "ProductSearchForSale";
-        private const int PAGESIZE = 4;
+        private const string ORDER_SEARCH_CONDITION = "OrderSearchCodition";
+
         public IActionResult Index()
         {
-            return View();
+            var condition = ApplicationContext.GetSessionData<OrderSearchCondition>(ORDER_SEARCH_CONDITION);
+            condition ??= new OrderSearchCondition()
+            {
+                Page = 1,
+                PageSize = PAGESIZE_ORDER,
+                SearchValue = "",
+                StatusID = 0,
+                FromTime = null,
+                ToTime = null,
+            };
+            return View(condition);
+        }
+
+        public async Task<IActionResult> Search(OrderSearchCondition condition)
+        {
+            var data = await OrderDataService.OrderDB.ListAsync(
+                condition.Page,
+                condition.PageSize,
+                condition.StatusID,
+                condition.FromTime,
+                condition.ToTime,
+                condition.SearchValue
+            );
+
+            var rowCount = await OrderDataService.OrderDB.CountAsync(
+                condition.StatusID,
+                condition.FromTime,
+                condition.ToTime,
+                condition.SearchValue
+            ); 
+
+            var model = new OrderSearchResult<Order>()
+            {
+                Page = condition.Page,
+                PageSize = condition.PageSize,
+                SearchValue = condition.SearchValue,
+                StatusID = condition.StatusID,
+                FromTime = condition.FromTime,
+                ToTime = condition.ToTime,
+                RowCount = rowCount,
+                Data = data,
+            };
+
+            ApplicationContext.SetSessionData(ORDER_SEARCH_CONDITION, condition);
+
+            return View(model);
         }
 
         public IActionResult Details(int id)
@@ -84,7 +133,11 @@ namespace SV22T1080013.Admin.Controllers
             HttpContext.Session.Remove(CART);
             return View("GetCart", new List<OrderDetail>()); // trả về giỏ rỗng
         }
-            
+
+        /// <summary>
+        /// Tạo đơn hàng từ danh sách session cart 
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Init()
         {
             return View();
@@ -96,7 +149,7 @@ namespace SV22T1080013.Admin.Controllers
             condition ??= new ProductSearchCondition()
             {
                 Page = 1,
-                PageSize = PAGESIZE,
+                PageSize = PAGESIZE_PRODUCT,
                 SearchValue = "",
                 CategoryID = 0,
                 SupplierID = 0,

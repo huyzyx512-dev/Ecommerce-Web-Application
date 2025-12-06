@@ -42,4 +42,12 @@
         /// </summary>
         public required IEnumerable<T> Data { get; set; }
     }
+
+    public class OrderSearchResult<T> : PaginationSearchResult<T>
+    {
+        public int StatusID { get; set; }
+        public DateTime? FromTime { get; set; }
+        public DateTime? ToTime { get; set; }
+
+    }
 }
