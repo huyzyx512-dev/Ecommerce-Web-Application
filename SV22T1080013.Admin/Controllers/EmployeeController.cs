@@ -77,7 +77,6 @@ namespace SV22T1080013.Admin.Controllers
             return View("Edit", model);
         }
 
-        //TODO: xử lý hàm cập nhật, thêm, và xóa của nhân viên
         [HttpPost]
         public async Task<IActionResult> SaveData(EmployeeEditModel model)
         {

@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using SV22T1080013.Admin.Models;
 using SV22T1080013.BusinessLayers;
 using SV22T1080013.DomainModels;
-using System.Threading.Tasks;
 
 namespace SV22T1080013.Admin.Controllers
 {
@@ -116,6 +115,11 @@ namespace SV22T1080013.Admin.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Xóa sản phẩm trong giỏ hàng
+        /// </summary>
+        /// <param name="id">Mã sản phẩm</param>
+        /// <returns></returns>
         public IActionResult RemoveFromCart(int id)
         {
             var items = GetSessionCart();
@@ -128,6 +132,10 @@ namespace SV22T1080013.Admin.Controllers
             return PartialView("GetCart", items);
         }
 
+        /// <summary>
+        /// Xóa giỏ hàng hiện tại
+        /// </summary>
+        /// <returns></returns>
         public IActionResult ClearCart()
         {
             HttpContext.Session.Remove(CART);
@@ -159,6 +167,11 @@ namespace SV22T1080013.Admin.Controllers
             return View(condition);
         }
 
+        /// <summary>
+        /// Tìm kiếm sản phầm có phân trang 
+        /// </summary>
+        /// <param name="condition">Thông tin search sản phẩm, nếu trống thì trả về toàn bộ sản phẩm có phân trang</param>
+        /// <returns></returns>
         public async Task<IActionResult> SearchProduct(ProductSearchCondition condition)
         {
             if (condition == null)
@@ -178,16 +191,32 @@ namespace SV22T1080013.Admin.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Lấy danh sách sản phẩm trong session giỏ hàng
+        /// </summary>
+        /// <returns></returns>
         public IActionResult GetCart()
         {
             return View(GetSessionCart());
         }
 
+        /// <summary>
+        /// Thêm sản phẩm vào giỏ hàng
+        /// </summary>
+        /// <param name="data">Chi tiết mặt hàng</param>
+        /// <returns></returns>
         public IActionResult AddToCart(OrderDetail data)
         {
+            //TODO: Kiểm tra tính hợp lệ input, dữ liệu trả về Json ApiResult method: POST
+            if (data.Quantity < 1)
+                return Json(new ApiResult() { Code = 0, Message = "Số lượng không hợp lệ" });
+            if (data.SalePrice < 0)
+                return Json(new ApiResult() { Code = 0, Message = "Giá bán không hợp lệ" });
+
             AddSessionCart(data);
-            return View("GetCart", GetSessionCart());
+            return Json(new ApiResult() { Code = 1, Message = "Thêm mặt hàng thành công" });
         }
+
         /// <summary>
         /// Lấy giỏ hàng trong Session
         /// </summary>
