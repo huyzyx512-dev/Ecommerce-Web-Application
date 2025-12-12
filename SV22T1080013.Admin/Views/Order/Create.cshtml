@@ -116,7 +116,7 @@
                 $.ajax({
                     url: url,  
                     type: method,
-                    data: $(this).serialize(),
+                    data: submitData,
                     success: function (res) {
                         if (res.code ===1) {
                             getCart();
