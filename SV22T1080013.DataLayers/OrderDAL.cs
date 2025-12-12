@@ -133,7 +133,7 @@ namespace SV22T1080013.DataLayers.SQLServer
             using var connection = await OpenConnectionAsync();
             var sql = @"insert into Orders(CustomerId, OrderTime, DeliveryProvince, DeliveryAddress, EmployeeID, Status)
                             values(@CustomerID, getdate(), @DeliveryProvince, @DeliveryAddress, @EmployeeID, @Status);
-                            select @@identity";
+                            select @identity";
             return await connection.ExecuteScalarAsync<int>(sql: sql, param: data, commandType: System.Data.CommandType.Text);
         }
         /// <summary>

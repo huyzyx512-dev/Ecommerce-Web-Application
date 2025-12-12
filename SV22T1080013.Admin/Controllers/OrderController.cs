@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SV22T1080013.Admin.AppCodes;
 using SV22T1080013.Admin.Models;
 using SV22T1080013.BusinessLayers;
 using SV22T1080013.DomainModels;
@@ -47,7 +48,7 @@ namespace SV22T1080013.Admin.Controllers
                 condition.FromTime,
                 condition.ToTime,
                 condition.SearchValue
-            ); 
+            );
 
             var model = new OrderSearchResult<Order>()
             {
@@ -66,9 +67,21 @@ namespace SV22T1080013.Admin.Controllers
             return View(model);
         }
 
-        public IActionResult Details(int id)
+        public async Task<IActionResult> Details(int id)
         {
-            return View();
+            var order = await OrderDataService.OrderDB.GetAsync(id);
+            if (order == null)
+            {
+                return RedirectToAction("Index");
+            }
+            return View(order);
+        }
+
+        public async Task<IActionResult> ItemsOrder(int orderID)
+        {
+            //TODO: fix hiển thị itemsOrder ở Detail view
+            var items = await OrderDataService.OrderDB.ListDetailsAsync(orderID);
+            return View(items);
         }
 
         public IActionResult Shipping()
@@ -124,9 +137,36 @@ namespace SV22T1080013.Admin.Controllers
             {
                 items.Remove(item);
                 ApplicationContext.SetSessionData(CART, items);
+                return Json(new ApiResult { Code = 1 });
             }
             return PartialView("GetCart", items);
         }
+
+        /// <summary>
+        /// Xóa mặt hàng có id ra khỏi giỏ hàng
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        //[HttpPost]
+        //public IActionResult RemoveFromCart(int id)
+        //{
+        //    try
+        //    {
+        //        var items = GetSessionCart();
+        //        var item = items.Find(i => i.ProductID == id);
+        //        if (item != null)
+        //        {
+        //            items.Remove(item);
+        //            ApplicationContext.SetSessionData(CART, items);
+        //            return Json(new ApiResult { Code = 1 });
+        //        }
+        //        return Json(new ApiResult { Code = 0, Message = "Mặt hàng không tồn tại" });
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Json(new ApiResult { Code = 0, Message = ex.Message});
+        //    }
+        //}
 
         public IActionResult ClearCart()
         {
@@ -138,9 +178,44 @@ namespace SV22T1080013.Admin.Controllers
         /// Tạo đơn hàng từ danh sách session cart 
         /// </summary>
         /// <returns></returns>
-        public IActionResult Init()
+        public async Task<IActionResult> Init(string customerId, string deliveryProvince, string deliveryAddress)
         {
-            return View();
+            try
+            {
+                int orderId = 0;
+
+                // Kiểm tra giỏ hàng và valid input
+                var cart = GetSessionCart();
+                if (cart.Count == 0)
+                    return Json(new ApiResult() { Code = 0, Message = "Không có mặt hàng để lập đơn hàng" });
+                if (string.IsNullOrWhiteSpace(customerId))
+                    return Json(new ApiResult() { Code = 0, Message = "Vui lòng chọn khách hàng" });
+                if (string.IsNullOrWhiteSpace(deliveryProvince))
+                    return Json(new ApiResult() { Code = 0, Message = "Vui lòng cho biết tỉnh giao hàng" });
+                if (string.IsNullOrWhiteSpace(deliveryAddress))
+                    return Json(new ApiResult() { Code = 0, Message = "Vui lòng nhập địa giao hàng" });
+
+                Order data = new Order()
+                {
+                    CustomerID = Convert.ToInt32(customerId),
+                    DeliveryAddress = deliveryAddress,
+                    DeliveryProvince = deliveryProvince,
+                    EmployeeID = Convert.ToInt32(User.GetUserData()?.UserId),
+                    Status = Constants.ORDER_INIT,
+                };
+
+                orderId = await OrderDataService.OrderDB.AddAsync(data);
+
+                foreach (var item in cart)
+                {
+                    await OrderDataService.OrderDB.SaveDetailAsync(orderId, item.ProductID, item.Quantity, item.SalePrice);
+                }
+
+                return Json(new ApiResult() { Code = 0, Message = "", Data = orderId }); 
+            }
+            catch (Exception ex) { 
+                return Json(new ApiResult() { Code = 0, Message = ex.Message});
+            }
         }
 
         public IActionResult Create()
@@ -185,6 +260,13 @@ namespace SV22T1080013.Admin.Controllers
 
         public IActionResult AddToCart(OrderDetail data)
         {
+            //TODO: Kiểm tra tính hợp lệ input, dữ liệu trả về Json ApiResult method: POST
+            //if (data.Quantity < 1)
+            //    return Json(new ApiResult() { Code = 0, Message = "Số lượng không hợp lệ" }); 
+            //if (data.SalePrice < 0)
+            //    return Json(new ApiResult() { Code = 0, Message = "Giá bán không hợp lệ" }); 
+
+
             AddSessionCart(data);
             return View("GetCart", GetSessionCart());
         }

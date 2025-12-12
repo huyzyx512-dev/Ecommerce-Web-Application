@@ -10,7 +10,7 @@
             <!-- Form tìm kiếm mặt hàng -->
             <h4>Lựa chọn hàng cần bán</h4>
             <form id="formSearchProducts" action="~/Order/SearchProduct" method="post" data-result="#searchProductResult">
-                <input type="hidden" asp-for="PageSize"/>
+                <input type="hidden" asp-for="PageSize" />
                 <input type="hidden" asp-for="CategoryID" />
                 <input type="hidden" asp-for="SupplierID" />
                 <input type="hidden" asp-for="MinPrice" />
@@ -26,7 +26,7 @@
                     </span>
                 </div>
             </form>
-            
+
             <!--Hiển thị danh sách mặt hàng-->
             <div id="searchProductResult">
             </div>
@@ -39,7 +39,7 @@
 
             <!--Hiển thị danh sách giỏ hàng-->
             <div id="cart"></div>
-       
+
             <div class="text-right">
                 @* <a href="d:\y4hk1\web_application\c_sharp\sv22t1080013\sv22t1080013.admin\views\order\create.cshtml">d:\y4hk1\web_application\c_sharp\sv22t1080013\sv22t1080013.admin\views\order\create.cshtml</a> *@
                 <a href="~/Order/ClearCart" class="btn btn-sm btn-danger clear-cart" onclick="return confirm('Có muốn xóa giỏ hàng không?')">
@@ -48,16 +48,16 @@
             </div>
 
             <!-- Nhập khách hàng, nhân viên phụ trách và khởi tạo đơn hàng -->
-            <form action="~/Order/Init" method="post" class="form-horizontal">
+            <form id="formOrderInit" action="~/Order/Init" method="post" class="form-horizontal">
                 <h4>Thông tin về khách hàng và địa chỉ giao hàng</h4>
                 <div class="form-group">
                     <label class="control-label col-sm-2">Khách hàng:</label>
                     <div class="col-sm-10">
-                        <select class="form-control" name="customerID">
+                        <select class="form-control" name="customerID" onchange="getCustomerInfo(this)">
                             <option value="0">-- Chọn khách hàng --</option>
                             @foreach (var us in await SV22T1080013.BusinessLayers.CommonDataService.CustomerDB.ListUserAsync())
                             {
-                            <option value="@us.CustomerID">@us.CustomerName</option>
+                                <option value="@us.CustomerID">@us.CustomerName</option>
                             }
                             @* <option value="2">Nguyễn Hoàng Hà</option>
                             <option value="3">Nguyễn Ngọc Thủy</option> *@
@@ -67,7 +67,7 @@
                 <div class="form-group">
                     <label class="control-label col-sm-2">Tỉnh/thành:</label>
                     <div class="col-sm-10">
-                        <select class="form-control select2" asp-items="await SelectListHelper.Provinces()">
+                        <select id="province" class="form-control select2" asp-items="await SelectListHelper.Provinces()">
                             @* <option value="0">-- Chọn tỉnh/thành --</option>
                             <option value="Thừa Thiên Huế">Thừa Thiên Huế</option>
                             <option value="Đà Nẵng">Đà Nẵng</option>
@@ -78,7 +78,7 @@
                 <div class="form-group">
                     <label class="control-label col-sm-2">Địa chỉ nhận hàng:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="deliveryAddress" />
+                        <input id="address" type="text" class="form-control" name="deliveryAddress" />
                     </div>
                 </div>
                 <div class="form-group">
@@ -92,8 +92,10 @@
         </div>
     </div>
 </div>
+
 @section scripts {
     <script>
+        // TODO: Clean script
         $(function () {
             // 1. Tìm kiếm sản phẩm (khi submit form tìm kiếm hoặc bấm nút phân trang)
             function searchProduct(page) {
@@ -111,6 +113,27 @@
                 });
             }
 
+
+            $("#formOrderInit").on("submit", function (e) {
+                e.preventDefault();
+                var url = $(this).prop("action");
+                var method = $(this).prop("method");
+                var submitData = $(this).serializeArray();
+
+                 $.ajax({
+                    url: this.action,
+                    method: this.method,
+                    data: $(this).serialize(),
+                    success: function (data) {
+                        if (data.Code === 1) {
+                            location.href = `/Order/Details/${data.data}`;
+                        } else {
+                            alert(code.message);
+                        }
+                    }
+                });
+            });
+
             // Submit form tìm kiếm
             $("#formSearchProducts").on("submit", function (e) {
                 e.preventDefault();
@@ -121,7 +144,7 @@
             $(document).on("submit", ".formAddToCart", function (e) {
                 e.preventDefault();
 
-                $.ajax({
+                $.ajax({i
                     url: this.action,
                     method: this.method,
                     data: $(this).serialize(),
@@ -141,10 +164,30 @@
             $(document).on("click", ".remove-item", function (e) {
                 e.preventDefault();
 
+                // this.href = "~/Order/RemoveFromCart"
                 $.get(this.href, function () {
                     getCart(); // reload lại giỏ
                 });
             });
+
+            //TODO: Khi chọn Khách hàng thì Map tỉnh và địa chỉ khách hàng vào và có thể sửa địa chỉ
+
+            // function removeItem(id) {
+            //     $.ajax({
+            //         url: "/Order/RemoveFromCart",
+            //         method: "POST",
+            //         data: { id: id },
+            //         success: function (data) {
+            //             if (data.code === 1) {
+            //                 getCart();
+            //             } else {
+            //                 alert(data.message);
+            //             }
+            //         }
+            //     });
+            // }
+
+
 
             // 4. Load giỏ hàng khi vào trang
             function getCart() {
@@ -168,6 +211,20 @@
                     }
                 });
             });
+
+            // 6.Lấy thông tin khách hàng được chọn
+            function getCustomerInfo(obj) {
+                var customterId = $(obj).val();
+                alert(customterId);
+                  $.ajax({
+                    url: `/api/customer/${customterId}`,           
+                    method: "GET",           
+                    success: function (data) {
+                        $("#province").val(data.province);
+                        $("#address").val(data.address);
+                    }
+                });
+            }
 
             // Khởi chạy lần đầu
             searchProduct(1);
