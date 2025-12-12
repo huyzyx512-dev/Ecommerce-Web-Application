@@ -129,6 +129,11 @@ namespace SV22T1080013.Admin.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Xóa sản phẩm trong giỏ hàng
+        /// </summary>
+        /// <param name="id">Mã sản phẩm</param>
+        /// <returns></returns>
         public IActionResult RemoveFromCart(int id)
         {
             var items = GetSessionCart();
@@ -142,32 +147,6 @@ namespace SV22T1080013.Admin.Controllers
             return PartialView("GetCart", items);
         }
 
-        /// <summary>
-        /// Xóa mặt hàng có id ra khỏi giỏ hàng
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        //[HttpPost]
-        //public IActionResult RemoveFromCart(int id)
-        //{
-        //    try
-        //    {
-        //        var items = GetSessionCart();
-        //        var item = items.Find(i => i.ProductID == id);
-        //        if (item != null)
-        //        {
-        //            items.Remove(item);
-        //            ApplicationContext.SetSessionData(CART, items);
-        //            return Json(new ApiResult { Code = 1 });
-        //        }
-        //        return Json(new ApiResult { Code = 0, Message = "Mặt hàng không tồn tại" });
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return Json(new ApiResult { Code = 0, Message = ex.Message});
-        //    }
-        //}
-
         public IActionResult ClearCart()
         {
             HttpContext.Session.Remove(CART);
@@ -178,44 +157,9 @@ namespace SV22T1080013.Admin.Controllers
         /// Tạo đơn hàng từ danh sách session cart 
         /// </summary>
         /// <returns></returns>
-        public async Task<IActionResult> Init(string customerId, string deliveryProvince, string deliveryAddress)
+        public IActionResult Init()
         {
-            try
-            {
-                int orderId = 0;
-
-                // Kiểm tra giỏ hàng và valid input
-                var cart = GetSessionCart();
-                if (cart.Count == 0)
-                    return Json(new ApiResult() { Code = 0, Message = "Không có mặt hàng để lập đơn hàng" });
-                if (string.IsNullOrWhiteSpace(customerId))
-                    return Json(new ApiResult() { Code = 0, Message = "Vui lòng chọn khách hàng" });
-                if (string.IsNullOrWhiteSpace(deliveryProvince))
-                    return Json(new ApiResult() { Code = 0, Message = "Vui lòng cho biết tỉnh giao hàng" });
-                if (string.IsNullOrWhiteSpace(deliveryAddress))
-                    return Json(new ApiResult() { Code = 0, Message = "Vui lòng nhập địa giao hàng" });
-
-                Order data = new Order()
-                {
-                    CustomerID = Convert.ToInt32(customerId),
-                    DeliveryAddress = deliveryAddress,
-                    DeliveryProvince = deliveryProvince,
-                    EmployeeID = Convert.ToInt32(User.GetUserData()?.UserId),
-                    Status = Constants.ORDER_INIT,
-                };
-
-                orderId = await OrderDataService.OrderDB.AddAsync(data);
-
-                foreach (var item in cart)
-                {
-                    await OrderDataService.OrderDB.SaveDetailAsync(orderId, item.ProductID, item.Quantity, item.SalePrice);
-                }
-
-                return Json(new ApiResult() { Code = 0, Message = "", Data = orderId }); 
-            }
-            catch (Exception ex) { 
-                return Json(new ApiResult() { Code = 0, Message = ex.Message});
-            }
+            return View();
         }
 
         public IActionResult Create()
@@ -234,6 +178,11 @@ namespace SV22T1080013.Admin.Controllers
             return View(condition);
         }
 
+        /// <summary>
+        /// Tìm kiếm sản phầm có phân trang 
+        /// </summary>
+        /// <param name="condition">Thông tin search sản phẩm, nếu trống thì trả về toàn bộ sản phẩm có phân trang</param>
+        /// <returns></returns>
         public async Task<IActionResult> SearchProduct(ProductSearchCondition condition)
         {
             if (condition == null)
@@ -253,23 +202,26 @@ namespace SV22T1080013.Admin.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Lấy danh sách sản phẩm trong session giỏ hàng
+        /// </summary>
+        /// <returns></returns>
         public IActionResult GetCart()
         {
             return View(GetSessionCart());
         }
 
+        /// <summary>
+        /// Thêm sản phẩm vào giỏ hàng
+        /// </summary>
+        /// <param name="data">Chi tiết mặt hàng</param>
+        /// <returns></returns>
         public IActionResult AddToCart(OrderDetail data)
         {
-            //TODO: Kiểm tra tính hợp lệ input, dữ liệu trả về Json ApiResult method: POST
-            //if (data.Quantity < 1)
-            //    return Json(new ApiResult() { Code = 0, Message = "Số lượng không hợp lệ" }); 
-            //if (data.SalePrice < 0)
-            //    return Json(new ApiResult() { Code = 0, Message = "Giá bán không hợp lệ" }); 
-
-
             AddSessionCart(data);
-            return View("GetCart", GetSessionCart());
+            return Json(new ApiResult() { Code = 1, Message = "Thêm mặt hàng thành công" });
         }
+
         /// <summary>
         /// Lấy giỏ hàng trong Session
         /// </summary>

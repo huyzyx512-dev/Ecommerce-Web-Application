@@ -62,7 +62,6 @@ namespace SV22T1080013.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> SaveData(Supplier supplier)
         {
-            //TODO: Kiểm tra và soát lỗi với chức năng bổ sung/cập nhật Nhà cung cáp
             try
             {
                 #region Kiểm tra dữ liệu đầu vào

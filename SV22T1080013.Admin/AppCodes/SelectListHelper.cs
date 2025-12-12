@@ -51,5 +51,23 @@ namespace SV22T1080013.Admin
 
             return list;
         }
+
+        /// <summary>
+        /// Danh sách khách hàng
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<IEnumerable<SelectListItem>> Customers()
+        {
+            var list = new List<SelectListItem>
+            {
+                new() { Value = "0", Text = "-- Chọn khách hàng --" }
+            };
+            foreach (var item in await CommonDataService.CustomerDB.ListUserAsync())
+            {
+                list.Add(new SelectListItem() { Value = item.CustomerID.ToString(), Text = item.CustomerName });
+            }
+
+            return list;
+        }
     }
 }
