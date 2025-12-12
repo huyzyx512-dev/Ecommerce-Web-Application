@@ -56,27 +56,3 @@
         <li class="next"><a href="javascript:;" onclick="searchProduct(@Model.Page+1)"><i class="fa fa-forward"></i></a></li>
     }
 </ul>
-
-@* <script>
-    $(document).ready(() => {
-        $(".formAddToCart").submit((e) => {
-            e.preventDefault(); // Chặn thao tác chuyển trang mặc định
-
-            var url = $(".formAddToCart").prop("action");
-            var method = $(".formAddToCart").prop("method");
-            var submitData = $(".formAddToCart").serializeArray();
-
-            $.ajax({
-                url: url,
-                method: method,
-                data: submitData,
-                success: function (data) {
-                    $("#cart").html(data);
-                },
-                error: function () {
-                    alert("Có lỗi khi thêm vào giỏ");
-                }
-            });
-        })
-    })
-</script> *@

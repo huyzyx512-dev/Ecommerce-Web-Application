@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SV22T1080013.Admin.AppCodes;
 using SV22T1080013.Admin.Models;
 using SV22T1080013.BusinessLayers;
 using SV22T1080013.DomainModels;
+using System.Threading.Tasks;
 
 namespace SV22T1080013.Admin.Controllers
 {
@@ -46,7 +48,7 @@ namespace SV22T1080013.Admin.Controllers
                 condition.FromTime,
                 condition.ToTime,
                 condition.SearchValue
-            ); 
+            );
 
             var model = new OrderSearchResult<Order>()
             {
@@ -146,9 +148,50 @@ namespace SV22T1080013.Admin.Controllers
         /// Tạo đơn hàng từ danh sách session cart 
         /// </summary>
         /// <returns></returns>
-        public IActionResult Init()
+        [HttpPost]
+        public async Task<IActionResult> Init(int customerID, string deliveryProvince, string deliveryAddress)
         {
-            return View();
+            try
+            {
+                var employeeId = User.GetUserData()?.UserId;
+                if (customerID == 0)
+                    return Json(ApiResult.ResultFailed("Vui lòng chọn khách hàng"));
+                
+                if (string.IsNullOrWhiteSpace(employeeId))
+                    return Json(ApiResult.ResultFailed("Người tạo đơn hàng không tồn tại"));
+
+                if (string.IsNullOrWhiteSpace(deliveryProvince))
+                    return Json(ApiResult.ResultFailed("Vui lòng chọn tỉnh/thành giao hàng"));
+
+                if (string.IsNullOrWhiteSpace(deliveryAddress))
+                    return Json(ApiResult.ResultFailed("Vui lòng nhập địa chị giao hàng"));
+
+                // Insert new Order
+                Order order = new()
+                {
+                    CustomerID = customerID,
+                    DeliveryProvince = deliveryProvince,
+                    DeliveryAddress = deliveryAddress,
+                    EmployeeID = Convert.ToInt32(employeeId),
+                    Status = Constants.ORDER_INIT
+                };
+
+                int orderId = await OrderDataService.OrderDB.AddAsync(order); // return OrderId mới tạo
+
+                if (orderId > 0 && GetSessionCart().Count > 0)
+                {
+                    // Insert list OrderDetail
+                    foreach (var item in GetSessionCart())
+                    {
+                        await OrderDataService.OrderDB.SaveDetailAsync(orderId, item.ProductID, item.Quantity, item.SalePrice);
+                    }
+                }
+                return Json(ApiResult.ResultSuccess("Thêm mới đơn hàng thành công", orderId));
+            }
+            catch (Exception ex)
+            {
+                return Json(ApiResult.ResultFailed(ex.Message));
+            }
         }
 
         public IActionResult Create()

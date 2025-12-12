@@ -9,7 +9,7 @@
         public String Message { get; set; } = "";
         public object? Data { get; set; } = null;
 
-        public static ApiResult ResultSuccess(String message, object data)
+        public static ApiResult ResultSuccess(String message, object? data)
         {
             return new ApiResult { Code = 1, Message = message, Data = data };
         }
