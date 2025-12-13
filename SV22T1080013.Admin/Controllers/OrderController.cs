@@ -258,6 +258,11 @@ namespace SV22T1080013.Admin.Controllers
         /// <returns></returns>
         public IActionResult AddToCart(OrderDetail data)
         {
+            if (data.Quantity < 1)
+                return Json(new ApiResult() { Code = 0, Message = "Số lượng không hợp lệ" });
+            if (data.SalePrice < 0)
+                return Json(new ApiResult() { Code = 0, Message = "Giá bán không hợp lệ" });
+
             AddSessionCart(data);
             return Json(new ApiResult() { Code = 1, Message = "Thêm mặt hàng thành công" });
         }
