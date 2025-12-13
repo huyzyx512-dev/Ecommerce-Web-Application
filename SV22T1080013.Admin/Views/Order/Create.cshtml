@@ -52,44 +52,21 @@
                 <div class="form-group">
                     <label class="control-label col-sm-2">Khách hàng:</label>
                     <div class="col-sm-10">
-<<<<<<< HEAD
-                        <select class="form-control" name="customerID" onchange="getCustomerInfo(this)">
-                            <option value="0">-- Chọn khách hàng --</option>
-                            @foreach (var us in await SV22T1080013.BusinessLayers.CommonDataService.CustomerDB.ListUserAsync())
-                            {
-                                <option value="@us.CustomerID">@us.CustomerName</option>
-                            }
-                            @* <option value="2">Nguyễn Hoàng Hà</option>
-                            <option value="3">Nguyễn Ngọc Thủy</option> *@
-=======
                         <select id="customerID" class="form-control" name="customerID" asp-items="await SelectListHelper.Customers()">
->>>>>>> fix-checkout
                         </select>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-2">Tỉnh/thành:</label>
                     <div class="col-sm-10">
-<<<<<<< HEAD
-                        <select id="province" class="form-control select2" asp-items="await SelectListHelper.Provinces()">
-                            @* <option value="0">-- Chọn tỉnh/thành --</option>
-                            <option value="Thừa Thiên Huế">Thừa Thiên Huế</option>
-                            <option value="Đà Nẵng">Đà Nẵng</option>
-                            <option value="Quảng Nam">Quảng Nam</option> *@
-=======
                         <select id="deliveryProvince" class="form-control select2" name="deliveryProvince" asp-items="await SelectListHelper.Provinces()">
->>>>>>> fix-checkout
                         </select>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-2">Địa chỉ nhận hàng:</label>
                     <div class="col-sm-10">
-<<<<<<< HEAD
-                        <input id="address" type="text" class="form-control" name="deliveryAddress" />
-=======
                         <input type="text" class="form-control" name="deliveryAddress" id="deliveryAddress" />
->>>>>>> fix-checkout
                     </div>
                 </div>
                 <div class="form-group">
@@ -106,13 +83,7 @@
 
 @section scripts {
     <script>
-<<<<<<< HEAD
-        // TODO: Clean script
-        $(function () {
-            // 1. Tìm kiếm sản phẩm (khi submit form tìm kiếm hoặc bấm nút phân trang)
-=======
         // 1. Tìm kiếm sản phẩm (khi submit form tìm kiếm hoặc bấm nút phân trang)
->>>>>>> fix-checkout
             function searchProduct(page) {
                 var $form = $("#formSearchProducts");
                 var data = $form.serializeArray();
@@ -161,17 +132,7 @@
             $(document).on("submit", ".formAddToCart", function (e) {
                 e.preventDefault();
 
-<<<<<<< HEAD
-                $.ajax({i
-                    url: this.action,
-                    method: this.method,
-                    data: $(this).serialize(),
-                    success: function (data) {
-                        $("#cart").html(data);
-                        // Thông báo đẹp hơn một chút (tùy chọn)
-                        toastr?.success?.("Đã thêm sản phẩm vào giỏ hàng!")
-                             || alert("Đã thêm sản phẩm vào giỏ hàng!");
-=======
+
                 var url = $(this).prop("action");
                 var method = $(this).prop("method");
                 var submitData = $(this).serializeArray();
@@ -186,7 +147,6 @@
                         }else {
                             alert(res.message);
                         }
->>>>>>> fix-checkout
                     },
                 });
             });
@@ -243,21 +203,6 @@
                 });
             });
 
-<<<<<<< HEAD
-            // 6.Lấy thông tin khách hàng được chọn
-            function getCustomerInfo(obj) {
-                var customterId = $(obj).val();
-                alert(customterId);
-                  $.ajax({
-                    url: `/api/customer/${customterId}`,           
-                    method: "GET",           
-                    success: function (data) {
-                        $("#province").val(data.province);
-                        $("#address").val(data.address);
-                    }
-                });
-            }
-=======
             // 6. Sự kiện onchange khi đổi khách hàng
             $(document).on("change", "#customerID", function (e) {
                 e.preventDefault();
@@ -296,7 +241,6 @@
                     },
                 });
             });
->>>>>>> fix-checkout
 
             // Khởi chạy lần đầu
             searchProduct(1);
