@@ -47,18 +47,124 @@
 
 @if (Model.PageCount > 1)
 {
-    <div class="text-center">
-        <ul class="pagination">
-            @for (int i = 1; i <= Model.PageCount; i++)
+    <div style="text-align:center; margin:20px 0;">
+        <ul style="
+                            list-style:none;
+                            padding:0;
+                            margin:0;
+                            display:flex;
+                            justify-content:center;
+                            align-items:center;
+                            gap:8px;
+                        ">
+            @{
+                int current = Model.Page;
+                int total = Model.PageCount;
+            }
+
+            <!-- First -->
+            @if (current > 1)
             {
-                if (i == Model.Page)
+                <li>
+                    <a href="javascript:;" onclick="searchData(1)" style="
+                                                        padding:6px 12px;
+                                                        border:1px solid #ccc;
+                                                        background:#f2f2f2;
+                                                        border-radius:6px;
+                                                        text-decoration:none;
+                                                        color:#333;
+                                                    ">«</a>
+                </li>
+            }
+
+            <!-- Prev -->
+            @if (current > 1)
+            {
+                <li>
+                    <a href="javascript:;" onclick="searchData(@(current - 1))" style="
+                                                        padding:6px 12px;
+                                                        border:1px solid #ccc;
+                                                        background:#f2f2f2;
+                                                        border-radius:6px;
+                                                        text-decoration:none;
+                                                        color:#333;
+                                                    ">‹</a>
+                </li>
+            }
+
+            <!-- Left dots -->
+            @if (current > 3)
+            {
+                <li style="color:#777;">...</li>
+            }
+
+            <!-- Pages around current -->
+            @for (int p = current - 1; p <= current + 1; p++)
+            {
+                if (p >= 1 && p <= total)
                 {
-                    <li class="active"><a href="#">@i</a></li>
+                    if (p == current)
+                    {
+                        <li>
+                            <span style="
+                                                                                                padding:6px 12px;
+                                                                                                background:#007bff;
+                                                                                                color:white;
+                                                                                                border-radius:6px;
+                                                                                                font-weight:bold;
+                                                                                            ">@p</span>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <a href="javascript:;" onclick="searchData(@p)" style="
+                                                                                                padding:6px 12px;
+                                                                                                border:1px solid #ccc;
+                                                                                                background:#f2f2f2;
+                                                                                                border-radius:6px;
+                                                                                                text-decoration:none;
+                                                                                                color:#333;
+                                                                                            ">@p</a>
+                        </li>
+                    }
                 }
-                else
-                {
-                    <li><a href="javascript:;" onclick="searchData(@i)">@i</a></li>
-                }
+            }
+
+            <!-- Right dots -->
+            @if (current < total - 2)
+            {
+                <li style="color:#777;">...</li>
+            }
+
+            <!-- Next -->
+            @if (current < total)
+            {
+                <li>
+                    <a href="javascript:;" onclick="searchData(@(current + 1))" style="
+                                                        padding:6px 12px;
+                                                        border:1px solid #ccc;
+                                                        background:#f2f2f2;
+                                                        border-radius:6px;
+                                                        text-decoration:none;
+                                                        color:#333;
+                                                    ">›</a>
+                </li>
+            }
+
+            <!-- Last -->
+            @if (current < total)
+            {
+                <li>
+                    <a href="javascript:;" onclick="searchData(@total)" style="
+                                                        padding:6px 12px;
+                                                        border:1px solid #ccc;
+                                                        background:#f2f2f2;
+                                                        border-radius:6px;
+                                                        text-decoration:none;
+                                                        color:#333;
+                                                    ">»</a>
+                </li>
             }
         </ul>
     </div>
