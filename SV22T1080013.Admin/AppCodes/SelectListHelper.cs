@@ -14,9 +14,9 @@ namespace SV22T1080013.Admin
         {
             var list = new List<SelectListItem>();
             list.Add(new SelectListItem() { Value = "", Text = "-- Chọn Tỉnh/Thành --" });
-            foreach(var item in await CommonDataService.ProvinceDB.ListAsync())
+            foreach (var item in await CommonDataService.ProvinceDB.ListAsync())
             {
-                list.Add(new SelectListItem() { Value = item.ProvinceName, Text=item.ProvinceName }); 
+                list.Add(new SelectListItem() { Value = item.ProvinceName, Text = item.ProvinceName });
             }
 
             return list;
@@ -67,6 +67,23 @@ namespace SV22T1080013.Admin
                 list.Add(new SelectListItem() { Value = item.CustomerID.ToString(), Text = item.CustomerName });
             }
 
+            return list;
+        }
+
+        /// <summary>
+        /// Danh sách người giao hàng
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<IEnumerable<SelectListItem>> Shippers()
+        {
+            var list = new List<SelectListItem>
+            {
+                new() { Value = "0", Text = "-- Chọn người giao hàng --" }
+            };
+            foreach (var item in await CommonDataService.ShipperDB.ListAsync())
+            {
+                list.Add(new SelectListItem() { Value = item.ShipperID.ToString(), Text = item.ShipperName });
+            }
             return list;
         }
     }

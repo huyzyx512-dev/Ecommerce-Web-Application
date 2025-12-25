@@ -24,8 +24,10 @@ namespace SV22T1080013.DataLayers
         /// <returns></returns>
         protected SqlConnection OpenConnection()
         {
-            SqlConnection connection = new SqlConnection(connectionString);
-            connection.ConnectionString = connectionString;
+            SqlConnection connection = new(connectionString)
+            {
+                ConnectionString = connectionString
+            };
             connection.Open();
             return connection;
         }
@@ -37,15 +39,17 @@ namespace SV22T1080013.DataLayers
         {
             try
             {
-                SqlConnection connection = new SqlConnection();
-                connection.ConnectionString = connectionString;
+                SqlConnection connection = new()
+                {
+                    ConnectionString = connectionString
+                };
                 await connection.OpenAsync();
                 return connection;
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                throw e;
+                throw;
             }
         }
     }

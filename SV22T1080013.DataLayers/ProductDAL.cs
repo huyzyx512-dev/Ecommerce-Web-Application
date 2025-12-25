@@ -144,44 +144,44 @@ namespace SV22T1080013.DataLayers
         /// <param name="data"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        //public async Task<int> UpdateAsync(Product data)
-        //{
-        //    using var connection = await OpenConnectionAsync();
-        //    string sql = @"UPDATE Products
-        //                    SET ProductName = @ProductName,
-        //                     ProductDescription = @ProductDescription,
-        //                     CategoryID = @CategoryID,
-        //                     SupplierID = @SupplierID,
-        //                     Unit = @Unit,
-        //                     Price = @Price,
-        //                     IsSelling = @IsSelling,
-        //                     Photo = @Photo
-        //                    WHERE ProductID = @ProductID;
-        //                    SELECT SCOPE_IDENTITY();";
-        //    return await connection.ExecuteScalarAsync<int>(sql: sql, param: data, commandType: System.Data.CommandType.Text);
-        //}
-
         public async Task<int> UpdateAsync(Product data)
         {
             using var connection = await OpenConnectionAsync();
-
-            return await connection.ExecuteScalarAsync<int>(
-                sql: "Product_Update",
-                param: new
-                {
-                    data.ProductID,
-                    data.ProductName,
-                    data.ProductDescription,
-                    data.CategoryID,
-                    data.SupplierID,
-                    data.Unit,
-                    data.Price,
-                    data.IsSelling,
-                    data.Photo
-                },
-                commandType: CommandType.StoredProcedure
-            );
+            string sql = @"UPDATE Products
+                            SET ProductName = @ProductName,
+                             ProductDescription = @ProductDescription,
+                             CategoryID = @CategoryID,
+                             SupplierID = @SupplierID,
+                             Unit = @Unit,
+                             Price = @Price,
+                             IsSelling = @IsSelling,
+                             Photo = @Photo
+                            WHERE ProductID = @ProductID;
+                            SELECT SCOPE_IDENTITY();";
+            return await connection.ExecuteScalarAsync<int>(sql: sql, param: data, commandType: System.Data.CommandType.Text);
         }
+
+        //public async Task<int> UpdateAsync(Product data)
+        //{
+        //    using var connection = await OpenConnectionAsync();
+
+        //    return await connection.ExecuteScalarAsync<int>(
+        //        sql: "Product_Update",
+        //        param: new
+        //        {
+        //            data.ProductID,
+        //            data.ProductName,
+        //            data.ProductDescription,
+        //            data.CategoryID,
+        //            data.SupplierID,
+        //            data.Unit,
+        //            data.Price,
+        //            data.IsSelling,
+        //            data.Photo
+        //        },
+        //        commandType: CommandType.StoredProcedure
+        //    );
+        //}
 
         /// <summary>
         /// Xóa sản phầm, ảnh và các thuộc tính liên quan đến mặt hàng

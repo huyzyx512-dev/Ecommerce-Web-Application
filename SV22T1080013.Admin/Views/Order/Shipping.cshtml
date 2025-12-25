@@ -1,22 +1,20 @@
-﻿@{
+﻿@model int  // OrderID 
+@{
     Layout = null;
 }
 
 <div class="modal-dialog">
     <div class="modal-content">
-        <form action="~/Order/Shipping/111" method="post">
+        <form id="frmShipping">
             <div class="modal-header bg-primary">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Chuyển giao hàng cho đơn hàng</h4>
+                <h4 class="modal-title">Chuyển giao hàng cho đơn hàng #@Model</h4>
             </div>
+            <input type="hidden" name="orderId" value="@Model" />
             <div class="modal-body">
                 <div class="form-group">
                     <label class="control-label">Người giao hàng:</label>
-                    <select class="form-control" name="shipperID">
-                        <option value="0">-- Chọn người giao hàng ---</option>
-                        <option value="1">Giao hàng Tiết kiệm</option>
-                        <option value="2">Tín Thành</option>
-                        <option value="3">Viettel Express</option>
+                    <select class="form-control" name="shipperID" asp-items="await SelectListHelper.Shippers()">
                     </select>
                 </div>
             </div>

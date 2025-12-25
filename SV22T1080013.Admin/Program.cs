@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.SqlServer.Server;
 using SV22T1080013.Admin;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -42,7 +44,14 @@ app.UseSession();
 // Khai báo Quy tắt Route 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}"
+);
+
+// Configure default format 
+var cultureInfo = new CultureInfo("vi-VN");
+CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
+
 
 //Khởi tạo cấu hình cho ApplicationContext
 ApplicationContext.Configure

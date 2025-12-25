@@ -1,0 +1,348 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<main class="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 py-6">
+    <!-- Breadcrumbs -->
+    <nav class="flex flex-wrap gap-2 text-sm font-medium mb-8">
+        <a class="text-slate-500 dark:text-[#8dc3ce] hover:text-primary transition-colors"
+           href="#">Home</a>
+        <span class="text-slate-500 dark:text-[#8dc3ce] select-none">/</span>
+        <a class="text-slate-500 dark:text-[#8dc3ce] hover:text-primary transition-colors"
+           href="#">Peripherals</a>
+        <span class="text-slate-500 dark:text-[#8dc3ce] select-none">/</span>
+        <span class="text-slate-900 dark:text-white">Keyboards</span>
+    </nav>
+    <!-- Product Main Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 xl:gap-12 mb-16">
+        <!-- Left: Image Gallery -->
+        <div class="lg:col-span-7 flex flex-col gap-4">
+            <div class="relative w-full aspect-[4/3] rounded-xl overflow-hidden bg-surface-dark group border border-slate-200 dark:border-[#20444b]">
+                <div class="absolute inset-0 bg-center bg-contain bg-no-repeat transition-transform duration-500 group-hover:scale-110"
+                     data-alt="Close up of mechanical keyboard with RGB lighting glowing in blue and purple"
+                     style="
+                background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD9HV2HyAoiE6Lb6L6lD6W21vbgtAyg5YzzQRrRRlrkGN3JuoVQxQMmDTylunmWrcaNgXFNtRjdtgnefziM7ca0PeNm1wzYCvysNLBin4K3m8NOJLyPNqoeigZpgLotnDOdp8YcIiYbbRFDIZIpWoHB_mPTDu10S6Jmv-7siZIW47t9wt-SRY_wzdFX3dRjDwPrq0EQGb5rih4wQ7rfVCkR0ZULfZufcVI-42_krALYHvwfwkn_T9yaLQkCQTvyDHb4DISVcpsQNQ');
+              "></div>
+                <!-- Zoom Hint -->
+                <div class="absolute bottom-4 right-4 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-lg text-xs font-bold text-white uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                    Hover to Zoom
+                </div>
+            </div>
+            <!-- Thumbnails -->
+            <div class="flex gap-4 overflow-x-auto pb-2 scrollbar-hide">
+                <button class="relative w-24 aspect-square rounded-lg overflow-hidden border-2 border-primary ring-2 ring-primary/20 flex-shrink-0">
+                    <div class="w-full h-full bg-center bg-cover"
+                         data-alt="Top down view of keyboard"
+                         style="
+                  background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBgjdWD5tsz6tsR-8yOfkumNLndjROfohE-dNkHE88PcZ8g6fBL_EnuIEFUSUCXXFtT2-4TuBU7tLTq2FiIttAgLlffI3Vld_q7G_7G_NZmUgP-m0V3-48ZBtHZjr8HYPtdqMPyKNjpm5bIzHGeBSQZljRXOOMCFK4DWbolzaA5AXszxfstwGLqFGFLOcVoeWKAWFtyxXa3-DqevmTyBAad3RN4MMNM0l_jSV66oxLM9N_6I85g2PqIOM5gBwh7AQ9LlxceUu_f0w');
+                "></div>
+                </button>
+                <button class="relative w-24 aspect-square rounded-lg overflow-hidden border-2 border-transparent dark:border-[#20444b] hover:border-slate-400 dark:hover:border-slate-500 flex-shrink-0 transition-colors">
+                    <div class="w-full h-full bg-center bg-cover"
+                         data-alt="Side profile of mechanical keyboard showing switch height"
+                         style="
+                  background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBKX-0YAxhqkAAExbBiH7xm_tVZ_olTJBMxVbTCosrdCkk1aDVma_W2kENaQBK23sPgGLqUwcQmvl7Hmh9K3pCLTru-Mhg_wCl0zbxX8w4Dm-ocQcrPBiMJPf0T4z76wbwyADT-zgLrAgCd4R30G3N4kPRBC5jYWJ9sLXGjXJ4Mx0toh3nfomEOHoB5YoxXN28MfEiWGtwdUWrM5W81cRK0ynpaP_tHMBmxNxQ-pzBMEHP9wH15NXMsMkZlpe5iNNf525w_KeJnqA');
+                "></div>
+                </button>
+                <button class="relative w-24 aspect-square rounded-lg overflow-hidden border-2 border-transparent dark:border-[#20444b] hover:border-slate-400 dark:hover:border-slate-500 flex-shrink-0 transition-colors">
+                    <div class="w-full h-full bg-center bg-cover"
+                         data-alt="Angled shot of keyboard keys with backlighting"
+                         style="
+                  background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAp998xnk8EhL_190fiDHTCkLNEJCgEydpMsspIvA_ANsoHAqAeWv9i0HHho9XaGG5HZVN6Fb6EtAokS4FCXLGDSAqW6z8B2f7ltYUG_9EXjzglU6hTTkARwDmZdqttxXRKihXBAHU8VjR6hidq6aFzPxuVlbQzKWZH5FkvyUFmdjmS7zmh4OwimOrZl0pcxCNGMJfo-nX_bEV77ftjUFrKqU9ZbtnyqRje3wmi4z3zSYuzEeupdP6NyvgQr6wRoOawLhn9-LaTBQ');
+                "></div>
+                </button>
+                <button class="relative w-24 aspect-square rounded-lg overflow-hidden border-2 border-transparent dark:border-[#20444b] hover:border-slate-400 dark:hover:border-slate-500 flex-shrink-0 transition-colors">
+                    <div class="w-full h-full bg-center bg-cover"
+                         data-alt="Packaging box of the keyboard"
+                         style="
+                  background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBMMz89hWAHOuqCDeMGkP7iqpD5xWzMiL9bxqzJ3E_GUGMUk5PfyTHfe5dbEF7dKi-8nDPooNKU7mVgoxwRkKsFhHRuYpbkgQM5kxaV53neCfXwjP_91a3nY-lDCuCOQOzY48gqfccEnsS78uqRBNUYDWCjXtZsbKc7-LwomH-iPSuacz-8csIRzwY8-xGojPXGZvIQGrd_L7VyLQ3eYD1mqSQ8l4yBjr9CD58xy97NXg5UQ2sLQsvhHPwBPfrJNqs6y0HxDFQ5Rw');
+                "></div>
+                </button>
+            </div>
+        </div>
+        <!-- Right: Product Details -->
+        <div class="lg:col-span-5 flex flex-col h-full">
+            <div class="flex flex-col gap-4">
+                <!-- Title -->
+                <h1 class="text-3xl md:text-4xl font-bold tracking-tight text-slate-900 dark:text-white">
+                    CyberMech X1 Mechanical Keyboard - RGB Edition
+                </h1>
+                <!-- Ratings -->
+                <div class="flex items-center gap-2">
+                    <div class="flex text-primary">
+                        <span class="material-symbols-outlined text-[20px] fill-current">star</span>
+                        <span class="material-symbols-outlined text-[20px] fill-current">star</span>
+                        <span class="material-symbols-outlined text-[20px] fill-current">star</span>
+                        <span class="material-symbols-outlined text-[20px] fill-current">star</span>
+                        <span class="material-symbols-outlined text-[20px]">star_half</span>
+                    </div>
+                    <a class="text-sm font-medium text-slate-500 dark:text-[#8dc3ce] hover:text-primary underline decoration-slate-500/30 underline-offset-4"
+                       href="#reviews">4.8 (124 reviews)</a>
+                </div>
+                <!-- Price Block -->
+                <div class="flex items-end gap-3 py-2">
+                    <span class="text-4xl font-bold text-primary">$129.99</span>
+                    <span class="text-xl font-medium text-slate-400 decoration-2 line-through mb-1.5">$159.99</span>
+                    <span class="bg-primary/20 text-primary text-xs font-bold px-2 py-1 rounded mb-2">-19%</span>
+                </div>
+                <!-- Short Desc -->
+                <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+                    The ultimate tactile experience for professional gamers. Features
+                    hot-swappable Cherry MX switches, aircraft-grade aluminum frame,
+                    and fully customizable per-key RGB lighting synced with your
+                    gameplay.
+                </p>
+                <div class="h-px bg-slate-200 dark:bg-[#20444b] my-4"></div>
+                <!-- Config -->
+                <div class="space-y-6">
+                    <!-- Stock Status -->
+                    <div class="flex items-center gap-2">
+                        <span class="relative flex h-3 w-3">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                        </span>
+                        <span class="text-sm font-semibold text-green-500">In Stock &amp; Ready to Ship</span>
+                    </div>
+                    <!-- Switch Selector Mockup -->
+                    <div class="flex flex-col gap-2">
+                        <span class="text-sm font-medium text-slate-900 dark:text-white">Switch Type</span>
+                        <div class="flex flex-wrap gap-2">
+                            <button class="px-4 py-2 rounded-lg border-2 border-primary bg-primary/10 text-primary font-medium text-sm">
+                                Blue (Clicky)
+                            </button>
+                            <button class="px-4 py-2 rounded-lg border border-slate-200 dark:border-[#20444b] text-slate-500 dark:text-slate-400 hover:border-slate-400 dark:hover:border-slate-500 font-medium text-sm">
+                                Red (Linear)
+                            </button>
+                            <button class="px-4 py-2 rounded-lg border border-slate-200 dark:border-[#20444b] text-slate-500 dark:text-slate-400 hover:border-slate-400 dark:hover:border-slate-500 font-medium text-sm">
+                                Brown (Tactile)
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Quantity & Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-4 pt-2">
+                        <!-- Quantity -->
+                        <div class="flex items-center rounded-lg border border-slate-200 dark:border-[#20444b] bg-slate-50 dark:bg-surface-dark w-max">
+                            <button class="px-3 py-2 text-slate-500 hover:text-primary transition-colors">
+                                <span class="material-symbols-outlined text-sm">remove</span>
+                            </button>
+                            <input class="w-12 bg-transparent border-none text-center text-slate-900 dark:text-white focus:ring-0 p-0 font-medium"
+                                   type="number"
+                                   value="1" />
+                            <button class="px-3 py-2 text-slate-500 hover:text-primary transition-colors">
+                                <span class="material-symbols-outlined text-sm">add</span>
+                            </button>
+                        </div>
+                        <!-- Buttons -->
+                        <div class="flex flex-1 gap-3">
+                            <button onclick="window.location.href='/Checkout'" class="flex-1 bg-primary hover:bg-primary/90 text-slate-900 font-bold py-3 px-6 rounded-lg transition-all shadow-neon hover:shadow-neon-hover flex items-center justify-center gap-2">
+                                <span class="material-symbols-outlined">bolt</span>
+                                Buy Now
+                            </button>
+                            <button class="bg-transparent border border-slate-300 dark:border-[#8dc3ce] text-slate-900 dark:text-white hover:border-primary hover:text-primary dark:hover:text-primary font-bold py-3 px-4 rounded-lg transition-all flex items-center justify-center">
+                                <span class="material-symbols-outlined">add_shopping_cart</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Trust Badges -->
+                <div class="grid grid-cols-2 gap-4 mt-8 pt-6 border-t border-slate-200 dark:border-[#20444b]">
+                    <div class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-primary text-2xl">local_shipping</span>
+                        <div class="flex flex-col">
+                            <span class="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wide">Free Shipping</span>
+                            <span class="text-xs text-slate-500">On orders over $50</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-primary text-2xl">verified_user</span>
+                        <div class="flex flex-col">
+                            <span class="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wide">2 Year Warranty</span>
+                            <span class="text-xs text-slate-500">Comprehensive coverage</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Tabbed Content Section -->
+    <div class="w-full max-w-[960px] mx-auto mb-20" id="details">
+        <!-- Tabs Nav -->
+        <div class="flex border-b border-slate-200 dark:border-[#20444b] overflow-x-auto scrollbar-hide mb-8">
+            <button class="px-6 py-4 text-sm font-bold text-primary border-b-2 border-primary whitespace-nowrap">
+                Description
+            </button>
+            <button class="px-6 py-4 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white whitespace-nowrap transition-colors">
+                Specifications
+            </button>
+            <button class="px-6 py-4 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white whitespace-nowrap transition-colors"
+                    id="reviews-tab">
+                Reviews (124)
+            </button>
+        </div>
+        <!-- Content Area: Description -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+            <div class="space-y-4 text-slate-600 dark:text-slate-300">
+                <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-2">
+                    Engineered for Victory
+                </h3>
+                <p class="leading-relaxed">
+                    The CyberMech X1 isn't just a keyboard; it's an extension of your
+                    will. With ultra-low latency wireless connectivity and a 4000mAh
+                    battery, you can game for days without interruption. The
+                    aircraft-grade aluminum chassis ensures rigidity and premium feel,
+                    while the double-shot PBT keycaps resist wear and shine over time.
+                </p>
+                <ul class="space-y-2 mt-4">
+                    <li class="flex items-start gap-3">
+                        <span class="material-symbols-outlined text-primary text-xl mt-0.5">check_circle</span>
+                        <span>Full N-Key Rollover &amp; 100% Anti-Ghosting</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="material-symbols-outlined text-primary text-xl mt-0.5">check_circle</span>
+                        <span>Detachable USB-C Braided Cable</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="material-symbols-outlined text-primary text-xl mt-0.5">check_circle</span>
+                        <span>Dedicated Media Controls &amp; Volume Roller</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="rounded-xl overflow-hidden shadow-2xl shadow-primary/10">
+                <div class="w-full aspect-video bg-cover bg-center"
+                     data-alt="Internal structure of mechanical keyboard switch"
+                     style="
+                background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD91WXZZlgGCWvtFLBk4-4EZaEYdMJw6-pcz1PPTQzvg_o5-LyTtKO32FtlaR6HlVNDafQcszRfVa53loODbg5EtruP41f7z0h43Zd1WwKTf9ny_J4c-RA8rzENqTz_0Pn-B42rgx1hP5iXTk-dJpDmG0rAZak_iXO9wiaJ_pnxORAdbu9Lh3VIXVN-pkst-qxrQl5S5L2IaXnJqURbqODQYxEnRpCF4fAuUjOMuET4q8xmKFbq7MfvhA6a5Pi0zv0mOTlQR8jU4g');
+              "></div>
+            </div>
+        </div>
+        <!-- Specs Table Mockup (Visually separated) -->
+        <div class="mt-16">
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-6">
+                Technical Specifications
+            </h3>
+            <div class="overflow-hidden rounded-lg border border-slate-200 dark:border-[#20444b]">
+                <table class="w-full text-left text-sm text-slate-600 dark:text-slate-300">
+                    <tbody class="divide-y divide-slate-200 dark:divide-[#20444b]">
+                        <tr class="bg-slate-50 dark:bg-surface-dark">
+                            <th class="px-6 py-4 font-semibold text-slate-900 dark:text-white w-1/3">
+                                Switch Technology
+                            </th>
+                            <td class="px-6 py-4">
+                                Cherry MX Mechanical (Red, Blue, or Brown)
+                            </td>
+                        </tr>
+                        <tr class="bg-white dark:bg-background-dark">
+                            <th class="px-6 py-4 font-semibold text-slate-900 dark:text-white">
+                                Connectivity
+                            </th>
+                            <td class="px-6 py-4">
+                                2.4GHz Wireless, Bluetooth 5.0, USB-C Wired
+                            </td>
+                        </tr>
+                        <tr class="bg-slate-50 dark:bg-surface-dark">
+                            <th class="px-6 py-4 font-semibold text-slate-900 dark:text-white">
+                                Battery Life
+                            </th>
+                            <td class="px-6 py-4">
+                                Up to 40 hours (RGB On), 100 hours (RGB Off)
+                            </td>
+                        </tr>
+                        <tr class="bg-white dark:bg-background-dark">
+                            <th class="px-6 py-4 font-semibold text-slate-900 dark:text-white">
+                                Backlighting
+                            </th>
+                            <td class="px-6 py-4">Per-Key RGB (16.8 Million Colors)</td>
+                        </tr>
+                        <tr class="bg-slate-50 dark:bg-surface-dark">
+                            <th class="px-6 py-4 font-semibold text-slate-900 dark:text-white">
+                                Dimensions
+                            </th>
+                            <td class="px-6 py-4">442mm x 137mm x 38mm</td>
+                        </tr>
+                        <tr class="bg-white dark:bg-background-dark">
+                            <th class="px-6 py-4 font-semibold text-slate-900 dark:text-white">
+                                Weight
+                            </th>
+                            <td class="px-6 py-4">1.1kg (2.42 lbs)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- Reviews Section -->
+        <div class="mt-16" id="reviews">
+            <div class="flex items-center justify-between mb-8">
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white">
+                    Customer Reviews
+                </h3>
+                <button class="px-4 py-2 bg-primary/10 hover:bg-primary/20 text-primary rounded-lg font-bold text-sm transition-colors border border-primary/20">
+                    Write a Review
+                </button>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Review Card 1 -->
+                <div class="p-6 rounded-xl border border-slate-200 dark:border-[#20444b] bg-slate-50 dark:bg-surface-dark">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="size-10 rounded-full bg-primary/20 text-primary flex items-center justify-center font-bold">
+                                JD
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 dark:text-white text-sm">
+                                    John Doe
+                                </h4>
+                                <span class="text-xs text-slate-500">Verified Buyer • 2 days ago</span>
+                            </div>
+                        </div>
+                        <div class="flex text-primary">
+                            <span class="material-symbols-outlined text-[16px] fill-current">star</span>
+                            <span class="material-symbols-outlined text-[16px] fill-current">star</span>
+                            <span class="material-symbols-outlined text-[16px] fill-current">star</span>
+                            <span class="material-symbols-outlined text-[16px] fill-current">star</span>
+                            <span class="material-symbols-outlined text-[16px] fill-current">star</span>
+                        </div>
+                    </div>
+                    <h5 class="font-bold text-sm mb-2 text-slate-900 dark:text-white">
+                        Absolutely Insane Keyboard
+                    </h5>
+                    <p class="text-sm text-slate-600 dark:text-slate-300">
+                        The typing feel on the blue switches is perfect. The RGB
+                        lighting is super bright and customizable. Best gaming purchase
+                        I've made this year.
+                    </p>
+                </div>
+                <!-- Review Card 2 -->
+                <div class="p-6 rounded-xl border border-slate-200 dark:border-[#20444b] bg-slate-50 dark:bg-surface-dark">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="size-10 rounded-full bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold">
+                                AS
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 dark:text-white text-sm">
+                                    Alex Smith
+                                </h4>
+                                <span class="text-xs text-slate-500">Verified Buyer • 1 week ago</span>
+                            </div>
+                        </div>
+                        <div class="flex text-primary">
+                            <span class="material-symbols-outlined text-[16px] fill-current">star</span>
+                            <span class="material-symbols-outlined text-[16px] fill-current">star</span>
+                            <span class="material-symbols-outlined text-[16px] fill-current">star</span>
+                            <span class="material-symbols-outlined text-[16px] fill-current">star</span>
+                            <span class="material-symbols-outlined text-[16px]">star_border</span>
+                        </div>
+                    </div>
+                    <h5 class="font-bold text-sm mb-2 text-slate-900 dark:text-white">
+                        Great build, software needs work
+                    </h5>
+                    <p class="text-sm text-slate-600 dark:text-slate-300">
+                        Hardware is top notch. Aluminum case feels premium. The software
+                        to control RGB is a bit clunky but works.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

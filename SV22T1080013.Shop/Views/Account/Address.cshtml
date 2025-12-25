@@ -1,0 +1,127 @@
+﻿@{
+    ViewData["Title"] = "Addresses";
+}
+
+<div class="flex-1 flex justify-center py-8 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl w-full flex flex-col lg:flex-row gap-8">
+        <!-- Sidebar same as above, active Addresses -->
+        <aside class="w-full lg:w-72 flex-shrink-0">
+            <!-- ... Giữ nguyên sidebar, chỉ đổi active link thành Addresses ... -->
+            <nav class="flex flex-col gap-2">
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-text-muted hover:bg-surface-highlight hover:text-white transition-all group" href="#">
+                    <span class="material-symbols-outlined group-hover:text-primary transition-colors">person</span>
+                    <span class="font-medium">Profile</span>
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-text-muted hover:bg-surface-highlight hover:text-white transition-all group" href="#">
+                    <span class="material-symbols-outlined group-hover:text-primary transition-colors">shopping_bag</span>
+                    <span class="font-medium">Orders</span>
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg bg-surface-highlight border-l-4 border-primary text-white shadow-[0_0_15px_rgba(0,0,0,0.3)] transition-all" href="#">
+                    <span class="material-symbols-outlined text-primary">location_on</span>
+                    <span class="font-bold">Addresses</span>
+                </a>
+                <!-- ... còn lại giống trên ... -->
+            </nav>
+        </aside>
+
+        <main class="flex-1 min-w-0 flex flex-col gap-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-border-color">
+                <div class="flex flex-col gap-2">
+                    <h2 class="text-3xl md:text-4xl font-black tracking-tight text-white">Your Addresses</h2>
+                    <p class="text-text-muted">Manage delivery and billing addresses</p>
+                </div>
+                <!-- Nút Add New Address -->
+                <button class="btn-modal px-6 py-2.5 bg-primary text-background-dark font-bold rounded-lg shadow-lg hover:bg-primary-hover transition-all flex items-center gap-2"
+                        data-url="@Url.Action("AddAddress", "Account")" type="button">
+                    <span class="material-symbols-outlined">add</span>
+                    Add New Address
+                </button>
+
+                <!-- Ví dụ nút Edit (sẽ dùng sau) -->
+                <button class="btn-modal px-5 py-2 bg-surface-highlight border border-border-color rounded-lg text-sm text-white hover:bg-surface-highlight/80 transition-colors"
+                        data-url="@Url.Action("EditAddress", "Account", new { id = 1 })">
+                    Edit
+                </button>
+
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Default Address -->
+                <div class="bg-surface-dark border border-primary/50 rounded-xl p-6 shadow-lg relative overflow-hidden">
+                    <div class="absolute top-4 right-4 px-3 py-1 text-xs font-bold bg-primary/80 text-background-dark rounded-full">DEFAULT</div>
+
+                    <h3 class="text-lg font-bold text-white mb-3">Home Address</h3>
+                    <p class="text-text-muted leading-relaxed">
+                        Alex Chen<br />
+                        123 Gaming Street, District 1<br />
+                        Ho Chi Minh City, Vietnam 700000<br />
+                        Phone: +84 123 456 789
+                    </p>
+
+                    <div class="mt-6 flex gap-3">
+                        <button class="px-5 py-2 bg-surface-highlight border border-border-color rounded-lg text-sm text-white hover:bg-surface-highlight/80 transition-colors">
+                            Edit
+                        </button>
+                        <button class="px-5 py-2 border border-red-500/50 text-red-400 rounded-lg text-sm hover:bg-red-950/30 transition-colors">
+                            Delete
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Another Address -->
+                <div class="bg-surface-dark border border-border-color rounded-xl p-6 hover:border-primary/50 transition-colors">
+                    <h3 class="text-lg font-bold text-white mb-3">Office Address</h3>
+                    <p class="text-text-muted leading-relaxed">
+                        TechHub Building<br />
+                        456 Nguyen Hue, District 1<br />
+                        Ho Chi Minh City, Vietnam 700000<br />
+                        Phone: +84 987 654 321
+                    </p>
+
+                    <div class="mt-6 flex gap-3">
+                        <button class="px-5 py-2 bg-surface-highlight border border-border-color rounded-lg text-sm text-white hover:bg-surface-highlight/80 transition-colors">
+                            Edit
+                        </button>
+                        <button class="px-5 py-2 border border-red-500/50 text-red-400 rounded-lg text-sm hover:bg-red-950/30 transition-colors">
+                            Delete
+                        </button>
+                        <button class="px-5 py-2 bg-surface-highlight border border-primary/40 text-primary rounded-lg text-sm hover:bg-primary/20 transition-colors">
+                            Set as Default
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const modal = document.getElementById('add-address-modal');
+            const openBtn = document.getElementById('open-add-address-btn');
+            const closeBtn = document.getElementById('close-modal-btn');
+            const cancelBtn = document.getElementById('cancel-btn');
+
+            if (openBtn && modal) {
+                openBtn.addEventListener('click', () => {
+                    modal.classList.remove('hidden');
+                    modal.classList.add('flex');
+                });
+            }
+
+            const closeModal = () => {
+                if (!modal) return;
+                modal.classList.remove('flex');
+                modal.classList.add('hidden');
+            };
+
+            closeBtn?.addEventListener('click', closeModal);
+            cancelBtn?.addEventListener('click', closeModal);
+
+            modal?.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal();
+            });
+        });
+    </script>
+}

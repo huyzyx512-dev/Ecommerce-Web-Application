@@ -1,0 +1,214 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<main class="flex-grow flex items-center justify-center relative p-6 w-full">
+    <!-- Abstract Tech Background -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none z-0">
+        <div class="absolute top-0 left-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px] mix-blend-screen"></div>
+        <div class="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-[#2e616b]/10 rounded-full blur-[120px] mix-blend-screen"></div>
+        <!-- Grid Pattern Overlay -->
+        <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_100%)]"></div>
+    </div>
+    <!-- Auth Card Container -->
+    <div class="relative w-full max-w-[1000px] bg-card-dark rounded-xl border border-[#2e616b]/50 shadow-2xl overflow-hidden flex flex-col md:flex-row z-10 min-h-[600px]">
+        <!-- Left Side: Visual / Brand Area -->
+        <div class="w-full md:w-5/12 relative hidden md:flex flex-col justify-end p-8 bg-[#12262b]">
+            <div class="absolute inset-0">
+                <img alt="Neon gaming setup with mechanical keyboard"
+                     class="w-full h-full object-cover opacity-60 mix-blend-overlay"
+                     data-alt="Dark gaming setup with neon blue lighting"
+                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmEXo8O9G-gHMpubboYlxXhaiJeGhAHIKVm-jbHjgnI08MTn5YAtq_Bb5H7qluCxyqQaZ5cV2GwAc4ZoIUmsP4kBnXR94wXyLYh81kwSCMk0Z3qfdL1w1CdmJWaFFnPnojHQ8X2GstoNSpHZbvP_-KjGo3OYxhb7M57r_iWpEawDCnHpEg-ZtR73eyfmchLscPTiKO3i_1TVBTGWj0_7iAV5vGblVV2OZ4LeEjMUQZ19M4p33ljNB--1mpYfs_qcbib0lRxqiPcw" />
+                <div class="absolute inset-0 bg-gradient-to-t from-card-dark via-card-dark/20 to-transparent"></div>
+            </div>
+            <div class="relative z-10 space-y-4">
+                <div class="size-10 text-primary mb-2">
+                    <svg class="w-full h-full drop-shadow-[0_0_10px_rgba(0,212,255,0.5)]"
+                         fill="none"
+                         viewbox="0 0 48 48"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z"
+                              fill="currentColor"></path>
+                    </svg>
+                </div>
+                <h2 class="text-3xl font-bold text-white leading-tight">
+                    Tăng cấp của bạn<br />Trạm chiến đấu.
+                </h2>
+                <p class="text-gray-400 text-sm leading-relaxed">
+                    Tham gia cộng đồng game thủ và người sáng tạo ưu tú. Truy cập các phần thưởng độc quyền, theo dõi đơn đặt hàng và tùy chỉnh thiết bị của bạn.
+                </p>
+                <div class="pt-4 flex gap-2">
+                    <div class="h-1 w-8 bg-primary rounded-full"></div>
+                    <div class="h-1 w-2 bg-[#2e616b] rounded-full"></div>
+                    <div class="h-1 w-2 bg-[#2e616b] rounded-full"></div>
+                </div>
+            </div>
+        </div>
+        <!-- Right Side: Forms Area -->
+        <div class="w-full md:w-7/12 flex flex-col">
+            <!-- Tabs -->
+            <div class="flex border-b border-[#2e616b]/30">
+                <button class="flex-1 py-4 text-center text-sm font-bold tracking-wide border-b-2 border-primary text-white bg-[#1a3136] hover:bg-[#1f3a40] transition-colors relative group"
+                        id="tab-signin">
+                    Sign In
+                    <span class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                </button>
+                <button class="flex-1 py-4 text-center text-sm font-bold tracking-wide border-b-2 border-transparent text-[#8dc3ce] hover:text-white hover:bg-[#1f3a40] transition-colors"
+                        id="tab-signup">
+                    Sign Up
+                </button>
+            </div>
+            <!-- Form Content Container -->
+            <div class="flex-1 p-8 sm:p-10 overflow-y-auto custom-scrollbar">
+                <!-- Sign In Form -->
+                <div class="flex flex-col h-full gap-6" id="form-signin">
+                    <div class="space-y-1">
+                        <h3 class="text-2xl font-bold text-white tracking-tight">
+                            Chào mừng đến với, NXHGear
+                        </h3>
+                        <p class="text-sm text-[#8dc3ce]">
+                            Nhập thông tin đăng nhập của bạn để truy cập vào tài khoản của bạn.
+                        </p>
+                    </div>
+                    <form class="space-y-5" onsubmit="event.preventDefault();">
+                        <label class="block space-y-2">
+                            <span class="text-sm font-medium text-gray-300">Email</span>
+                            <div class="relative group">
+                                <span class="absolute left-3 top-1/2 -translate-y-1/2 text-[#8dc3ce] group-focus-within:text-primary transition-colors">
+                                    <span class="material-symbols-outlined text-[20px]">person</span>
+                                </span>
+                                <input class="w-full h-12 bg-input-dark text-black rounded-lg border border-[#2e616b] pl-10 pr-4 focus:ring-1 focus:ring-primary focus:border-primary focus:outline-none placeholder-[#5b7a80] transition-all"
+                                       placeholder="user@example.com"
+                                       type="text" />
+                            </div>
+                        </label>
+                        <label class="block space-y-2">
+                            @* //TODO: fix lỗi ẩn hiển mật khẩu *@
+                            <span class="text-sm font-medium text-gray-300">Password</span>
+                            <div class="relative group">
+                                <span class="absolute left-3 top-1/2 -translate-y-1/2 text-[#8dc3ce] group-focus-within:text-primary transition-colors">
+                                    <span class="material-symbols-outlined text-[20px]">lock</span>
+                                </span>
+                                <input class="w-full h-12 bg-input-dark text-black rounded-lg border border-[#2e616b] pl-10 pr-10 focus:ring-1 focus:ring-primary focus:border-primary focus:outline-none placeholder-[#5b7a80] transition-all"
+                                       placeholder="Enter your password"
+                                       type="password" />
+                                <button class="absolute right-3 top-1/2 -translate-y-1/2 text-[#8dc3ce] hover:text-white transition-colors"
+                                        type="button">
+                                    <span class="material-symbols-outlined text-[20px]">visibility</span>
+                                </button>
+                            </div>
+                        </label>
+                        <div class="flex items-center justify-between pt-1">
+                            <a class="text-sm font-medium text-primary hover:text-primary/80 transition-colors"
+                               href="#">Forgot Password?</a>
+                        </div>
+                        <button class="w-full h-12 bg-primary hover:bg-[#33ddff] text-background-dark font-bold text-base rounded-lg shadow-[0_0_15px_rgba(0,212,255,0.3)] hover:shadow-[0_0_20px_rgba(0,212,255,0.5)] transition-all transform active:scale-[0.99] mt-2">
+                            Sign In
+                        </button>
+                    </form>
+                </div>
+                <!-- Sign Up Form (Hidden by default, could be toggled with JS but here just styled ready to be swapped) -->
+                <!-- In a real app, JS would toggle the 'hidden' class based on tab click. For this static output, I will display Sign In by default and keep Sign Up structure available in code. -->
+                <div class="hidden flex-col h-full gap-6" id="form-signup">
+                    <div class="space-y-1">
+                        <h3 class="text-2xl font-bold text-white tracking-tight">
+                            Join the Elite
+                        </h3>
+                        <p class="text-sm text-[#8dc3ce]">
+                            Create your account to start your journey.
+                        </p>
+                    </div>
+                    <form class="space-y-4" onsubmit="event.preventDefault();">
+                        <label class="block space-y-2">
+                            <span class="text-sm font-medium text-gray-300">Full Name</span>
+                            <input class="w-full h-12 bg-input-dark text-black rounded-lg border border-[#2e616b] px-4 focus:ring-1 focus:ring-primary focus:border-primary focus:outline-none placeholder-[#5b7a80] transition-all"
+                                   placeholder="John Doe"
+                                   type="text" />
+                        </label>
+                        <label class="block space-y-2">
+                            <span class="text-sm font-medium text-gray-300">Email Address</span>
+                            <input class="w-full h-12 bg-input-dark text-black rounded-lg border border-[#2e616b] px-4 focus:ring-1 focus:ring-primary focus:border-primary focus:outline-none placeholder-[#5b7a80] transition-all"
+                                   placeholder="user@example.com"
+                                   type="email" />
+                        </label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <label class="block space-y-2">
+                                <span class="text-sm font-medium text-gray-300">Password</span>
+                                <input class="w-full h-12 bg-input-dark text-black rounded-lg border border-[#2e616b] px-4 focus:ring-1 focus:ring-primary focus:border-primary focus:outline-none placeholder-[#5b7a80] transition-all"
+                                       placeholder="Create password"
+                                       type="password" />
+                            </label>
+                            <label class="block space-y-2">
+                                <span class="text-sm font-medium text-gray-300">Confirm</span>
+                                <input class="w-full h-12 bg-input-dark text-black rounded-lg border border-[#2e616b] px-4 focus:ring-1 focus:ring-primary focus:border-primary focus:outline-none placeholder-[#5b7a80] transition-all"
+                                       placeholder="Confirm password"
+                                       type="password" />
+                            </label>
+                        </div>
+                        <button class="w-full h-12 bg-primary hover:bg-[#33ddff] text-background-dark font-bold text-base rounded-lg shadow-[0_0_15px_rgba(0,212,255,0.3)] hover:shadow-[0_0_20px_rgba(0,212,255,0.5)] transition-all transform active:scale-[0.99] mt-2">
+                            Create Account
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <!-- Footer area of the card -->
+            <div class="p-6 bg-[#12262b] border-t border-[#2e616b]/30 text-center">
+                <p class="text-xs text-gray-500">
+                    Protected by reCAPTCHA and subject to the Google
+                    <a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+                    and
+                    <a class="hover:text-primary transition-colors" href="#">Terms of Service</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+</main>
+@section Scripts {
+    <script>
+        const tabSignin = document.getElementById("tab-signin");
+        const tabSignup = document.getElementById("tab-signup");
+        const formSignin = document.getElementById("form-signin");
+        const formSignup = document.getElementById("form-signup");
+
+        // Styles for active vs inactive tab
+        const activeClasses = ["border-primary", "text-white", "bg-[#1a3136]"];
+        const inactiveClasses = ["border-transparent", "text-[#8dc3ce]"];
+
+        tabSignin.addEventListener("click", () => {
+          // Update tabs UI
+          tabSignin.classList.remove(...inactiveClasses);
+          tabSignin.classList.add(...activeClasses);
+
+          tabSignup.classList.remove(...activeClasses);
+          tabSignup.classList.add(...inactiveClasses);
+          tabSignup.classList.remove("bg-[#1a3136]");
+
+          // Show Signin Form
+          formSignin.classList.remove("hidden");
+          formSignin.classList.add("flex");
+
+          // Hide Signup Form
+          formSignup.classList.add("hidden");
+          formSignup.classList.remove("flex");
+        });
+
+        tabSignup.addEventListener("click", () => {
+          // Update tabs UI
+          tabSignup.classList.remove(...inactiveClasses);
+          tabSignup.classList.add(...activeClasses);
+
+          tabSignin.classList.remove(...activeClasses);
+          tabSignin.classList.add(...inactiveClasses);
+          tabSignin.classList.remove("bg-[#1a3136]");
+
+          // Show Signup Form
+          formSignup.classList.remove("hidden");
+          formSignup.classList.add("flex");
+
+          // Hide Signin Form
+          formSignin.classList.add("hidden");
+          formSignin.classList.remove("flex");
+        });
+    </script>
+}

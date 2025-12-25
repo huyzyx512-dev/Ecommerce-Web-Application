@@ -1,0 +1,483 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<main class="flex-grow">
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Breadcrumbs -->
+        <nav aria-label="Breadcrumb" class="flex mb-8">
+            <ol class="inline-flex items-center space-x-1 md:space-x-2">
+                <li class="inline-flex items-center">
+                    <a class="text-sm font-medium text-text-muted hover:text-primary"
+                       href="#">Home</a>
+                </li>
+                <li>
+                    <div class="flex items-center">
+                        <span class="material-symbols-outlined text-text-muted text-sm mx-1">chevron_right</span>
+                        <a class="text-sm font-medium text-text-muted hover:text-primary"
+                           href="#">Peripherals</a>
+                    </div>
+                </li>
+                <li aria-current="page">
+                    <div class="flex items-center">
+                        <span class="material-symbols-outlined text-text-muted text-sm mx-1">chevron_right</span>
+                        <span class="text-sm font-medium text-white">Gaming Keyboards</span>
+                    </div>
+                </li>
+            </ol>
+        </nav>
+        <!-- Page Heading -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+            <div>
+                <h1 class="text-3xl md:text-5xl font-black text-white tracking-tight mb-2">
+                    Gaming Keyboards
+                </h1>
+                <p class="text-text-muted text-lg max-w-2xl">
+                    Precision mechanical switches, dynamic RGB lighting, and ergonomic
+                    designs for the ultimate competitive edge.
+                </p>
+            </div>
+        </div>
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Sticky Sidebar Filters -->
+            <aside class="w-full lg:w-64 flex-shrink-0 hidden lg:block">
+                <div class="sticky top-24 space-y-6">
+                    <!-- Filter Header -->
+                    <div class="flex items-center justify-between pb-4 border-b border-border-dark">
+                        <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary">filter_list</span>
+                            Filters
+                        </h3>
+                        <button class="text-xs text-primary font-semibold hover:underline">
+                            Reset
+                        </button>
+                    </div>
+                    <!-- Categories -->
+                    <details class="group open" open="">
+                        <summary class="flex cursor-pointer items-center justify-between py-2 text-white font-medium hover:text-primary transition-colors list-none">
+                            Category
+                            <span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+                        </summary>
+                        <div class="pt-2 pb-4 flex flex-col gap-2">
+                            <label class="flex items-center gap-3 cursor-pointer group/item">
+                                <input class="sr-only peer" name="category" type="radio" />
+                                <div class="w-4 h-4 rounded-full border border-text-muted peer-checked:border-primary peer-checked:bg-primary flex items-center justify-center">
+                                    <div class="w-2 h-2 rounded-full bg-background-dark opacity-0 peer-checked:opacity-100"></div>
+                                </div>
+                                <span class="text-text-muted group-hover/item:text-white transition-colors">Mechanical</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer group/item">
+                                <input class="sr-only peer" name="category" type="radio" />
+                                <div class="w-4 h-4 rounded-full border border-text-muted peer-checked:border-primary peer-checked:bg-primary flex items-center justify-center">
+                                    <div class="w-2 h-2 rounded-full bg-background-dark opacity-0 peer-checked:opacity-100"></div>
+                                </div>
+                                <span class="text-text-muted group-hover/item:text-white transition-colors">Membrane</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer group/item">
+                                <input class="sr-only peer" name="category" type="radio" />
+                                <div class="w-4 h-4 rounded-full border border-text-muted peer-checked:border-primary peer-checked:bg-primary flex items-center justify-center">
+                                    <div class="w-2 h-2 rounded-full bg-background-dark opacity-0 peer-checked:opacity-100"></div>
+                                </div>
+                                <span class="text-text-muted group-hover/item:text-white transition-colors">Optical</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer group/item">
+                                <input class="sr-only peer" name="category" type="radio" />
+                                <div class="w-4 h-4 rounded-full border border-text-muted peer-checked:border-primary peer-checked:bg-primary flex items-center justify-center">
+                                    <div class="w-2 h-2 rounded-full bg-background-dark opacity-0 peer-checked:opacity-100"></div>
+                                </div>
+                                <span class="text-text-muted group-hover/item:text-white transition-colors">Wireless</span>
+                            </label>
+                        </div>
+                    </details>
+                    <!-- Price Range -->
+                    <details class="group open" open="">
+                        <summary class="flex cursor-pointer items-center justify-between py-2 text-white font-medium hover:text-primary transition-colors list-none">
+                            Price Range
+                            <span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+                        </summary>
+                        <div class="pt-4 pb-4">
+                            <input class="w-full h-1 bg-border-dark rounded-lg appearance-none cursor-pointer"
+                                   max="500"
+                                   min="0"
+                                   type="range"
+                                   value="350" />
+                            <div class="flex justify-between mt-2 text-sm text-text-muted font-medium">
+                                <span>$0</span>
+                                <span>$350</span>
+                            </div>
+                        </div>
+                    </details>
+                    <!-- Brands -->
+                    <details class="group open" open="">
+                        <summary class="flex cursor-pointer items-center justify-between py-2 text-white font-medium hover:text-primary transition-colors list-none">
+                            Brand
+                            <span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+                        </summary>
+                        <div class="pt-2 pb-4 space-y-2">
+                            <label class="flex items-center gap-3 cursor-pointer group/check">
+                                <div class="relative flex items-center">
+                                    <input checked=""
+                                           class="peer h-5 w-5 cursor-pointer appearance-none rounded border border-border-dark bg-surface-dark checked:border-primary checked:bg-primary transition-all"
+                                           type="checkbox" />
+                                    <span class="material-symbols-outlined absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[16px] text-background-dark opacity-0 peer-checked:opacity-100 pointer-events-none">check</span>
+                                </div>
+                                <span class="text-text-muted group-hover/check:text-white transition-colors">Razer</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer group/check">
+                                <div class="relative flex items-center">
+                                    <input class="peer h-5 w-5 cursor-pointer appearance-none rounded border border-border-dark bg-surface-dark checked:border-primary checked:bg-primary transition-all"
+                                           type="checkbox" />
+                                    <span class="material-symbols-outlined absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[16px] text-background-dark opacity-0 peer-checked:opacity-100 pointer-events-none">check</span>
+                                </div>
+                                <span class="text-text-muted group-hover/check:text-white transition-colors">Logitech G</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer group/check">
+                                <div class="relative flex items-center">
+                                    <input class="peer h-5 w-5 cursor-pointer appearance-none rounded border border-border-dark bg-surface-dark checked:border-primary checked:bg-primary transition-all"
+                                           type="checkbox" />
+                                    <span class="material-symbols-outlined absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[16px] text-background-dark opacity-0 peer-checked:opacity-100 pointer-events-none">check</span>
+                                </div>
+                                <span class="text-text-muted group-hover/check:text-white transition-colors">Corsair</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer group/check">
+                                <div class="relative flex items-center">
+                                    <input class="peer h-5 w-5 cursor-pointer appearance-none rounded border border-border-dark bg-surface-dark checked:border-primary checked:bg-primary transition-all"
+                                           type="checkbox" />
+                                    <span class="material-symbols-outlined absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[16px] text-background-dark opacity-0 peer-checked:opacity-100 pointer-events-none">check</span>
+                                </div>
+                                <span class="text-text-muted group-hover/check:text-white transition-colors">SteelSeries</span>
+                            </label>
+                        </div>
+                    </details>
+                    <!-- Rating -->
+                    <details class="group open" open="">
+                        <summary class="flex cursor-pointer items-center justify-between py-2 text-white font-medium hover:text-primary transition-colors list-none">
+                            Rating
+                            <span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+                        </summary>
+                        <div class="pt-2 pb-4 space-y-2">
+                            <label class="flex items-center gap-2 cursor-pointer group/rating">
+                                <input class="peer sr-only" type="checkbox" />
+                                <div class="flex text-yellow-500 opacity-60 peer-checked:opacity-100 group-hover/rating:opacity-100">
+                                    <span class="material-symbols-outlined fill-current text-sm">star</span>
+                                    <span class="material-symbols-outlined fill-current text-sm">star</span>
+                                    <span class="material-symbols-outlined fill-current text-sm">star</span>
+                                    <span class="material-symbols-outlined fill-current text-sm">star</span>
+                                    <span class="material-symbols-outlined fill-current text-sm">star_outline</span>
+                                </div>
+                                <span class="text-sm text-text-muted">&amp; Up</span>
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer group/rating">
+                                <input class="peer sr-only" type="checkbox" />
+                                <div class="flex text-yellow-500 opacity-60 peer-checked:opacity-100 group-hover/rating:opacity-100">
+                                    <span class="material-symbols-outlined fill-current text-sm">star</span>
+                                    <span class="material-symbols-outlined fill-current text-sm">star</span>
+                                    <span class="material-symbols-outlined fill-current text-sm">star</span>
+                                    <span class="material-symbols-outlined fill-current text-sm">star_outline</span>
+                                    <span class="material-symbols-outlined fill-current text-sm">star_outline</span>
+                                </div>
+                                <span class="text-sm text-text-muted">&amp; Up</span>
+                            </label>
+                        </div>
+                    </details>
+                </div>
+            </aside>
+            <!-- Product Grid Area -->
+            <div class="flex-1 min-w-0">
+                <!-- Toolbar -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 bg-surface-dark/50 p-4 rounded-xl border border-border-dark backdrop-blur-sm">
+                    <span class="text-text-muted text-sm">
+                        Showing <strong class="text-white">12</strong> of
+                        <strong class="text-white">48</strong> products
+                    </span>
+                    <div class="flex items-center gap-4">
+                        <div class="flex items-center gap-2">
+                            <label class="text-sm text-text-muted whitespace-nowrap hidden sm:block"
+                                   for="sort">Sort by:</label>
+                            <div class="relative">
+                                <select class="appearance-none bg-background-dark border border-border-dark text-white text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 pr-8 cursor-pointer hover:border-primary transition-colors"
+                                        id="sort">
+                                    <option>Featured</option>
+                                    <option>Price: Low to High</option>
+                                    <option>Price: High to Low</option>
+                                    <option>Newest Arrivals</option>
+                                </select>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-text-muted">
+                                    <span class="material-symbols-outlined text-sm">expand_more</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex bg-background-dark rounded-lg p-1 border border-border-dark">
+                            <button class="p-1.5 rounded bg-surface-dark text-primary shadow-sm">
+                                <span class="material-symbols-outlined text-xl">grid_view</span>
+                            </button>
+                            <button class="p-1.5 rounded text-text-muted hover:text-white transition-colors">
+                                <span class="material-symbols-outlined text-xl">view_list</span>
+                            </button>
+                        </div>
+                        <!-- Mobile Filter Toggle -->
+                        <button class="lg:hidden p-2 text-white bg-primary/10 border border-primary/20 rounded-lg flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary">filter_list</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
+                    <!-- Product Card 1 (Sale) -->
+                    <div class="group bg-surface-dark rounded-xl border border-border-dark overflow-hidden hover:border-primary/50 hover:shadow-[0_0_15px_rgba(0,212,255,0.15)] transition-all duration-300 flex flex-col h-full relative">
+                        <div class="absolute top-3 left-3 z-10">
+                            <span class="bg-primary text-background-dark text-xs font-bold px-2.5 py-1 rounded uppercase tracking-wider">Sale</span>
+                        </div>
+                        <button class="absolute top-3 right-3 z-10 text-text-muted hover:text-white bg-background-dark/80 rounded-full p-1.5 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                            <span class="material-symbols-outlined text-lg">favorite</span>
+                        </button>
+                        <div class="aspect-[4/3] bg-surface-darker relative overflow-hidden">
+                            <img alt="Mechanical Keyboard"
+                                 class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                                 data-alt="Close up of a backlit mechanical gaming keyboard with RGB lighting"
+                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHmvKTNS0lzBDzCbCbBrBe4hQ_XBGKsEox-V1yFGTcnpFKnk7uBqsJzMKq_f1BdtihDzadHkJQczuC_2c6syrJncFSDXVDMLpLXFc5tkyzd9X5e5w1VfE1CoAYDU5uEKe_BehVS3S3A23BEjg0mvexH7Yg-SaAEvyla476jB2dlVep4LkDMHz2XQ6Pu0oM0MaWnhMCvWb-Y38ha2IhTLRAdB5ygFz6U8mR3QR43K3TyuUvqahMsyHfVJIEHNI5MskFGlA52Xuh0w" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-surface-dark to-transparent opacity-60"></div>
+                        </div>
+                        <div class="p-4 flex flex-col flex-1">
+                            <div class="flex items-center gap-1 text-yellow-500 mb-2 text-xs">
+                                <span class="material-symbols-outlined fill-current text-sm">star</span>
+                                <span class="material-symbols-outlined fill-current text-sm">star</span>
+                                <span class="material-symbols-outlined fill-current text-sm">star</span>
+                                <span class="material-symbols-outlined fill-current text-sm">star</span>
+                                <span class="material-symbols-outlined fill-current text-sm">star_half</span>
+                                <span class="text-text-muted ml-1">(128)</span>
+                            </div>
+                            <h3 class="text-white font-bold text-lg leading-tight mb-2 group-hover:text-primary transition-colors">
+                                ProType Mechanical RGB Keyboard
+                            </h3>
+                            <p class="text-text-muted text-xs mb-4 line-clamp-2">
+                                Premium mechanical switches with customizable per-key RGB
+                                lighting.
+                            </p>
+                            <div class="mt-auto flex items-end justify-between">
+                                <div class="flex flex-col">
+                                    <span class="text-text-muted text-sm line-through">$149.99</span>
+                                    <span class="text-white font-black text-xl">$129.99</span>
+                                </div>
+                                <button onclick="window.location.href='/Product/Detail'" class="h-10 w-10 bg-primary/10 hover:bg-primary text-primary hover:text-background-dark rounded-lg flex items-center justify-center transition-all">
+                                    <span class="material-symbols-outlined">add_shopping_cart</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product Card 2 -->
+                    <div class="group bg-surface-dark rounded-xl border border-border-dark overflow-hidden hover:border-primary/50 hover:shadow-[0_0_15px_rgba(0,212,255,0.15)] transition-all duration-300 flex flex-col h-full relative">
+                        <div class="absolute top-3 left-3 z-10">
+                            <span class="bg-blue-500 text-white text-xs font-bold px-2.5 py-1 rounded uppercase tracking-wider">New</span>
+                        </div>
+                        <button class="absolute top-3 right-3 z-10 text-text-muted hover:text-white bg-background-dark/80 rounded-full p-1.5 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                            <span class="material-symbols-outlined text-lg">favorite</span>
+                        </button>
+                        <div class="aspect-[4/3] bg-surface-darker relative overflow-hidden">
+                            <img alt="Gaming Mouse"
+                                 class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                                 data-alt="Black wireless gaming mouse on a dark surface with neon accents"
+                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuAV3JgyYQAi594BvNaXH7niDWuj1Dpv1KQoL6Vce8VBn5lBkLwcT5nR-kxD8kOEuertulxNGlNek0GXUH5oxo_zVS39DELeIwjoR-2mcfEYKbEcEQHcZypG_2PcZanIH_SivLehaLY7HC3Xug7zL3N-zEIFZ5KlfMAf0e9ZfXucJlT80qpRG8W02f600jpbk6zbEXkH7xv26cv9mKa7ydxLvCwNY3bhbOCkXK67U7vLQ5ZFNJTQFe_Fg2qGJOmZIUNyWN15rta8dA" />
+                        </div>
+                        <div class="p-4 flex flex-col flex-1">
+                            <div class="flex items-center gap-1 text-yellow-500 mb-2 text-xs">
+                                <span class="material-symbols-outlined fill-current text-sm">star</span>
+                                <span class="material-symbols-outlined fill-current text-sm">star</span>
+                                <span class="material-symbols-outlined fill-current text-sm">star</span>
+                                <span class="material-symbols-outlined fill-current text-sm">star</span>
+                                <span class="material-symbols-outlined fill-current text-sm">star</span>
+                                <span class="text-text-muted ml-1">(42)</span>
+                            </div>
+                            <h3 class="text-white font-bold text-lg leading-tight mb-2 group-hover:text-primary transition-colors">
+                                Viper Wireless Mouse
+                            </h3>
+                            <p class="text-text-muted text-xs mb-4 line-clamp-2">
+                                Ultra-lightweight wireless gaming mouse with 20K DPI sensor.
+                            </p>
+                            <div class="mt-auto flex items-end justify-between">
+                                <div class="flex flex-col">
+                                    <span class="text-white font-black text-xl">$79.99</span>
+                                </div>
+                                <button class="h-10 w-10 bg-primary/10 hover:bg-primary text-primary hover:text-background-dark rounded-lg flex items-center justify-center transition-all">
+                                    <span class="material-symbols-outlined">add_shopping_cart</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product Card 3 -->
+                    <div class="group bg-surface-dark rounded-xl border border-border-dark overflow-hidden hover:border-primary/50 hover:shadow-[0_0_15px_rgba(0,212,255,0.15)] transition-all duration-300 flex flex-col h-full relative">
+                        <button class="absolute top-3 right-3 z-10 text-text-muted hover:text-white bg-background-dark/80 rounded-full p-1.5 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                            <span class="material-symbols-outlined text-lg">favorite</span>
+                        </button>
+                        <div class="aspect-[4/3] bg-surface-darker relative overflow-hidden">
+                            <img alt="Gaming Headset"
+                                 class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                                 data-alt="Headphones hanging on a stand with purple lighting background"
+                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTmvoU0CXS2r7HUp9uHCmgr5t0B5YNP-YPwUe5CLTHirosL3K4COZ6JeWwHBd3RMMm5FSk2L-KVmoEhp8mJ25Y2S0crEuYzUWMsty1wbGbNGv6nswzjUo_sRr_QEtWKl_GWyplCqGfeTch5JmAaVdVop5YidNfVNGm1i8UOsORAWKMib0tgEhWVr1I69ch4xFjCd3RCpdKz5bInXynQgx6x7rPpY12l080LGIsoNTFNtvvcbND4gXz7Z7HCvIk639tHcOCWTxT9g" />
+                        </div>
+                        <div class="p-4 flex flex-col flex-1">
+                            <div class="flex items-center gap-1 text-yellow-500 mb-2 text-xs">
+                                <span class="material-symbols-outlined fill-current text-sm">star</span>
+                                <span class="material-symbols-outlined fill-current text-sm">star</span>
+                                <span class="material-symbols-outlined fill-current text-sm">star</span>
+                                <span class="material-symbols-outlined fill-current text-sm">star_half</span>
+                                <span class="material-symbols-outlined text-border-dark text-sm">star</span>
+                                <span class="text-text-muted ml-1">(89)</span>
+                            </div>
+                            <h3 class="text-white font-bold text-lg leading-tight mb-2 group-hover:text-primary transition-colors">
+                                Sonar 7.1 Headset
+                            </h3>
+                            <p class="text-text-muted text-xs mb-4 line-clamp-2">
+                                Immersive surround sound with noise-canceling microphone.
+                            </p>
+                            <div class="mt-auto flex items-end justify-between">
+                                <div class="flex flex-col">
+                                    <span class="text-white font-black text-xl">$59.99</span>
+                                </div>
+                                <button class="h-10 w-10 bg-primary/10 hover:bg-primary text-primary hover:text-background-dark rounded-lg flex items-center justify-center transition-all">
+                                    <span class="material-symbols-outlined">add_shopping_cart</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product Card 4 -->
+                    <div class="group bg-surface-dark rounded-xl border border-border-dark overflow-hidden hover:border-primary/50 hover:shadow-[0_0_15px_rgba(0,212,255,0.15)] transition-all duration-300 flex flex-col h-full relative">
+                        <button class="absolute top-3 right-3 z-10 text-text-muted hover:text-white bg-background-dark/80 rounded-full p-1.5 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                            <span class="material-symbols-outlined text-lg">favorite</span>
+                        </button>
+                        <div class="aspect-[4/3] bg-surface-darker relative overflow-hidden">
+                            <img alt="Mousepad"
+                                 class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                                 data-alt="Futuristic gaming mouse pad with rgb led edges"
+                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuCt7LNBlljP0jrrJulVQSYSGlyrDmyVDR4uOlFaggdhfCgf217qSYov3D5o6fx3NPE9VGxWECpMwahaEUMRdBdCxbQ5r5YM17bcfYLjIQogwQti-NCZZBBT5HHRDduAQCqed9BKwCsQbb2iM6HXVXricycNbEgzsN_f1f8Eksgl-uQ7Ijts3qUo7nXB7vOZ1koDyDEk5oTK7Dv3L4-2cmg6k8DGlHuMPanTATKM1HKkCT_zsi2ltykO88nGphuzXsbS9TRW7mZTow" />
+                        </div>
+                        <div class="p-4 flex flex-col flex-1">
+                            <div class="flex items-center gap-1 text-yellow-500 mb-2 text-xs">
+                                <span class="material-symbols-outlined fill-current text-sm">star</span>
+                                <span class="material-symbols-outlined fill-current text-sm">star</span>
+                                <span class="material-symbols-outlined fill-current text-sm">star</span>
+                                <span class="material-symbols-outlined fill-current text-sm">star</span>
+                                <span class="material-symbols-outlined fill-current text-sm">star</span>
+                                <span class="text-text-muted ml-1">(256)</span>
+                            </div>
+                            <h3 class="text-white font-bold text-lg leading-tight mb-2 group-hover:text-primary transition-colors">
+                                Goliathus RGB Mat
+                            </h3>
+                            <p class="text-text-muted text-xs mb-4 line-clamp-2">
+                                Extended gaming mouse mat with Chroma RGB lighting.
+                            </p>
+                            <div class="mt-auto flex items-end justify-between">
+                                <div class="flex flex-col">
+                                    <span class="text-white font-black text-xl">$39.99</span>
+                                </div>
+                                <button class="h-10 w-10 bg-primary/10 hover:bg-primary text-primary hover:text-background-dark rounded-lg flex items-center justify-center transition-all">
+                                    <span class="material-symbols-outlined">add_shopping_cart</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product Card 5 -->
+                    <div class="group bg-surface-dark rounded-xl border border-border-dark overflow-hidden hover:border-primary/50 hover:shadow-[0_0_15px_rgba(0,212,255,0.15)] transition-all duration-300 flex flex-col h-full relative">
+                        <button class="absolute top-3 right-3 z-10 text-text-muted hover:text-white bg-background-dark/80 rounded-full p-1.5 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                            <span class="material-symbols-outlined text-lg">favorite</span>
+                        </button>
+                        <div class="aspect-[4/3] bg-surface-darker relative overflow-hidden">
+                            <img alt="Microphone"
+                                 class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                                 data-alt="Studio microphone on boom arm with dark background"
+                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-PkYp73Qgcr-bQsTSFqYQ4TTP6or7hpNWyJSyQRTfdAy4wvGUz-snN_Ya-buf3ztoYWU995uzaiayXjnqdTK4pCn5t5zmDS3nLbZIKgRd17HjvyuA6bOlq1qsqEToO40mqKbotvZgiSItdCaibf5lHudFve0YkMx3m6ORN1LJVvvq4rU5ULj5pSNzYXxTXuiBLegohjMlEMn-nE2l7cqtCRN3mqwf9WEAkO9wQA3FXoMcxwA5xNtR-sNAwS5i7FI8rWijV-nwcw" />
+                        </div>
+                        <div class="p-4 flex flex-col flex-1">
+                            <div class="flex items-center gap-1 text-yellow-500 mb-2 text-xs">
+                                <span class="material-symbols-outlined fill-current text-sm">star</span>
+                                <span class="material-symbols-outlined fill-current text-sm">star</span>
+                                <span class="material-symbols-outlined fill-current text-sm">star</span>
+                                <span class="material-symbols-outlined fill-current text-sm">star</span>
+                                <span class="material-symbols-outlined text-border-dark text-sm">star</span>
+                                <span class="text-text-muted ml-1">(54)</span>
+                            </div>
+                            <h3 class="text-white font-bold text-lg leading-tight mb-2 group-hover:text-primary transition-colors">
+                                Streamer Mic X
+                            </h3>
+                            <p class="text-text-muted text-xs mb-4 line-clamp-2">
+                                Professional grade USB condenser microphone for streaming.
+                            </p>
+                            <div class="mt-auto flex items-end justify-between">
+                                <div class="flex flex-col">
+                                    <span class="text-text-muted text-sm line-through">$109.99</span>
+                                    <span class="text-white font-black text-xl">$89.99</span>
+                                </div>
+                                <button class="h-10 w-10 bg-primary/10 hover:bg-primary text-primary hover:text-background-dark rounded-lg flex items-center justify-center transition-all">
+                                    <span class="material-symbols-outlined">add_shopping_cart</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product Card 6 -->
+                    <div class="group bg-surface-dark rounded-xl border border-border-dark overflow-hidden hover:border-primary/50 hover:shadow-[0_0_15px_rgba(0,212,255,0.15)] transition-all duration-300 flex flex-col h-full relative">
+                        <button class="absolute top-3 right-3 z-10 text-text-muted hover:text-white bg-background-dark/80 rounded-full p-1.5 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                            <span class="material-symbols-outlined text-lg">favorite</span>
+                        </button>
+                        <div class="aspect-[4/3] bg-surface-darker relative overflow-hidden">
+                            <img alt="Gaming Monitor"
+                                 class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                                 data-alt="Wide curved gaming monitor displaying colorful graphics"
+                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuAN_Kj3kaI_qsE2ofjX-74G4TReD_vjUiCkFFI6vCIy-HQ_HRwd1vWnf0g5aGm2AeL8mtUd_LAzlugucO83CuVdSWc-k8ARCNbSo-roJ_4taM_i-0x7dN4P-YDr5MUn9FnSHzPaIJCcRlCXplYhHKH8zXDClPLTRX6mbGVu4cveBxGLvMRqa1b67ZEYvVuEwYCpZSZ7fo07Ttua0Y-4hAuPZVzaSNOFbjY03mQNkeGJKVJg_-HUK41lpS7oLXhJu3HKPphHNCXPPQ" />
+                        </div>
+                        <div class="p-4 flex flex-col flex-1">
+                            <div class="flex items-center gap-1 text-yellow-500 mb-2 text-xs">
+                                <span class="material-symbols-outlined fill-current text-sm">star</span>
+                                <span class="material-symbols-outlined fill-current text-sm">star</span>
+                                <span class="material-symbols-outlined fill-current text-sm">star</span>
+                                <span class="material-symbols-outlined fill-current text-sm">star</span>
+                                <span class="material-symbols-outlined fill-current text-sm">star_half</span>
+                                <span class="text-text-muted ml-1">(15)</span>
+                            </div>
+                            <h3 class="text-white font-bold text-lg leading-tight mb-2 group-hover:text-primary transition-colors">
+                                Optix 144Hz Monitor
+                            </h3>
+                            <p class="text-text-muted text-xs mb-4 line-clamp-2">
+                                27-inch Curved Gaming Monitor, 1ms Response Time.
+                            </p>
+                            <div class="mt-auto flex items-end justify-between">
+                                <div class="flex flex-col">
+                                    <span class="text-white font-black text-xl">$299.99</span>
+                                </div>
+                                <button class="h-10 w-10 bg-primary/10 hover:bg-primary text-primary hover:text-background-dark rounded-lg flex items-center justify-center transition-all">
+                                    <span class="material-symbols-outlined">add_shopping_cart</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Pagination -->
+                <div class="mt-12 flex justify-center">
+                    <nav aria-label="Pagination"
+                         class="isolate inline-flex -space-x-px rounded-md shadow-sm">
+                        <a class="relative inline-flex items-center rounded-l-md px-3 py-2 text-text-muted ring-1 ring-inset ring-border-dark hover:bg-surface-dark focus:z-20 focus:outline-offset-0"
+                           href="#">
+                            <span class="sr-only">Previous</span>
+                            <span class="material-symbols-outlined text-sm">chevron_left</span>
+                        </a>
+                        <a aria-current="page"
+                           class="relative z-10 inline-flex items-center bg-primary px-4 py-2 text-sm font-semibold text-background-dark focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                           href="#">1</a>
+                        <a class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-text-muted ring-1 ring-inset ring-border-dark hover:bg-surface-dark focus:z-20 focus:outline-offset-0"
+                           href="#">2</a>
+                        <a class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-text-muted ring-1 ring-inset ring-border-dark hover:bg-surface-dark focus:z-20 focus:outline-offset-0"
+                           href="#">3</a>
+                        <span class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-text-muted ring-1 ring-inset ring-border-dark focus:outline-offset-0">...</span>
+                        <a class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-text-muted ring-1 ring-inset ring-border-dark hover:bg-surface-dark focus:z-20 focus:outline-offset-0"
+                           href="#">8</a>
+                        <a class="relative inline-flex items-center rounded-r-md px-3 py-2 text-text-muted ring-1 ring-inset ring-border-dark hover:bg-surface-dark focus:z-20 focus:outline-offset-0"
+                           href="#">
+                            <span class="sr-only">Next</span>
+                            <span class="material-symbols-outlined text-sm">chevron_right</span>
+                        </a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

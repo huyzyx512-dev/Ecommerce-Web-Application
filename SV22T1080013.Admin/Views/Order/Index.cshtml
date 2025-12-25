@@ -8,7 +8,7 @@
         <form id="formSearchOrder" action="~/Order/Search" method="post" data-result="#orderContainer">
             <div class="row container-fluid">
                 <input type="hidden" asp-for="PageSize"/>
-                <div class="col-sm-3">
+                <div class="col-sm-2">
                     <select class="form-control" asp-for="StatusID">
                         <option value="0">-- Trạng thái --</option>
                         <option value="1">Đơn hàng mới (chờ duyệt)</option>
@@ -20,9 +20,9 @@
                     </select>
                 </div>
                 <div class="col-sm-3">
-                    <input type="text" name="orderTime" class="form-control daterange-picker" placeholder="" />
+                    <input type="text" asp-for="DateRange" class="form-control daterange-picker" placeholder="" />
                 </div>
-                <div class="col-sm-6 input-group">
+                <div class="col-sm-7 input-group">
                     <input type="text" asp-for="SearchValue"
                            class="form-control"
                            placeholder="Tìm kiếm theo tên khách hàng hoặc tên người giao hàng">

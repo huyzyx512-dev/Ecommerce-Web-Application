@@ -1,0 +1,278 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<div class="flex-1 w-full max-w-[1400px] mx-auto p-4 lg:p-8">
+    <div class="flex flex-col lg:flex-row gap-8 lg:gap-16">
+        <!-- Left Column: Checkout Process -->
+        <main class="flex-1 flex flex-col gap-8">
+            <!-- Breadcrumbs -->
+            <nav class="flex flex-wrap gap-2 items-center text-sm lg:text-base">
+                <a class="text-primary hover:text-primary/80 font-medium transition-colors"
+                   href="#">Cart</a>
+                <span class="text-slate-600 font-medium">/</span>
+                <a class="text-primary hover:text-primary/80 font-medium transition-colors"
+                   href="#">Information</a>
+                <span class="text-slate-600 font-medium">/</span>
+                <span class="text-white font-bold border-b-2 border-primary pb-0.5">Checkout</span>
+            </nav>
+            <!-- Page Heading -->
+            <div>
+                <h1 class="text-white text-3xl lg:text-4xl font-black leading-tight tracking-[-0.033em]">
+                    Checkout
+                </h1>
+                <p class="text-slate-400 mt-2">
+                    Complete your order details below.
+                </p>
+            </div>
+            <!-- Contact Info Section -->
+            <section class="bg-surface-dark/50 rounded-xl p-6 border border-surface-highlight">
+                <div class="flex justify-between items-baseline mb-4">
+                    <h3 class="text-white text-lg font-bold">Contact Information</h3>
+                    <div class="text-sm text-slate-400">
+                        Already have an account?
+                        <a class="text-primary hover:underline" href="#">Log in</a>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <label class="flex flex-col flex-1">
+                        <p class="text-slate-300 text-sm font-medium pb-2">
+                            Email address
+                        </p>
+                        <input class="form-input flex w-full rounded-lg text-white focus:outline-0 focus:ring-1 focus:ring-primary border border-surface-highlight bg-surface-dark focus:border-primary h-12 px-4 placeholder:text-slate-500 text-base transition-all"
+                               placeholder="gamer@example.com"
+                               type="email" />
+                    </label>
+                </div>
+            </section>
+            <!-- Shipping Address Section -->
+            <section class="bg-surface-dark/50 rounded-xl p-6 border border-surface-highlight">
+                <h3 class="text-white text-lg font-bold mb-6">Shipping Address</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <label class="flex flex-col">
+                        <p class="text-slate-300 text-sm font-medium pb-2">
+                            First name
+                        </p>
+                        <input class="form-input w-full rounded-lg text-white focus:ring-1 focus:ring-primary border border-surface-highlight bg-surface-dark focus:border-primary h-12 px-4 placeholder:text-slate-500 text-base transition-all"
+                               type="text" />
+                    </label>
+                    <label class="flex flex-col">
+                        <p class="text-slate-300 text-sm font-medium pb-2">Last name</p>
+                        <input class="form-input w-full rounded-lg text-white focus:ring-1 focus:ring-primary border border-surface-highlight bg-surface-dark focus:border-primary h-12 px-4 placeholder:text-slate-500 text-base transition-all"
+                               type="text" />
+                    </label>
+                    <label class="flex flex-col md:col-span-2">
+                        <p class="text-slate-300 text-sm font-medium pb-2">Address</p>
+                        <input class="form-input w-full rounded-lg text-white focus:ring-1 focus:ring-primary border border-surface-highlight bg-surface-dark focus:border-primary h-12 px-4 placeholder:text-slate-500 text-base transition-all"
+                               placeholder="123 Gaming St"
+                               type="text" />
+                    </label>
+                    <label class="flex flex-col md:col-span-2">
+                        <p class="text-slate-300 text-sm font-medium pb-2">
+                            Apartment, suite, etc. (optional)
+                        </p>
+                        <input class="form-input w-full rounded-lg text-white focus:ring-1 focus:ring-primary border border-surface-highlight bg-surface-dark focus:border-primary h-12 px-4 placeholder:text-slate-500 text-base transition-all"
+                               type="text" />
+                    </label>
+                    <label class="flex flex-col">
+                        <p class="text-slate-300 text-sm font-medium pb-2">City</p>
+                        <input class="form-input w-full rounded-lg text-white focus:ring-1 focus:ring-primary border border-surface-highlight bg-surface-dark focus:border-primary h-12 px-4 placeholder:text-slate-500 text-base transition-all"
+                               type="text" />
+                    </label>
+                    <label class="flex flex-col">
+                        <p class="text-slate-300 text-sm font-medium pb-2">Phone</p>
+                        <input class="form-input w-full rounded-lg text-white focus:ring-1 focus:ring-primary border border-surface-highlight bg-surface-dark focus:border-primary h-12 px-4 placeholder:text-slate-500 text-base transition-all"
+                               type="tel" />
+                    </label>
+                </div>
+            </section>
+            <!-- Payment Method Section -->
+            <section class="bg-surface-dark/50 rounded-xl p-6 border border-surface-highlight">
+                <h3 class="text-white text-lg font-bold mb-2">Payment Method</h3>
+                <p class="text-slate-400 text-sm mb-6">
+                    All transactions are secure and encrypted.
+                </p>
+                <div class="space-y-4">
+                    <!-- Credit Card Option -->
+                    <label class="relative block cursor-pointer group">
+                        <input checked=""
+                               class="peer sr-only radio-card"
+                               name="payment"
+                               type="radio" />
+                        <div class="flex items-center p-4 rounded-xl border border-surface-highlight bg-surface-dark transition-all duration-200 group-hover:border-primary/50">
+                            <div class="radio-indicator w-5 h-5 rounded-full border border-slate-500 relative mr-4 shrink-0 transition-colors"></div>
+                            <div class="flex-1">
+                                <span class="block text-white font-medium">Credit Card</span>
+                                <span class="block text-xs text-slate-400">Visa, Mastercard, Amex</span>
+                            </div>
+                            <div class="flex gap-2 text-slate-400">
+                                <span class="material-symbols-outlined">credit_card</span>
+                            </div>
+                        </div>
+                        <!-- Credit Card Details (Visible when checked - simulated with peer-checked) -->
+                        <div class="hidden peer-checked:block pt-4 px-4 pb-2 animate-in fade-in slide-in-from-top-2 duration-300">
+                            <div class="grid grid-cols-1 gap-4">
+                                <label class="block">
+                                    <span class="text-xs text-slate-300 mb-1 block">Card number</span>
+                                    <div class="relative">
+                                        <input class="w-full bg-background-dark border border-surface-highlight rounded-lg px-3 py-2 text-white focus:border-primary focus:ring-primary text-sm"
+                                               placeholder="0000 0000 0000 0000"
+                                               type="text" />
+                                        <span class="material-symbols-outlined absolute right-3 top-2 text-slate-500 text-sm">lock</span>
+                                    </div>
+                                </label>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <label class="block">
+                                        <span class="text-xs text-slate-300 mb-1 block">Expiry date</span>
+                                        <input class="w-full bg-background-dark border border-surface-highlight rounded-lg px-3 py-2 text-white focus:border-primary focus:ring-primary text-sm"
+                                               placeholder="MM / YY"
+                                               type="text" />
+                                    </label>
+                                    <label class="block">
+                                        <span class="text-xs text-slate-300 mb-1 block">Security code</span>
+                                        <div class="relative">
+                                            <input class="w-full bg-background-dark border border-surface-highlight rounded-lg px-3 py-2 text-white focus:border-primary focus:ring-primary text-sm"
+                                                   placeholder="CVV"
+                                                   type="text" />
+                                            <span class="material-symbols-outlined absolute right-3 top-2 text-slate-500 text-sm cursor-help"
+                                                  title="3 digits on back of card">help</span>
+                                        </div>
+                                    </label>
+                                </div>
+                                <label class="block">
+                                    <span class="text-xs text-slate-300 mb-1 block">Name on card</span>
+                                    <input class="w-full bg-background-dark border border-surface-highlight rounded-lg px-3 py-2 text-white focus:border-primary focus:ring-primary text-sm"
+                                           type="text" />
+                                </label>
+                            </div>
+                        </div>
+                    </label>
+                    <!-- PayPal Option -->
+                    <label class="relative block cursor-pointer group">
+                        <input class="peer sr-only radio-card"
+                               name="payment"
+                               type="radio" />
+                        <div class="flex items-center p-4 rounded-xl border border-surface-highlight bg-surface-dark transition-all duration-200 group-hover:border-primary/50">
+                            <div class="radio-indicator w-5 h-5 rounded-full border border-slate-500 relative mr-4 shrink-0 transition-colors"></div>
+                            <div class="flex-1">
+                                <span class="block text-white font-medium">E-Wallet</span>
+                                <span class="block text-xs text-slate-400">PayPal, Google Pay, Apple Pay</span>
+                            </div>
+                            <div class="flex gap-2 text-slate-400">
+                                <span class="material-symbols-outlined">account_balance_wallet</span>
+                            </div>
+                        </div>
+                    </label>
+                    <!-- COD Option -->
+                    <label class="relative block cursor-pointer group">
+                        <input class="peer sr-only radio-card"
+                               name="payment"
+                               type="radio" />
+                        <div class="flex items-center p-4 rounded-xl border border-surface-highlight bg-surface-dark transition-all duration-200 group-hover:border-primary/50">
+                            <div class="radio-indicator w-5 h-5 rounded-full border border-slate-500 relative mr-4 shrink-0 transition-colors"></div>
+                            <div class="flex-1">
+                                <span class="block text-white font-medium">Cash on Delivery</span>
+                                <span class="block text-xs text-slate-400">Pay when you receive</span>
+                            </div>
+                            <div class="flex gap-2 text-slate-400">
+                                <span class="material-symbols-outlined">payments</span>
+                            </div>
+                        </div>
+                    </label>
+                </div>
+            </section>
+        </main>
+        <!-- Right Column: Order Summary (Sticky) -->
+        <aside class="w-full lg:w-[420px] shrink-0">
+            <div class="sticky top-24 space-y-6">
+                <!-- Order Card -->
+                <div class="bg-surface-dark rounded-xl border border-surface-highlight overflow-hidden shadow-2xl">
+                    <div class="p-6 border-b border-surface-highlight">
+                        <h3 class="text-white text-lg font-bold">Order Summary</h3>
+                    </div>
+                    <!-- Items List -->
+                    <div class="p-6 space-y-6 max-h-[300px] overflow-y-auto">
+                        <!-- Item 1 -->
+                        <div class="flex gap-4">
+                            <div class="relative size-20 rounded-lg bg-surface-highlight overflow-hidden shrink-0 border border-slate-700">
+                                <img class="object-cover w-full h-full opacity-90 hover:opacity-100 transition-opacity"
+                                     data-alt="Mechanical Gaming Keyboard with RGB lighting"
+                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuCchQU-Vgb3C_jarpbbDIak6USQSMjClGxW6KP4t1o1ysQQT9GQuF_3Jb7HOFQ_jCLqUVZDttUfpNNec-BNwD-gQ2rrUACEBA3voJGPEpPgMKIMS77F11jypdxBuo5YFMMQOoEy5xqJWgMbZ7-YIkPsHjfgFOJf7TdyVcctoPc9QEj6mdH8A9fxJkx4g9YwY065kocVPMsdCMBusuKXzCqM4bRDRBdHE46w7h1s9Vh2RBWJDpBVCBbzEH7IRPp6_em6t7-hp9aL-A" />
+                                <span class="absolute top-0 right-0 bg-primary text-background-dark text-xs font-bold px-1.5 py-0.5 rounded-bl">1</span>
+                            </div>
+                            <div class="flex-1 flex flex-col justify-between">
+                                <div>
+                                    <h4 class="text-white font-medium text-sm leading-snug">
+                                        MechStrike Pro RGB Keyboard
+                                    </h4>
+                                    <p class="text-slate-400 text-xs mt-1">Cherry MX Red</p>
+                                </div>
+                                <p class="text-primary font-bold text-sm">$129.00</p>
+                            </div>
+                        </div>
+                        <!-- Item 2 -->
+                        <div class="flex gap-4">
+                            <div class="relative size-20 rounded-lg bg-surface-highlight overflow-hidden shrink-0 border border-slate-700">
+                                <img class="object-cover w-full h-full opacity-90 hover:opacity-100 transition-opacity"
+                                     data-alt="Wireless Gaming Mouse with neon accents"
+                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuAb1cznLzxg4H2n2UlKwx-DR8c19G9r6Vy743sM7CBRuWC-q8M-IO-t20zcuTKyeSRH79moggRsZ2NehpPIgxhzqoie5jH_8lGpk31R2YxE1cOgD5RZHiuR6MbcOGuPydx_dZrI3HTWcGyWVpq2biYXI1SIOrxo0GXiJU-rWT9XTrJjerEF7VjZ1KQNs8KQuB-TTwPsuqPL7nntJS9HXof877M1D26o-WSEkxI9In8EGoYmb6vFnMCVxnbAxJ5VMMoVFwx6xVOhog" />
+                                <span class="absolute top-0 right-0 bg-primary text-background-dark text-xs font-bold px-1.5 py-0.5 rounded-bl">1</span>
+                            </div>
+                            <div class="flex-1 flex flex-col justify-between">
+                                <div>
+                                    <h4 class="text-white font-medium text-sm leading-snug">
+                                        Viper 8KHz Mouse
+                                    </h4>
+                                    <p class="text-slate-400 text-xs mt-1">Matte Black</p>
+                                </div>
+                                <p class="text-primary font-bold text-sm">$59.99</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Calculations -->
+                    <div class="px-6 py-4 bg-background-dark/50 border-t border-surface-highlight space-y-3">
+                        <div class="flex justify-between text-sm text-slate-400">
+                            <span>Subtotal</span>
+                            <span class="text-white font-medium">$188.99</span>
+                        </div>
+                        <div class="flex justify-between text-sm text-slate-400">
+                            <span class="flex items-center gap-1">
+                                Shipping
+                                <span class="material-symbols-outlined text-[16px]">info</span>
+                            </span>
+                            <span class="text-primary text-xs font-medium">Calculated at next step</span>
+                        </div>
+                        <div class="flex justify-between text-sm text-slate-400">
+                            <span>Taxes</span>
+                            <span class="text-white font-medium">$15.12</span>
+                        </div>
+                    </div>
+                    <!-- Grand Total -->
+                    <div class="px-6 py-6 border-t border-surface-highlight bg-surface-dark flex items-end justify-between">
+                        <span class="text-slate-300 font-medium">Total</span>
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-slate-500 text-sm">USD</span>
+                            <span class="text-white text-2xl font-black tracking-tight">$204.11</span>
+                        </div>
+                    </div>
+                    <!-- CTA -->
+                    <div class="p-6 pt-0 bg-surface-dark">
+                        <button class="w-full h-14 bg-primary hover:bg-primary/90 text-background-dark font-black text-lg uppercase tracking-wide rounded-lg shadow-neon transition-all duration-300 flex items-center justify-center gap-2 group">
+                            Place Order
+                            <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                        </button>
+                        <div class="mt-4 flex justify-center gap-4 text-slate-500">
+                            <span class="material-symbols-outlined text-2xl"
+                                  title="Secure Payment">lock</span>
+                            <span class="material-symbols-outlined text-2xl"
+                                  title="Credit Card">credit_card</span>
+                            <span class="material-symbols-outlined text-2xl"
+                                  title="Verified">verified_user</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+</div>

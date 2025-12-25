@@ -1,0 +1,112 @@
+﻿@{
+    ViewData["Title"] = "Profile";
+}
+
+<div class="flex-1 flex justify-center py-8 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl w-full flex flex-col lg:flex-row gap-8">
+        <!-- Sidebar Navigation (giữ nguyên như trang Orders) -->
+        <aside class="w-full lg:w-72 flex-shrink-0">
+            <div class="sticky top-24 flex flex-col gap-6">
+                <!-- User Profile Snippet -->
+                <div class="flex items-center gap-4 p-4 rounded-xl bg-surface-dark border border-border-color shadow-lg">
+                    <div class="relative size-12 rounded-full overflow-hidden border-2 border-primary">
+                        <img alt="Profile avatar"
+                             class="object-cover w-full h-full"
+                             src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhfgIoeLk1jItW11caqandd4BZbdhGRpaACKfeDTKlcf-sJYa4SKmfNdGh2hsQCUETzVJN1H0z4yVaOaafCJyRUgopnHGrgwUfG4kF_DBzVJcV0PZMnCHNubdoz5jhEF2xvRLAi665FFMDQHfNDXSCFPbhfhXX6g8EoN2Eb2zkFNQGD-5hhnPMtK_SH4s5AQ0IXh7GtfLDcbfGjm-AGmtNGwNb8n4jbacvQYkslrFmIj357rb4u0EsvZML_3jPZQCfXxvva5v92g" />
+                    </div>
+                    <div class="flex flex-col">
+                        <h1 class="text-white font-bold leading-tight">Alex Chen</h1>
+                        <p class="text-primary text-xs font-medium">Tech Elite Member</p>
+                    </div>
+                </div>
+
+                <nav class="flex flex-col gap-2">
+                    <a class="flex items-center gap-3 px-4 py-3 rounded-lg bg-surface-highlight border-l-4 border-primary text-white shadow-[0_0_15px_rgba(0,0,0,0.3)] transition-all"
+                       href="#">
+                        <span class="material-symbols-outlined text-primary">person</span>
+                        <span class="font-bold">Profile</span>
+                    </a>
+                    <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-text-muted hover:bg-surface-highlight hover:text-white transition-all group"
+                       href="#">
+                        <span class="material-symbols-outlined group-hover:text-primary transition-colors">shopping_bag</span>
+                        <span class="font-medium">Orders</span>
+                    </a>
+                    <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-text-muted hover:bg-surface-highlight hover:text-white transition-all group"
+                       href="#">
+                        <span class="material-symbols-outlined group-hover:text-primary transition-colors">location_on</span>
+                        <span class="font-medium">Addresses</span>
+                    </a>
+                    <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-text-muted hover:bg-surface-highlight hover:text-white transition-all group"
+                       href="#">
+                        <span class="material-symbols-outlined group-hover:text-primary transition-colors">credit_card</span>
+                        <span class="font-medium">Payment Methods</span>
+                    </a>
+                    <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-text-muted hover:bg-surface-highlight hover:text-white transition-all group mt-4 border-t border-border-color pt-6"
+                       href="#">
+                        <span class="material-symbols-outlined group-hover:text-red-400 transition-colors">logout</span>
+                        <span class="font-medium">Sign Out</span>
+                    </a>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 min-w-0 flex flex-col gap-6">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-4 border-b border-border-color">
+                <div class="flex flex-col gap-2">
+                    <h2 class="text-3xl md:text-4xl font-black tracking-tight text-white">
+                        Your Profile
+                    </h2>
+                    <p class="text-text-muted">Manage your personal information and preferences</p>
+                </div>
+            </div>
+
+            <div class="bg-surface-dark border border-border-color rounded-xl p-6 md:p-8 shadow-lg">
+                <div class="flex flex-col md:flex-row gap-10">
+                    <!-- Avatar + Upload -->
+                    <div class="flex flex-col items-center gap-4">
+                        <div class="relative size-32 rounded-full overflow-hidden border-4 border-primary/60 shadow-xl">
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhfgIoeLk1jItW11caqandd4BZbdhGRpaACKfeDTKlcf-sJYa4SKmfNdGh2hsQCUETzVJN1H0z4yVaOaafCJyRUgopnHGrgwUfG4kF_DBzVJcV0PZMnCHNubdoz5jhEF2xvRLAi665FFMDQHfNDXSCFPbhfhXX6g8EoN2Eb2zkFNQGD-5hhnPMtK_SH4s5AQ0IXh7GtfLDcbfGjm-AGmtNGwNb8n4jbacvQYkslrFmIj357rb4u0EsvZML_3jPZQCfXxvva5v92g"
+                                 alt="Profile picture" class="object-cover w-full h-full" />
+                        </div>
+                        <button class="px-5 py-2 bg-surface-highlight border border-primary/50 rounded-lg text-sm font-medium text-primary hover:bg-primary/20 transition-colors">
+                            Change Photo
+                        </button>
+                    </div>
+
+                    <!-- Form -->
+                    <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="flex flex-col gap-2">
+                            <label class="text-sm text-text-muted font-medium">Full Name</label>
+                            <input type="text" value="Alex Chen" class="bg-surface-highlight border border-border-color rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" />
+                        </div>
+
+                        <div class="flex flex-col gap-2">
+                            <label class="text-sm text-text-muted font-medium">Email</label>
+                            <input type="email" value="alex.chen@example.com" class="bg-surface-highlight border border-border-color rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" />
+                        </div>
+
+                        <div class="flex flex-col gap-2">
+                            <label class="text-sm text-text-muted font-medium">Phone Number</label>
+                            <input type="tel" value="+84 123 456 789" class="bg-surface-highlight border border-border-color rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" />
+                        </div>
+
+                        <div class="flex flex-col gap-2 md:col-span-2">
+                            <label class="text-sm text-text-muted font-medium">Bio</label>
+                            <textarea rows="4" class="bg-surface-highlight border border-border-color rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary resize-none">Passionate gamer and tech enthusiast. Always hunting for the best RGB setup.</textarea>
+                        </div>
+
+                        <div class="md:col-span-2 flex justify-end gap-4 mt-6">
+                            <button class="px-6 py-2.5 bg-surface-highlight border border-border-color rounded-lg text-white hover:bg-surface-highlight/80 transition-colors">
+                                Cancel
+                            </button>
+                            <button class="px-6 py-2.5 bg-primary text-background-dark font-bold rounded-lg shadow-lg hover:bg-primary-hover transition-all">
+                                Save Changes
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>

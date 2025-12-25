@@ -27,22 +27,26 @@
                 <td class="text-center">@item.Quantity</td>
                 <td class="text-right">@item.SalePrice.ToString("N0")</td>
                 <td class="text-right">@item.TotalPrice.ToString("N0")</td>
-                sum += @item.TotalPrice
                 <td class="text-right">
                     <a href="~/Order/EditDetail/@item.OrderID?productId=@item.ProductID" class="btn btn-xs btn-primary btn-modal">
                         <i class="fa fa-edit"></i>
                     </a>
-                    <a href="~/Order/DeleteDetail/@item.OrderID?productId=@item.ProductID" class="btn btn-xs btn-danger" onclick="return confirm('Xóa mặt hàng này khỏi đơn hàng?')">
+                    <a href="javascript:void(0)"
+                       class="btn btn-xs btn-danger btn-delete-detail"
+                       data-orderid="@item.OrderID"
+                       data-productid="@item.ProductID"
+                       title="Xóa mặt hàng này khỏi đơn hàng">
                         <i class="fa fa-trash"></i>
                     </a>
                 </td>
             </tr>
+            sum = sum + item.TotalPrice;
         }
     </tbody>
     <tfoot>
         <tr>
             <th colspan="5" class="text-right">Tổng cộng:</th>
-            <th class="text-right">@sum</th>
+            <th class="text-right">@sum.ToString("N0")</th>
             <th></th>
         </tr>
     </tfoot>

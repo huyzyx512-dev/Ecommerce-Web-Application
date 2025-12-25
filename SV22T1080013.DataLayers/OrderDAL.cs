@@ -235,6 +235,28 @@ namespace SV22T1080013.DataLayers.SQLServer
         /// <param name="orderID"></param>
         /// <param name="productID"></param>
         /// <returns></returns>
+        public async Task<bool> UpdateItemOrderDetailAsync(OrderDetail item)
+        {
+            using var connection = await OpenConnectionAsync();
+            var sql = @"update OrderDetails 
+                        set Quantity = @Quantity,
+	                        SalePrice = @SalePrice
+                        where OrderID = @OrderID and ProductID = @ProductID";
+            var parameters = new
+            {
+                item.OrderID,
+                item.ProductID,
+                item.Quantity,
+                item.SalePrice
+            };
+            return (await connection.ExecuteAsync(sql: sql, param: parameters, commandType: System.Data.CommandType.Text)) > 0;
+        }
+        /// <summary>
+        /// Xóa chi tiết đơn hàng
+        /// </summary>
+        /// <param name="orderID">mã đơn hàng chứa chi tiết đơn hàng</param>
+        /// <param name="productID">mã chi tiết đơn hàng cần xóa</param>
+        /// <returns></returns>
         public async Task<bool> DeleteDetailAsync(int orderID, int productID)
         {
             using var connection = await OpenConnectionAsync();

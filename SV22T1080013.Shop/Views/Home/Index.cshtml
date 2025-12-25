@@ -1,0 +1,428 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+<div class="relative flex min-h-screen flex-col overflow-x-hidden">
+
+
+    <!-- Hero -->
+    <section class="relative w-full h-[600px] lg:h-[700px] flex items-center justify-center overflow-hidden">
+        <!-- Background Image with Overlay -->
+        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat z-0"
+             data-alt="Dark gaming setup with neon blue and purple lighting"
+             style="
+            background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD2NGHwFhOdkbC1OY7Mz0u_BsKwhDKkoRUu3uGapyBtMONrJA_tNYBW57cYQBK9zXcGdrmWr-P27UYyrG3fhsMqa2k9L7CnKPdJEkGrXCrsIwFxnvyt9KwEgofhU-rItOkIa25oYGj3h_M0i8A6SksiN-sFdYcN8iP59JJeNrrzU1yS7Mbs8HJvGcIajXG5rBqf9dAWuPURq5PvuOWuBsl21rG2lTBUdukw_0nt7SMKPefmUN1sQiQLicyC02_ZN3ZvajX1gBAq2g');
+          "></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/60 to-transparent z-10"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-background-dark/80 via-transparent to-background-dark/80 z-10"></div>
+        <!-- Content -->
+        <div class="relative z-20 container mx-auto px-6 text-center max-w-4xl flex flex-col items-center gap-6">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/30 text-primary text-xs font-bold uppercase tracking-wider mb-2 backdrop-blur-sm">
+                <span class="size-2 rounded-full bg-primary"></span> New Season
+                Arrivals
+            </div>
+            <h1 class="text-5xl md:text-7xl font-black text-white leading-tight tracking-tight drop-shadow-xl">
+                UPGRADE YOUR <br /><span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">BATTLESTATION</span>
+            </h1>
+            <p class="text-slate-300 text-lg md:text-xl max-w-2xl font-light">
+                Premium peripherals engineered for peak performance. Experience the
+                competitive edge with our latest precision gear.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 mt-4">
+                <button class="h-12 px-8 rounded-lg bg-primary hover:bg-primary/90 text-background-dark font-bold text-base transition-all transform hover:scale-105 flex items-center gap-2">
+                    Shop Now
+                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </button>
+                <button class="h-12 px-8 rounded-lg bg-white/5 hover:bg-white/10 text-white border border-white/10 font-bold text-base transition-all backdrop-blur-sm">
+                    View Collections
+                </button>
+            </div>
+        </div>
+    </section>
+    <!-- Featured Products -->
+    <section class="py-16 md:py-24 w-full">
+        <div class="container mx-auto px-6 max-w-[1200px]">
+            <div class="flex items-end justify-between mb-10">
+                <div>
+                    <h2 class="text-3xl font-bold text-white mb-2">
+                        Featured Products
+                    </h2>
+                    <p class="text-slate-400">Top-tier gear chosen by pros.</p>
+                </div>
+                <a class="text-primary text-sm font-bold flex items-center gap-1 hover:underline"
+                   href="#">
+                    View All
+                    <span class="material-symbols-outlined text-sm">chevron_right</span>
+                </a>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Product Card 1 -->
+                <div class="group flex flex-col bg-surface-dark rounded-xl overflow-hidden border border-white/5 hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,212,255,0.1)]">
+                    <div class="relative aspect-square overflow-hidden bg-surface-light">
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                             data-alt="Wireless gaming mouse with RGB lighting"
+                             style="
+                    background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAV1hJLbsv9bjk7LmKXCo_LWU7L9mBSyqH7T8qIeilQO59cg7bUQoS793xLVOEjGFFebOPse3IK2BvCB0DJja8KRA9JyCx66L0rNnBBzfjWGxrdVuiX_1hvI6iEUkc2QpBBc78PwoJsWDKwsGW5L8_BmL8KfPPe1yFPAxm55UwmEPrlAX8Nk-FTTsibrEGJ3Ww9Yj9CzaxxYfuhk0QpEkFNVIuvgaYJ6IQt1fTLywyi9J0u5qBrH_vX_iFNxF6-Hdfelumn4Soidw');
+                  "></div>
+                        <div class="absolute top-3 left-3 bg-primary text-background-dark text-xs font-bold px-2 py-1 rounded">
+                            HOT
+                        </div>
+                        <button class="absolute bottom-3 right-3 size-10 rounded-full bg-white text-background-dark flex items-center justify-center opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all shadow-lg hover:bg-primary">
+                            <span class="material-symbols-outlined">add_shopping_cart</span>
+                        </button>
+                    </div>
+                    <div class="p-4 flex flex-col gap-1">
+                        <h3 class="text-white font-bold text-lg leading-tight truncate">
+                            Pro X Wireless Mouse
+                        </h3>
+                        <p class="text-slate-400 text-xs">
+                            Ultra-lightweight, 25K Sensor
+                        </p>
+                        <div class="mt-2 flex items-center justify-between">
+                            <span class="text-primary font-bold text-lg">$129.99</span>
+                            <div class="flex text-yellow-500 text-[10px] gap-0.5">
+                                <span class="material-symbols-outlined text-sm">star</span>
+                                <span class="material-symbols-outlined text-sm">star</span>
+                                <span class="material-symbols-outlined text-sm">star</span>
+                                <span class="material-symbols-outlined text-sm">star</span>
+                                <span class="material-symbols-outlined text-sm">star_half</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Card 2 -->
+                <div class="group flex flex-col bg-surface-dark rounded-xl overflow-hidden border border-white/5 hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,212,255,0.1)]">
+                    <div class="relative aspect-square overflow-hidden bg-surface-light">
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                             data-alt="Mechanical gaming keyboard with RGB backlighting"
+                             style="
+                    background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCcDyTnQP_8cn-qi3ecHSR9v75cseyjkpVIXTnG74YMfBOCXEoMHZWrl0HIDqUYxC6uzQyCVlOA0DbCpJTkgjPtl4Gm4lQFWanCK3psUZYhmLFMeVkbdd9T35Ki1X59vEWhfpQDVQ_cRvaRjUePsTD4oYkrIPsyQwb5eWuX5k-X6CcCkrExXSETl7J96pelx2FcsEFQSiDM0x7M2y-BC-mS24hv2unvRS2gf_gq6i96N47NWFOszpp81_7N0FttWKs4VZnVvZZxWA');
+                  "></div>
+                        <button class="absolute bottom-3 right-3 size-10 rounded-full bg-white text-background-dark flex items-center justify-center opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all shadow-lg hover:bg-primary">
+                            <span class="material-symbols-outlined">add_shopping_cart</span>
+                        </button>
+                    </div>
+                    <div class="p-4 flex flex-col gap-1">
+                        <h3 class="text-white font-bold text-lg leading-tight truncate">
+                            MechStrike TKL
+                        </h3>
+                        <p class="text-slate-400 text-xs">Red Switches, RGB per key</p>
+                        <div class="mt-2 flex items-center justify-between">
+                            <span class="text-primary font-bold text-lg">$149.99</span>
+                            <div class="flex text-yellow-500 text-[10px] gap-0.5">
+                                <span class="material-symbols-outlined text-sm">star</span>
+                                <span class="material-symbols-outlined text-sm">star</span>
+                                <span class="material-symbols-outlined text-sm">star</span>
+                                <span class="material-symbols-outlined text-sm">star</span>
+                                <span class="material-symbols-outlined text-sm">star</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Card 3 -->
+                <div class="group flex flex-col bg-surface-dark rounded-xl overflow-hidden border border-white/5 hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,212,255,0.1)]">
+                    <div class="relative aspect-square overflow-hidden bg-surface-light">
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                             data-alt="Gaming headset with microphone on dark background"
+                             style="
+                    background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD475IUlCsUIYBtK85p0Zv1PcbXKZP2u1TKPTD2Zux0JPC8RNSZPc_BcbloTsVXm5VpmjYSPEzq7iYAl1a46OKwmi6CUlaX3H-rKrDxXlNnChF7lzXb5zlpcoyEQAjZm-XWPyGtVoukrDHw9U8lubi1tE98gBLq7apQwIbeQsCPWlKlIZmuEoVvFIUUJXLjuS-2SFWf1qNWqpHvUfjG7vyeypIzUr95OsddI_8Z-bAxwnie8Kj7_9cEMGxCWQl-oMQFcYoL577Csg');
+                  "></div>
+                        <div class="absolute top-3 left-3 bg-secondary text-white text-xs font-bold px-2 py-1 rounded">
+                            NEW
+                        </div>
+                        <button class="absolute bottom-3 right-3 size-10 rounded-full bg-white text-background-dark flex items-center justify-center opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all shadow-lg hover:bg-primary">
+                            <span class="material-symbols-outlined">add_shopping_cart</span>
+                        </button>
+                    </div>
+                    <div class="p-4 flex flex-col gap-1">
+                        <h3 class="text-white font-bold text-lg leading-tight truncate">
+                            Void Surround Headset
+                        </h3>
+                        <p class="text-slate-400 text-xs">
+                            7.1 Surround, Noise Cancelling
+                        </p>
+                        <div class="mt-2 flex items-center justify-between">
+                            <span class="text-primary font-bold text-lg">$89.99</span>
+                            <div class="flex text-yellow-500 text-[10px] gap-0.5">
+                                <span class="material-symbols-outlined text-sm">star</span>
+                                <span class="material-symbols-outlined text-sm">star</span>
+                                <span class="material-symbols-outlined text-sm">star</span>
+                                <span class="material-symbols-outlined text-sm">star</span>
+                                <span class="material-symbols-outlined text-sm">star</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Card 4 -->
+                <div class="group flex flex-col bg-surface-dark rounded-xl overflow-hidden border border-white/5 hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,212,255,0.1)]">
+                    <div class="relative aspect-square overflow-hidden bg-surface-light">
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                             data-alt="Large RGB extended mousepad on desk"
+                             style="
+                    background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDA280sPcXo7ylpnSoDz6pw8-bGDqXXRjk-lXKJp42VBQIlz6hyv-04-34bqyIxjoPmVrc1pkanpzvMV7K4Do5vtY_zTmGgieYKTqP1cSZSjM2H0INVIYSL9Vbj-vuDkHWfgo-K_0CjFXsthPrE86m9EzqZLr--QQ6AcnkRHnTtQyL6w1uaeBqcJDwF8BXuy8Cp79CsqVz8JAv4ds1zejpHT5CcpxUUpTJK5VOMG94l5R0KWXYy-0XVq796COz8tZjAZoDCYh47QA');
+                  "></div>
+                        <button class="absolute bottom-3 right-3 size-10 rounded-full bg-white text-background-dark flex items-center justify-center opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all shadow-lg hover:bg-primary">
+                            <span class="material-symbols-outlined">add_shopping_cart</span>
+                        </button>
+                    </div>
+                    <div class="p-4 flex flex-col gap-1">
+                        <h3 class="text-white font-bold text-lg leading-tight truncate">
+                            Glide XL RGB Pad
+                        </h3>
+                        <p class="text-slate-400 text-xs">
+                            Anti-slip, 12 Lighting Zones
+                        </p>
+                        <div class="mt-2 flex items-center justify-between">
+                            <span class="text-primary font-bold text-lg">$39.99</span>
+                            <div class="flex text-yellow-500 text-[10px] gap-0.5">
+                                <span class="material-symbols-outlined text-sm">star</span>
+                                <span class="material-symbols-outlined text-sm">star</span>
+                                <span class="material-symbols-outlined text-sm">star</span>
+                                <span class="material-symbols-outlined text-sm">star</span>
+                                <span class="material-symbols-outlined text-sm">star_border</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Shop by Category (Bento Grid) -->
+    <section class="py-16 bg-surface-light/30 w-full">
+        <div class="container mx-auto px-6 max-w-[1200px]">
+            <h2 class="text-3xl font-bold text-white mb-8">Browse Categories</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 h-auto md:h-[500px]">
+                <!-- Large Card (Left) -->
+                <div class="md:col-span-1 md:row-span-2 group relative overflow-hidden rounded-xl cursor-pointer">
+                    <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                         data-alt="Close up of mechanical keyboard switches"
+                         style="
+                  background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAVuTcksd9W8HctP-TLcaarMYvSrKGMLIS8C_u76kvuIfgfuUPU6fiH5eMIoxiQM_whIXWbpqxctH6XDYuDrCa9Ol5mzkOKoIrxLg7I5UBE_B358Zkqxtb9FkqlkJJSGYGKEOUX-inEgd0yTyEMYsj0e_GNi77dNKaYy0tOcLTB20v1vkCuBoIlGROOd364H9AxEUmHPCW39uMfXxNZjRi9FqG6LmtvsWvHImV051lRDnXDQgth_lX-PKI4o28ih3eZZCJBktCAaA');
+                "></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-background-dark/90 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-6">
+                        <h3 class="text-2xl font-black text-white uppercase italic">
+                            Keyboards
+                        </h3>
+                        <p class="text-slate-300 text-sm mt-1 mb-3 opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0">
+                            Tactile, Linear, Clicky
+                        </p>
+                        <span class="text-primary font-bold text-sm flex items-center gap-1">
+                            Shop Now
+                            <span class="material-symbols-outlined text-base">arrow_forward</span>
+                        </span>
+                    </div>
+                </div>
+                <!-- Top Right (Wide) -->
+                <div class="md:col-span-2 group relative overflow-hidden rounded-xl cursor-pointer h-64 md:h-auto">
+                    <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                         data-alt="Gaming mouse with led lights in dark room"
+                         style="
+                  background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDGwu_xzBrpreF90qEEfBAZFmzJzuHKMONy_ZSCpyn1YE53UsTTC7h6aW8LBX8IAbzwzl2CkrZD2oipqBoEjeRAfChIho2m1SScVWJle_CmRJk3N-WNU1wcAIvnYjR_iY-h-BEMP_-IbjPNQhbQfSos5X0KYeQ_eiZyG8Ql2Q5AZn1Si7cjYtQ_6eCqIyNbugGFXNTEpVOuf5H5SDTSa0ZvFfcemdrUOAbrdsZXHwnEuVD64UjqBiqeJ_sZJ4cd6d9lFfw3X7lFaA');
+                "></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-background-dark/90 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-6">
+                        <h3 class="text-2xl font-black text-white uppercase italic">
+                            Precision Mice
+                        </h3>
+                        <span class="text-primary font-bold text-sm flex items-center gap-1 mt-2">
+                            Shop Now
+                            <span class="material-symbols-outlined text-base">arrow_forward</span>
+                        </span>
+                    </div>
+                </div>
+                <!-- Bottom Right 1 -->
+                <div class="group relative overflow-hidden rounded-xl cursor-pointer h-48 md:h-auto">
+                    <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                         data-alt="Headset hanging on a stand"
+                         style="
+                  background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCT-aDDEmRZ-OEcrvswWnNWnHD-1ETAC_s5G4gtJLqM7P09vC6sk8IF8lejVwqf9CbimdPVBDbegBGIdlbYRXsJnRtpfooprUIbBhUV9vvJoW2GCr-XRJ8iBeEOUPvqHrhYKKWEUILL4Rwh27lZSZFANxqdMBJ2FpAW87UcS3S28TTNTvEdS1I-gAIn5qZSv852Pj-oE9hacB02jy6TEW9NsZLJCg_gDnkp09GNQ7hrXS96tzDBzBbl6NkktgdhJwfiqTXpMIMI8A');
+                "></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-background-dark/90 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-4">
+                        <h3 class="text-xl font-black text-white uppercase italic">
+                            Audio
+                        </h3>
+                    </div>
+                </div>
+                <!-- Bottom Right 2 -->
+                <div class="group relative overflow-hidden rounded-xl cursor-pointer h-48 md:h-auto">
+                    <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                         data-alt="Gaming monitor displaying a video game"
+                         style="
+                  background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAlPthSGXkRVRG4CXhKq9qdmGJcl5Qi5XuZp-r_fFHrlRSJrQmwF8UZJ-FuqhNKnrYh_EXl0pYb-KwfUrGP0qmKWvPMOPV2VfVU2Lnv3pX69z6xY-7P9_6ZKnWc9WoDwaw0UaxcAL_4QbJpoX6y1OYeGsdiVSQrRCD60Aq1x3iwGDnpOwI2KGrEMVQn4BICM1ZGv6e2cQ2RXYKOxHqRMO31HT2cVUbsjmn5CQYdJGaemvGDahPmXiUSGTxWqY8y9PSkrGOYrLNhsw');
+                "></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-background-dark/90 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-4">
+                        <h3 class="text-xl font-black text-white uppercase italic">
+                            Monitors
+                        </h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Flash Sale Banner -->
+    <section class="py-16 w-full">
+        <div class="container mx-auto px-6 max-w-[1200px]">
+            <div class="rounded-2xl overflow-hidden relative bg-gradient-to-r from-secondary to-indigo-900 border border-white/10">
+                <!-- Abstract Background Pattern -->
+                <div class="absolute inset-0 opacity-20"
+                     style="
+                background-image: radial-gradient(#fff 1px, transparent 1px);
+                background-size: 20px 20px;
+              "></div>
+                <div class="relative z-10 flex flex-col md:flex-row items-center justify-between p-8 md:p-12 gap-8">
+                    <div class="text-center md:text-left max-w-lg">
+                        <div class="inline-block bg-white text-secondary font-black text-xs px-2 py-1 rounded mb-4 animate-pulse">
+                            FLASH SALE
+                        </div>
+                        <h2 class="text-3xl md:text-4xl font-black text-white mb-4">
+                            50% OFF STREAMING GEAR
+                        </h2>
+                        <p class="text-indigo-100 mb-6">
+                            Upgrade your stream quality with professional microphones,
+                            webcams, and capture cards. Limited time offer.
+                        </p>
+                        <div class="flex gap-4 justify-center md:justify-start">
+                            <div class="bg-black/30 backdrop-blur rounded-lg p-3 text-center min-w-[70px]">
+                                <span class="block text-2xl font-bold text-white">04</span>
+                                <span class="text-xs text-indigo-200">Hours</span>
+                            </div>
+                            <div class="bg-black/30 backdrop-blur rounded-lg p-3 text-center min-w-[70px]">
+                                <span class="block text-2xl font-bold text-white">32</span>
+                                <span class="text-xs text-indigo-200">Mins</span>
+                            </div>
+                            <div class="bg-black/30 backdrop-blur rounded-lg p-3 text-center min-w-[70px]">
+                                <span class="block text-2xl font-bold text-white">15</span>
+                                <span class="text-xs text-indigo-200">Secs</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="shrink-0 relative w-64 h-64 md:w-80 md:h-80">
+                        <img class="w-full h-full object-cover rounded-xl shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500 border-4 border-white/10"
+                             data-alt="Laptop and headphones on a desk"
+                             src="https://lh3.googleusercontent.com/aida-public/AB6AXuAe93y4hR1ovvtQoYAECo4DO8NfAE7_5XH0fz934nVvYMFbd0PoTUJvkSrwVeH1PWZIu0_1KAl5d_x45uVHlZmgwMMkUan3LugCP109ijBMNz7q4zckw8-Oijp4i7rd1VFkcVI4FSgID37nHEE1-75Dz7O1XeZCTH3mWXnVQrmpTNFInSNTL7AIFkcIPnEmnY1fdlbE5HIFO6UKs3pP3WKiBgpNV7YzVBZxmSnfd6AVOdhQ8D_mjzBk92ltacpdRWe-sQLR_7z4ag" />
+                        <div class="absolute -bottom-4 -right-4 bg-primary text-background-dark font-black text-xl px-4 py-2 rounded-lg shadow-lg rotate-[-6deg]">
+                            SAVE $50
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Customer Reviews -->
+    <section class="py-16 bg-surface-dark/50 w-full border-y border-white/5">
+        <div class="container mx-auto px-6 max-w-[1200px]">
+            <h2 class="text-3xl font-bold text-white text-center mb-12">
+                Gamers Trust TechGear
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Review 1 -->
+                <div class="bg-background-dark p-6 rounded-xl border border-white/5 relative">
+                    <span class="material-symbols-outlined absolute top-4 right-4 text-white/10 text-4xl">format_quote</span>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="size-10 rounded-full bg-slate-700 overflow-hidden">
+                            <img class="w-full h-full object-cover"
+                                 data-alt="Portrait of a male customer"
+                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6gYyvGck-dVu-lD2oLQ7imIKGqL4YFd-DBQmBWL4vyGVPKGwVBOKqFxT_71NqX3hzD8O7P_4dL_SMvS27lkKV6-XXFBDJ_W_AGkERl8hmplQq12SLfnaHSpRg_yTwgWFwrjXZ4wUCWv1Qo042vSv2Di2aripyiomydCp6bVYI74Sv3mBXGEOjNf11QuPWqjSqQzpinyHH8GPYAKEEDHbY8fae9P5w2Zw5BU89_V-B8Id13vWfn29iKqtyp5Hq2eokuiC2m5v_HA" />
+                        </div>
+                        <div>
+                            <p class="text-white font-bold text-sm">Alex Chen</p>
+                            <div class="flex text-primary text-xs">
+                                <span class="material-symbols-outlined text-sm">star</span>
+                                <span class="material-symbols-outlined text-sm">star</span>
+                                <span class="material-symbols-outlined text-sm">star</span>
+                                <span class="material-symbols-outlined text-sm">star</span>
+                                <span class="material-symbols-outlined text-sm">star</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        "The delivery was insanely fast. The mechanical keyboard feels
+                        premium and the RGB software is actually usable. Highly
+                        recommend!"
+                    </p>
+                </div>
+                <!-- Review 2 -->
+                <div class="bg-background-dark p-6 rounded-xl border border-white/5 relative">
+                    <span class="material-symbols-outlined absolute top-4 right-4 text-white/10 text-4xl">format_quote</span>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="size-10 rounded-full bg-slate-700 overflow-hidden">
+                            <img class="w-full h-full object-cover"
+                                 data-alt="Portrait of a female customer"
+                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNK8YMe1K6GFZxZb92u2jfuRCCYTDJXqKMlnhdCTN1D3jWtniy_WPxh_IbLugTwELfp1iSH4zN9PLteO5Vep76BlKl9OnuF5M6shcX7IiDLSuM_JaZusuCObe7Egd7NyKSbHjtWILQPoenLDkz7fN-ftC5taHVdIAEga2ui2RgITKGIyV8jp_DHH2NWtQGM94Hsx3seWUx6BrRVojHB5IkddxKlq43E43NZ0f2sI8JVXzPKcOBs0M7J1hgt9pSpHNYdGzWkBz7bA" />
+                        </div>
+                        <div>
+                            <p class="text-white font-bold text-sm">Sarah Jenkins</p>
+                            <div class="flex text-primary text-xs">
+                                <span class="material-symbols-outlined text-sm">star</span>
+                                <span class="material-symbols-outlined text-sm">star</span>
+                                <span class="material-symbols-outlined text-sm">star</span>
+                                <span class="material-symbols-outlined text-sm">star</span>
+                                <span class="material-symbols-outlined text-sm">star</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        "Finally found a headset that doesn't hurt my ears after 8 hours
+                        of raiding. The soundstage is incredible for FPS games."
+                    </p>
+                </div>
+                <!-- Review 3 -->
+                <div class="bg-background-dark p-6 rounded-xl border border-white/5 relative">
+                    <span class="material-symbols-outlined absolute top-4 right-4 text-white/10 text-4xl">format_quote</span>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="size-10 rounded-full bg-slate-700 overflow-hidden">
+                            <img class="w-full h-full object-cover"
+                                 data-alt="Portrait of a customer"
+                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSe_FOIEvM5w1JOspySYOZUgum-ABLeLt4mWYo4H3hrnC2UM_eBGuZ9bnZ8ElqFOC2SUSN268WQc-vXUXMWPbdB-Ou8f9utNyxW_j6OyiSbv76rkpKhzpzLULOyFKAXTyrEATz0ZnCYbmfJbmdeYmIFm6p5j8_sUKce2SYxT5lrfPL9uVY84BIejOhslY7E_3W6OSOZxnLhmbdcJlXw9CmnlHQJFLBl23bk84DGMY0iXDe_PGfxbgHKk5B9_Jn0FIkl3PrXKg55g" />
+                        </div>
+                        <div>
+                            <p class="text-white font-bold text-sm">Mike Ross</p>
+                            <div class="flex text-primary text-xs">
+                                <span class="material-symbols-outlined text-sm">star</span>
+                                <span class="material-symbols-outlined text-sm">star</span>
+                                <span class="material-symbols-outlined text-sm">star</span>
+                                <span class="material-symbols-outlined text-sm">star</span>
+                                <span class="material-symbols-outlined text-sm">star_half</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        "Best prices on the market for this quality. Customer support
+                        helped me pick the right switches for my typing style."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Newsletter -->
+    <section class="py-20 w-full relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-primary/5 z-0"></div>
+        <div class="container mx-auto px-6 max-w-2xl text-center relative z-10">
+            <div class="size-16 rounded-full bg-surface-dark border border-white/10 flex items-center justify-center mx-auto mb-6 text-primary shadow-[0_0_15px_rgba(0,212,255,0.3)]">
+                <span class="material-symbols-outlined text-3xl">mail</span>
+            </div>
+            <h2 class="text-3xl font-bold text-white mb-4">
+                Join the Inner Circle
+            </h2>
+            <p class="text-slate-400 mb-8">
+                Get exclusive access to drops, pro-tips, and a 10% discount on your
+                first order.
+            </p>
+            <form class="flex flex-col sm:flex-row gap-3">
+                <input class="flex-1 bg-surface-dark border border-white/10 rounded-lg px-5 py-3 text-white placeholder:text-slate-500 focus:ring-1 focus:ring-primary focus:border-primary transition-all outline-none"
+                       placeholder="Enter your email"
+                       type="email" />
+                <button class="bg-primary hover:bg-primary/90 text-background-dark font-bold px-8 py-3 rounded-lg transition-colors whitespace-nowrap"
+                        type="button">
+                    Subscribe
+                </button>
+            </form>
+            <p class="text-slate-500 text-xs mt-4">
+                We respect your inbox. No spam, ever.
+            </p>
+        </div>
+    </section>
+ 
+</div>

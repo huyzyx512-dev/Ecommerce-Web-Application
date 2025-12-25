@@ -46,8 +46,30 @@
     public class OrderSearchCondition : PaginationSearchCondition
     {
         public int StatusID { get; set; } 
-        public DateTime? FromTime { get; set; }
-        public DateTime? ToTime { get; set; }
+        //public DateTime? FromTime { get; set; }
+        //public DateTime? ToTime { get; set; }
 
+        //TODO: Tìm kiếm theo ngày lập hàng
+        public string DateRange { get; set; } = "";
+
+        public DateTime FromDate
+        {
+            get
+            {
+                string[] values = DateRange.Split('-');
+                DateTime d = DateTime.Parse(values[0].Trim());
+                return d;
+            }
+        }
+
+        public DateTime ToDate
+        {
+            get
+            {
+                string[] values = DateRange.Split('-');
+                DateTime d = DateTime.Parse(values[1].Trim());
+                return d;
+            }
+        }
     }
 }

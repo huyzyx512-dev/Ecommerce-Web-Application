@@ -328,7 +328,7 @@ namespace SV22T1080013.Admin.Controllers
                 var photo = new ProductPhoto()
                 {
                     ProductID = model.ProductID,
-                    Photo = model.Photo,
+                    Photo = model.Photo ?? "nophoto.png",
                     Description = model.Description,
                     DisplayOrder = model.DisplayOrder,
                     PhotoID = model.PhotoID,

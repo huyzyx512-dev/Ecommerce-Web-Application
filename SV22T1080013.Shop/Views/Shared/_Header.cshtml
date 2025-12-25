@@ -1,0 +1,50 @@
+﻿<script src="https://cdn.tailwindcss.com"></script>
+<header class="sticky top-0 z-50 w-full border-b border-white/10 bg-gray-950/80 backdrop-blur-md">
+    <div class="mx-auto w-full max-w-[1440px] px-6 py-4 lg:px-10">
+        <div class="flex items-center justify-between">
+            <!-- Logo -->
+            <a href="~/Home">
+                <div class="flex items-center gap-2 text-white cursor-pointer group">
+                    <div class="w-8 h-8 text-[#00d4ff] group-hover:drop-shadow-[0_0_8px_rgba(0,212,255,0.8)] transition-all duration-300">
+                        <span class="material-symbols-outlined text-4xl">hexagon</span>
+                    </div>
+                    <h2 class="text-2xl font-black tracking-tighter text-[#00d4ff] drop-shadow-[0_0_4px_rgba(0,212,255,0.6)]">
+                        TechGear
+                    </h2>
+                </div>
+            </a>
+
+            <!-- Nav Links (Desktop) -->
+            <nav class="hidden md:flex items-center gap-8">
+                <a class="text-sm font-medium text-slate-300 hover:text-[#00d4ff] transition-colors" href="~/Product">
+                    Products
+                </a>
+                <a class="text-sm font-medium text-slate-300 hover:text-[#00d4ff] transition-colors" href="#">
+                    Categories
+                </a>
+            </nav>
+
+            <!-- Search & Actions -->
+            <div class="flex items-center gap-4 lg:gap-6">
+                <!-- Search Bar -->
+                <div class="hidden lg:flex w-64 items-center rounded-full bg-gray-900 border border-white/10 px-3 py-2 transition-all duration-300 hover:border-[#00d4ff]/50">
+                    <span class="material-symbols-outlined text-slate-400 text-xl">search</span>
+                    <input class="w-full bg-transparent border-none p-0 pl-2 text-sm text-white placeholder:text-slate-500 outline-none focus:outline-none"
+                           placeholder="Search gear..."
+                           type="search" />
+                </div>
+
+                <!-- Icons -->
+                <div class="flex items-center gap-3">
+                    <button onclick="window.location.href='/Cart'" class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-white/10 transition-colors text-white relative">
+                        <span class="material-symbols-outlined">shopping_cart</span>
+                        <span class="absolute top-1 right-1 h-2 w-2 rounded-full bg-[#00d4ff] animate-pulse"></span>
+                    </button>
+                    <button onclick="window.location.href='/Account/Login'" class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-white/10 transition-colors text-white">
+                        <span class="material-symbols-outlined">account_circle</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

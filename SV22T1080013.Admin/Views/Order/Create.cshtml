@@ -52,7 +52,7 @@
                 <div class="form-group">
                     <label class="control-label col-sm-2">Khách hàng:</label>
                     <div class="col-sm-10">
-                        <select id="customerID" class="form-control" name="customerID" asp-items="await SelectListHelper.Customers()">
+                        <select id="customerID" class="form-control select2" name="customerID" asp-items="await SelectListHelper.Customers()">
                         </select>
                     </div>
                 </div>
@@ -84,24 +84,33 @@
 @section scripts {
     <script>
         // 1. Tìm kiếm sản phẩm (khi submit form tìm kiếm hoặc bấm nút phân trang)
-            function searchProduct(page) {
-                var $form = $("#formSearchProducts");
-                var data = $form.serializeArray();
-                data.push({ name: "page", value: page });
+        function searchProduct(page) 
+        {
+            var $form = $("#formSearchProducts");
+            var data = $form.serializeArray();
+            data.push({ name: "page", value: page });
 
-                $.ajax({
-                    url: $form.prop("action"),
-                    method: $form.prop("method"),
-                    data: data,
-                    success: function (html) {
-                        $($form.data("result")).html(html); // #searchProductResult
-                    }
-                });
-            }
-        $(function () {
-
-
-
+            $.ajax({
+                url: $form.prop("action"),
+                method: $form.prop("method"),
+                data: data,
+                success: function (html) 
+                {
+                    $($form.data("result")).html(html); // #searchProductResult
+                    $('.inputmask-numeric').inputmask({
+                        alias: "numeric",
+                        groupSeparator: ".", // Dấu phẩy phân cách phần nghìn
+                        radixPoint: ",", // Dấu phần cách phần thập phân
+                        autoGroup: true, // Tự động thêm dấu cách khi nhập liệu
+                        digits: 0, // Không hiển thị phần lẻ
+                        rightAlign: false, // Không canh phải giá trị số
+                        removeMaskOnSubmit: true // Loại bỏ kí tự phân cách phần nghìn khi submit form
+                    });
+                }
+            });
+        }
+        $(function () 
+        {
             $("#formOrderInit").on("submit", function (e) {
                 e.preventDefault();
                 var url = $(this).prop("action");
@@ -161,25 +170,6 @@
                 });
             });
 
-            //TODO: Khi chọn Khách hàng thì Map tỉnh và địa chỉ khách hàng vào và có thể sửa địa chỉ
-
-            // function removeItem(id) {
-            //     $.ajax({
-            //         url: "/Order/RemoveFromCart",
-            //         method: "POST",
-            //         data: { id: id },
-            //         success: function (data) {
-            //             if (data.code === 1) {
-            //                 getCart();
-            //             } else {
-            //                 alert(data.message);
-            //             }
-            //         }
-            //     });
-            // }
-
-
-
             // 4. Load giỏ hàng khi vào trang
             function getCart() {
                 $.get("/Order/GetCart", function (data) {
@@ -215,7 +205,7 @@
                     success: function (res) {
                         if (res.code === 1) {
                             //Lấy dữ liệu từ api gán cho province và address
-                            $("#deliveryProvince").val(res.data.province);
+                            $("#deliveryProvince").val(res.data.province).trigger("change"); // If use select2, must have .trigger("change");
                             $("#deliveryAddress").val(res.data.address);
                         } else {
                             alert(res.message);
@@ -240,6 +230,45 @@
                         }
                     },
                 });
+            });
+
+            // Xử lý nút + / -
+            $(document).on('click', '.btn-number', function (e) {
+                e.preventDefault();
+                var type = $(this).data('type'); // "plus" hoặc "minus"
+                var input = $(this).closest('.input-group').find('.quantity-input');
+                var productId = input.data('product-id');
+                var currentVal = parseInt(input.val());
+
+                if (isNaN(currentVal)) currentVal = 1;
+
+                var newVal = type === 'plus' ? currentVal + 1 : currentVal - 1;
+
+                if (newVal < 1) {
+                    if (confirm('Số lượng về 0 sẽ xóa sản phẩm khỏi đơn hàng. Tiếp tục?')) {
+                        removeItem(orderId, productId);
+                    }
+                    return;
+                }
+
+                updateQuantity(orderId, productId, newVal, input);
+            });
+
+            // Xử lý nhập tay số lượng (khi blur hoặc enter)
+            $(document).on('blur keyup', '.quantity-input', function (e) {
+                if (e.type === 'keyup' && e.keyCode !== 13) return; // Chỉ xử lý khi nhấn Enter hoặc blur
+
+                var input = $(this);
+                var productId = input.data('product-id');
+                var newVal = parseInt(input.val());
+
+                if (isNaN(newVal) || newVal < 1) {
+                    alert('Số lượng phải lớn hơn 0');
+                    input.val(1);
+                    return;
+                }
+
+                updateQuantity(orderId, productId, newVal, input);
             });
 
             // Khởi chạy lần đầu

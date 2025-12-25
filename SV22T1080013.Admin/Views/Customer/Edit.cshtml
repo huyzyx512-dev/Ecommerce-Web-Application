@@ -38,7 +38,7 @@
 
             <div class="form-group">
                 <label>Tỉnh/thành:</label>
-                <select class="form-control" asp-for="Province" asp-items="await SelectListHelper.Provinces()"></select>
+                <select class="form-control select2" asp-for="Province" asp-items="await SelectListHelper.Provinces()"></select>
                 <span asp-validation-for="Province"></span>
             </div>
 

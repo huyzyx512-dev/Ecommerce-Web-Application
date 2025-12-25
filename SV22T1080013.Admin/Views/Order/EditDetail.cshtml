@@ -1,10 +1,13 @@
-﻿@{
+﻿@model OrderDetail
+@{
     Layout = null;
 }
 
 <div class="modal-dialog">
     <div class="modal-content">
-        <form action="~/Order/UpdateDetail/111" method="post" class="form-horizontal">
+        <form id="formEditItemOrderDetail" action="~/Order/UpdateDetail" method="post" class="form-horizontal">
+            <input type="hidden" asp-for="OrderID" />
+            <input type="hidden" asp-for="ProductID" />
             <div class="modal-header bg-primary">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Cập nhật chi tiết đơn hàng</h4>
@@ -13,25 +16,28 @@
                 <div class="form-group">
                     <label class="control-label col-sm-3">Tên mặt hàng:</label>
                     <div class="col-sm-9">
-                        <p class="form-control-static">Samsung Series 9 NP900X4C Premium Ultrabook</p>
+                        @* <p class="form-control-static">@Model.ProductName</p> *@
+                        <input type="text" class="form-control" asp-for="ProductName" disabled />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-3">Đơn vị tính:</label>
                     <div class="col-sm-9">
-                        <p class="form-control-static">Cái</p>
+                        @* <p class="form-control-static">@Model.Unit</p> *@
+                        <input type="text" class="form-control" asp-for="Unit" disabled />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-3">Số lượng:</label>
                     <div class="col-sm-9">
-                        <input type="number" class="form-control" value="2" />
+                        <input type="number" class="form-control" asp-for="Quantity"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-3">Giá bán:</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" value="18,700,000" />
+                        <input type="text" class="form-control inputmask-numeric" asp-for="SalePrice">
+                        @* <input type="text" class="form-control inputmask-numeric" value="@Model.SalePrice" name="@nameof(Model.SalePrice)" /> *@
                     </div>
                 </div>
             </div>
@@ -46,4 +52,45 @@
         </form>
     </div>
 </div>
+<section>
+    <script>
+        $('.inputmask-numeric').inputmask({
+            alias: "numeric",
+            groupSeparator: ".", // Dấu phẩy phân cách phần nghìn
+            radixPoint: ",", // Dấu phần cách phần thập phân
+            autoGroup: true, // Tự động thêm dấu cách khi nhập liệu
+            digits: 0, // Không hiển thị phần lẻ
+            rightAlign: false, // Không canh phải giá trị số
+            removeMaskOnSubmit: true // Loại bỏ kí tự phân cách phần nghìn khi submit form
+        });
+
+            // Xử lý submit form bằng AJAX - CHẠY KHI FORM ĐƯỢC LOAD VÀO MODAL
+        $("#formEditItemOrderDetail").submit(function (e) {
+            e.preventDefault(); // Ngăn submit mặc định
+
+            $.ajax({
+                url: $(this).attr("action"),
+                type: $(this).attr("method"),
+                data: $(this).serialize(), // Dùng serialize() thay serializeArray() để đúng định dạng
+                dataType: "json", // Quan trọng: mong nhận JSON từ server
+                success: function (res) {
+                    if (res.code === 1) {
+                        alert(res.message || "Cập nhật thành công!");
+
+                        // Tắt modal
+                        $("#dialogModal").modal('hide');
+
+                        // Tải lại danh sách chi tiết đơn hàng để cập nhật bảng
+                        loadItemsOrder(@Model.OrderID);
+                    } else {
+                        alert(res.message || "Có lỗi xảy ra!");
+                    }
+                },
+                error: function () {
+                    alert("Lỗi kết nối server. Vui lòng thử lại!");
+                }
+            });
+        });
+    </script>
+</section>
 
