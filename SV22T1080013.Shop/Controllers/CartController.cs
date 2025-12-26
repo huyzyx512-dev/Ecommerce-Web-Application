@@ -1,7 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using SV22T1080013.Shop.AppCodes;
 
 namespace SV22T1080013.Shop.Controllers
 {
+    /// <summary>
+    /// Quản lý giỏ hàng của khách hàng
+    /// </summary>
+    [Authorize(Roles = $"{WebUserRoles.Customer}")]
     public class CartController : Controller
     {
         /// <summary>

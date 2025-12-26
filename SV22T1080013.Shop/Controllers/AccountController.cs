@@ -1,13 +1,14 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SV22T1080013.BusinessLayers;
 using SV22T1080013.Shop.AppCodes;
 using SV22T1080013.Shop.Models;
-using System.Threading.Tasks;
 
 namespace SV22T1080013.Shop.Controllers
 {
+    [AllowAnonymous]
     public class AccountController : Controller
     {
         /// <summary>

@@ -20,9 +20,9 @@ builder.Services.AddSession(options =>
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
 .AddCookie(option =>
 {
-    option.Cookie.Name = "SV22T1080013.Admin";
+    option.Cookie.Name = "SV22T1080013.Shop";
     option.LoginPath = "/Account/Login";
-    option.AccessDeniedPath = "/Account/AccessDenied";
+    option.AccessDeniedPath = "/Account/Login";
     option.ExpireTimeSpan = TimeSpan.FromDays(30);
     option.SlidingExpiration = true;
 });
@@ -49,11 +49,6 @@ if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
 }
-app.UseStaticFiles();
-
-app.UseRouting();
-
-app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",

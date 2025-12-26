@@ -16,6 +16,7 @@ namespace SV22T1080013.Shop.AppCodes
         public string? Phone { get; set; }
         public string? Email { get; set; }
         public string? Photo { get; set; }
+        public string? Role { get; set; }
 
         /// <summary>
         /// Thông tin người dùng dưới dạng danh sách các Claim
@@ -35,6 +36,7 @@ namespace SV22T1080013.Shop.AppCodes
                     new Claim(nameof(Phone), Phone ?? ""),
                     new Claim(nameof(Email), Email ?? ""),
                     new Claim(nameof(Photo), Photo ?? ""),
+                    new Claim(nameof(Role), WebUserRoles.Customer),
                 ];
                
                 return claims;
@@ -58,8 +60,6 @@ namespace SV22T1080013.Shop.AppCodes
     /// </summary>
     public class WebUserRoles
     {
-        public const string Administrator = "admin";
-        public const string Employee = "employee";
         public const string Customer = "customer";
     }
 
