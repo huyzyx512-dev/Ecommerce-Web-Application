@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using SV22T1080013.BusinessLayers;
 using SV22T1080013.Shop.AppCodes;
 using SV22T1080013.Shop.Models;
+using System.Threading.Tasks;
 
 namespace SV22T1080013.Shop.Controllers
 {
@@ -160,8 +161,13 @@ namespace SV22T1080013.Shop.Controllers
         /// Thực hiện đăng xuất tài khoản
         /// </summary>
         /// <returns></returns>
-        [HttpPost]
-        public IActionResult Logout() { return View(); }
+        public async Task<IActionResult> Logout() 
+        {
+            ViewBag.ActiveTab = "login";
+            HttpContext.Session.Clear();
+            await HttpContext.SignOutAsync();
+            return RedirectToAction("Login");
+        }
 
         /// <summary>
         /// Hiển thị page profile người dùng

@@ -1,4 +1,5 @@
-﻿<script src="https://cdn.tailwindcss.com"></script>
+﻿@namespace SV22T1080013.Shop.AppCodes
+<script src="https://cdn.tailwindcss.com"></script>
 <header class="sticky top-0 z-50 w-full border-b border-white/10 bg-gray-950/80 backdrop-blur-md">
     <div class="mx-auto w-full max-w-[1440px] px-6 py-4 lg:px-10">
         <div class="flex items-center justify-between">
@@ -40,7 +41,10 @@
                         <span class="material-symbols-outlined">shopping_cart</span>
                         <span class="absolute top-1 right-1 h-2 w-2 rounded-full bg-[#00d4ff] animate-pulse"></span>
                     </button>
-                    <button onclick="window.location.href='/Account/Login'" class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-white/10 transition-colors text-white">
+                    @{
+                        var isLogin = User.GetUserData() != null;
+                    }
+                    <button onclick="window.location.href='@(isLogin ? "/Account" : "/Account/Login")'" class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-white/10 transition-colors text-white">
                         <span class="material-symbols-outlined">account_circle</span>
                     </button>
                 </div>

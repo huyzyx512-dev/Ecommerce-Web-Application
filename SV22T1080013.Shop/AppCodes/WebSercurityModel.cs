@@ -35,7 +35,6 @@ namespace SV22T1080013.Shop.AppCodes
                     new Claim(nameof(Phone), Phone ?? ""),
                     new Claim(nameof(Email), Email ?? ""),
                     new Claim(nameof(Photo), Photo ?? ""),
-
                 ];
                
                 return claims;
