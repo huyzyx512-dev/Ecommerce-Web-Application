@@ -43,5 +43,6 @@ namespace SV22T1080013.DomainModels
         /// Tài khoản khách hàng có bị khóa hay không?
         /// </summary>
         public bool IsLocked { get; set; } 
+        required public string Password { get; set; } 
         }
 }

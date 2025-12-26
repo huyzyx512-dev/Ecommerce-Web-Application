@@ -46,10 +46,7 @@
     public class OrderSearchCondition : PaginationSearchCondition
     {
         public int StatusID { get; set; } 
-        //public DateTime? FromTime { get; set; }
-        //public DateTime? ToTime { get; set; }
 
-        //TODO: Tìm kiếm theo ngày lập hàng
         public string DateRange { get; set; } = "";
 
         public DateTime FromDate

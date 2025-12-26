@@ -4,18 +4,8 @@
 
 <div class="flex-1 flex justify-center py-8 px-4 sm:px-6 lg:px-8">
     <div class="max-w-7xl w-full flex flex-col lg:flex-row gap-8">
-        <!-- Sidebar - active Payment Methods -->
-        <aside class="w-full lg:w-72 flex-shrink-0">
-            <!-- ... Giữ nguyên sidebar, active Payment Methods ... -->
-            <nav class="flex flex-col gap-2">
-                <!-- Profile, Orders, Addresses giống trên -->
-                <a class="flex items-center gap-3 px-4 py-3 rounded-lg bg-surface-highlight border-l-4 border-primary text-white shadow-[0_0_15px_rgba(0,0,0,0.3)] transition-all" href="#">
-                    <span class="material-symbols-outlined text-primary">credit_card</span>
-                    <span class="font-bold">Payment Methods</span>
-                </a>
-                <!-- ... còn lại ... -->
-            </nav>
-        </aside>
+        <!-- Thay thế toàn bộ phần aside cũ bằng dòng này -->
+        @await Html.PartialAsync("_AccountSidebar", null, new ViewDataDictionary(ViewData) { { "ActivePage", "Payments" } })
 
         <main class="flex-1 min-w-0 flex flex-col gap-6">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-border-color">

@@ -6,7 +6,7 @@
 }
 <div class="flex-1 flex justify-center py-8 px-4 sm:px-6 lg:px-8">
     <div class="max-w-7xl w-full flex flex-col lg:flex-row gap-8">
-        <!-- Sidebar Navigation -->
+        @* <!-- Sidebar Navigation -->
         <aside class="w-full lg:w-72 flex-shrink-0">
             <div class="sticky top-24 flex flex-col gap-6">
                 <!-- User Profile Snippet -->
@@ -54,7 +54,9 @@
                     </a>
                 </nav>
             </div>
-        </aside>
+        </aside> *@
+        <!-- Thay thế toàn bộ phần aside cũ bằng dòng này -->
+        @await Html.PartialAsync("_AccountSidebar", null, new ViewDataDictionary(ViewData) { { "ActivePage", "Index" } })
         <!-- Main Content Area -->
         <main class="flex-1 min-w-0 flex flex-col gap-6">
             <!-- Page Header & Controls -->

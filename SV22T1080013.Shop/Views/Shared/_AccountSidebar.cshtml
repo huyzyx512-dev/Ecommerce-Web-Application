@@ -1,0 +1,57 @@
+﻿@* _AccountSidebar.cshtml *@
+@using Microsoft.AspNetCore.Mvc.Rendering
+
+@{
+    // Nhận tham số từ trang gọi partial: active menu item
+    var activePage = ViewData["ActivePage"] as string ?? "Orders"; // Default là Orders nếu không truyền
+}
+
+<aside class="w-full lg:w-72 flex-shrink-0">
+    <div class="sticky top-24 flex flex-col gap-6">
+        <!-- User Profile Snippet -->
+        <div class="flex items-center gap-4 p-4 rounded-xl bg-surface-dark border border-border-color shadow-lg">
+            <div class="relative size-12 rounded-full overflow-hidden border-2 border-primary">
+                <img alt="Profile avatar"
+                     class="object-cover w-full h-full"
+                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhfgIoeLk1jItW11caqandd4BZbdhGRpaACKfeDTKlcf-sJYa4SKmfNdGh2hsQCUETzVJN1H0z4yVaOaafCJyRUgopnHGrgwUfG4kF_DBzVJcV0PZMnCHNubdoz5jhEF2xvRLAi665FFMDQHfNDXSCFPbhfhXX6g8EoN2Eb2zkFNQGD-5hhnPMtK_SH4s5AQ0IXh7GtfLDcbfGjm-AGmtNGwNb8n4jbacvQYkslrFmIj357rb4u0EsvZML_3jPZQCfXxvva5v92g" />
+            </div>
+            <div class="flex flex-col">
+                <h1 class="text-white font-bold leading-tight">Alex Chen</h1>
+                <p class="text-primary text-xs font-medium">Tech Elite Member</p>
+            </div>
+        </div>
+
+        <!-- Navigation Menu -->
+        <nav class="flex flex-col gap-2">
+            <a class="flex items-center gap-3 px-4 py-3 rounded-lg @(activePage == "Profile" ? "bg-surface-highlight border-l-4 border-primary text-white shadow-[0_0_15px_rgba(0,0,0,0.3)]" : "text-text-muted hover:bg-surface-highlight hover:text-white transition-all group")"
+               href="@Url.Action("Profile", "Account")">
+                <span class="material-symbols-outlined @(activePage == "Profile" ? "text-primary" : "group-hover:text-primary transition-colors")">person</span>
+                <span class="@(activePage == "Profile" ? "font-bold" : "font-medium")">Profile</span>
+            </a>
+
+            <a class="flex items-center gap-3 px-4 py-3 rounded-lg @(activePage == "Index" ? "bg-surface-highlight border-l-4 border-primary text-white shadow-[0_0_15px_rgba(0,0,0,0.3)]" : "text-text-muted hover:bg-surface-highlight hover:text-white transition-all group")"
+               href="@Url.Action("Index", "Account")">
+                <span class="material-symbols-outlined @(activePage == "Orders" ? "text-primary" : "group-hover:text-primary transition-colors")">shopping_bag</span>
+                <span class="@(activePage == "Orders" ? "font-bold" : "font-medium")">Orders</span>
+            </a>
+
+            <a class="flex items-center gap-3 px-4 py-3 rounded-lg @(activePage == "Address" ? "bg-surface-highlight border-l-4 border-primary text-white shadow-[0_0_15px_rgba(0,0,0,0.3)]" : "text-text-muted hover:bg-surface-highlight hover:text-white transition-all group")"
+               href="@Url.Action("Address", "Account")">
+                <span class="material-symbols-outlined @(activePage == "Addresses" ? "text-primary" : "group-hover:text-primary transition-colors")">location_on</span>
+                <span class="@(activePage == "Addresses" ? "font-bold" : "font-medium")">Addresses</span>
+            </a>
+
+            <a class="flex items-center gap-3 px-4 py-3 rounded-lg @(activePage == "Payments" ? "bg-surface-highlight border-l-4 border-primary text-white shadow-[0_0_15px_rgba(0,0,0,0.3)]" : "text-text-muted hover:bg-surface-highlight hover:text-white transition-all group")"
+               href="@Url.Action("Payments", "Account")">
+                <span class="material-symbols-outlined @(activePage == "PaymentMethods" ? "text-primary" : "group-hover:text-primary transition-colors")">credit_card</span>
+                <span class="@(activePage == "PaymentMethods" ? "font-bold" : "font-medium")">Payment Methods</span>
+            </a>
+
+            <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-text-muted hover:bg-surface-highlight hover:text-white transition-all group mt-4 border-t border-border-color pt-6"
+               href="@Url.Action("Logout", "Account")">
+                <span class="material-symbols-outlined group-hover:text-red-400 transition-colors">logout</span>
+                <span class="font-medium">Sign Out</span>
+            </a>
+        </nav>
+    </div>
+</aside>

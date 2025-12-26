@@ -1,104 +1,125 @@
-﻿<!-- Add New Address Modal -->
-<div id="add-address-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 backdrop-blur-sm">
-    <div class="bg-surface-dark border border-border-color rounded-2xl shadow-2xl w-full max-w-lg mx-4 overflow-hidden transform transition-all scale-95">
-        <!-- Header -->
-        <div class="px-6 py-5 border-b border-border-color flex items-center justify-between">
-            <h3 class="text-xl font-bold text-white">Add New Address</h3>
-            <button id="close-modal-btn" class="text-text-muted hover:text-white transition-colors">
-                <span class="material-symbols-outlined text-2xl">close</span>
-            </button>
-        </div>
+﻿@{
+    ViewData["Title"] = "Add New Address";
+}
 
-        <!-- Body -->
-        <div class="p-6">
-            <form id="add-address-form" class="flex flex-col gap-5">
-                <!-- Address Type / Label -->
+<div class="flex-1 flex justify-center py-8 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl w-full flex flex-col lg:flex-row gap-8">
+
+        <!-- Thay thế toàn bộ phần aside cũ bằng dòng này -->
+        @await Html.PartialAsync("_AccountSidebar", null, new ViewDataDictionary(ViewData) { { "ActivePage", "Address" } })
+
+        <!-- Main Content -->
+        <main class="flex-1 min-w-0 flex flex-col gap-6">
+
+            <!-- Page Header -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-border-color">
                 <div class="flex flex-col gap-2">
-                    <label class="text-sm text-text-muted font-medium">Address Label <span class="text-primary">*</span></label>
-                    <input type="text" name="label" placeholder="e.g. Home, Office, Parents' House" required
-                           class="bg-surface-highlight border border-border-color rounded-lg px-4 py-3 text-white placeholder:text-text-muted/60 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" />
+                    <h2 class="text-3xl md:text-4xl font-black tracking-tight text-white">
+                        Add New Address
+                    </h2>
+                    <p class="text-text-muted">Fill in the details for your new delivery address</p>
                 </div>
+                <a href="@Url.Action("Address", "Account")"
+                   class="px-6 py-2.5 bg-surface-highlight border border-border-color rounded-lg text-white hover:bg-surface-highlight/80 transition-colors flex items-center gap-2">
+                    <span class="material-symbols-outlined">arrow_back</span>
+                    Back to Addresses
+                </a>
+            </div>
 
-                <!-- Full Name -->
-                <div class="flex flex-col gap-2">
-                    <label class="text-sm text-text-muted font-medium">Full Name <span class="text-primary">*</span></label>
-                    <input type="text" name="fullName" value="Alex Chen" required
-                           class="bg-surface-highlight border border-border-color rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" />
-                </div>
+            <!-- Form -->
+            <div class="bg-surface-dark border border-border-color rounded-xl p-6 md:p-8 shadow-lg">
+                <form id="add-address-form" class="flex flex-col gap-6" asp-action="AddAddress" asp-controller="Account" method="post">
 
-                <!-- Phone Number -->
-                <div class="flex flex-col gap-2">
-                    <label class="text-sm text-text-muted font-medium">Phone Number <span class="text-primary">*</span></label>
-                    <input type="tel" name="phone" placeholder="+84 123 456 789" required
-                           class="bg-surface-highlight border border-border-color rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" />
-                </div>
-
-                <!-- Address Line 1 -->
-                <div class="flex flex-col gap-2">
-                    <label class="text-sm text-text-muted font-medium">Address Line 1 <span class="text-primary">*</span></label>
-                    <input type="text" name="address1" placeholder="123 Gaming Street, District 1" required
-                           class="bg-surface-highlight border border-border-color rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" />
-                </div>
-
-                <!-- Address Line 2 (Optional) -->
-                <div class="flex flex-col gap-2">
-                    <label class="text-sm text-text-muted font-medium">Address Line 2 (Optional)</label>
-                    <input type="text" name="address2" placeholder="Apartment 1203, Building A"
-                           class="bg-surface-highlight border border-border-color rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" />
-                </div>
-
-                <!-- City & Province -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <!-- Address Label -->
                     <div class="flex flex-col gap-2">
-                        <label class="text-sm text-text-muted font-medium">City <span class="text-primary">*</span></label>
-                        <input type="text" name="city" placeholder="Ho Chi Minh City" required
-                               class="bg-surface-highlight border border-border-color rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" />
+                        <label class="text-sm text-text-muted font-medium">Address Label <span class="text-primary">*</span></label>
+                        <input type="text" name="label" placeholder="e.g. Home, Office, Parents' House" required
+                               class="bg-surface-highlight border border-border-color rounded-lg px-4 py-3 text-black placeholder:text-text-muted/60 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" />
                     </div>
 
+                    <!-- Full Name -->
                     <div class="flex flex-col gap-2">
-                        <label class="text-sm text-text-muted font-medium">Province/State</label>
-                        <input type="text" name="province" placeholder="Ho Chi Minh"
-                               class="bg-surface-highlight border border-border-color rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" />
-                    </div>
-                </div>
-
-                <!-- Postal Code & Country -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                    <div class="flex flex-col gap-2">
-                        <label class="text-sm text-text-muted font-medium">Postal Code</label>
-                        <input type="text" name="postalCode" placeholder="700000"
-                               class="bg-surface-highlight border border-border-color rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" />
+                        <label class="text-sm text-text-muted font-medium">Full Name <span class="text-primary">*</span></label>
+                        <input type="text" name="fullName" value="Alex Chen" required
+                               class="bg-surface-highlight border border-border-color rounded-lg px-4 py-3 text-black focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" />
                     </div>
 
+                    <!-- Phone Number -->
                     <div class="flex flex-col gap-2">
-                        <label class="text-sm text-text-muted font-medium">Country <span class="text-primary">*</span></label>
-                        <select name="country" required
-                                class="appearance-none bg-surface-highlight border border-border-color text-white py-3 px-4 rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary cursor-pointer">
-                            <option value="Vietnam">Vietnam</option>
-                            <option value="United States">United States</option>
-                            <option value="Singapore">Singapore</option>
-                            <option value="Japan">Japan</option>
-                        </select>
+                        <label class="text-sm text-text-muted font-medium">Phone Number <span class="text-primary">*</span></label>
+                        <input type="tel" name="phone" placeholder="+84 123 456 789" required
+                               class="bg-surface-highlight border border-border-color rounded-lg px-4 py-3 text-black focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" />
                     </div>
-                </div>
 
-                <!-- Set as Default -->
-                <div class="flex items-center gap-3 mt-2">
-                    <input type="checkbox" id="set-default" name="isDefault" class="w-5 h-5 accent-primary bg-surface-highlight border-border-color rounded" />
-                    <label for="set-default" class="text-sm text-text-muted cursor-pointer">Set as default delivery address</label>
-                </div>
-            </form>
-        </div>
+                    <!-- Address Line 1 -->
+                    <div class="flex flex-col gap-2">
+                        <label class="text-sm text-text-muted font-medium">Address Line 1 <span class="text-primary">*</span></label>
+                        <input type="text" name="address1" placeholder="123 Gaming Street, District 1" required
+                               class="bg-surface-highlight border border-border-color rounded-lg px-4 py-3 text-black focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" />
+                    </div>
 
-        <!-- Footer -->
-        <div class="px-6 py-5 border-t border-border-color flex justify-end gap-4">
-            <button id="cancel-btn" class="px-6 py-2.5 bg-surface-highlight border border-border-color rounded-lg text-white hover:bg-surface-highlight/80 transition-colors">
-                Cancel
-            </button>
-            <button type="submit" form="add-address-form" class="px-6 py-2.5 bg-primary text-background-dark font-bold rounded-lg shadow-lg hover:bg-primary-hover transition-all flex items-center gap-2">
-                <span class="material-symbols-outlined">save</span>
-                Save Address
-            </button>
-        </div>
+                    <!-- Address Line 2 (Optional) -->
+                    <div class="flex flex-col gap-2">
+                        <label class="text-sm text-text-muted font-medium">Address Line 2 (Optional)</label>
+                        <input type="text" name="address2" placeholder="Apartment 1203, Building A"
+                               class="bg-surface-highlight border border-border-color rounded-lg px-4 py-3 text-black focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" />
+                    </div>
+
+                    <!-- City & Province -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                        <div class="flex flex-col gap-2">
+                            <label class="text-sm text-text-muted font-medium">City <span class="text-primary">*</span></label>
+                            <input type="text" name="city" placeholder="Ho Chi Minh City" required
+                                   class="bg-surface-highlight border border-border-color rounded-lg px-4 py-3 text-black focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" />
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <label class="text-sm text-text-muted font-medium">Province/State</label>
+                            <input type="text" name="province" placeholder="Ho Chi Minh"
+                                   class="bg-surface-highlight border border-border-color rounded-lg px-4 py-3 text-black focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" />
+                        </div>
+                    </div>
+
+                    <!-- Postal Code & Country -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                        <div class="flex flex-col gap-2">
+                            <label class="text-sm text-text-muted font-medium">Postal Code</label>
+                            <input type="text" name="postalCode" placeholder="700000"
+                                   class="bg-surface-highlight border border-border-color rounded-lg px-4 py-3 text-black focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" />
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <label class="text-sm text-text-muted font-medium">Country <span class="text-primary">*</span></label>
+                            <select name="country" required
+                                    class="appearance-none bg-surface-highlight border border-border-color text-black py-3 px-4 rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary cursor-pointer">
+                                <option value="Vietnam">Vietnam</option>
+                                <option value="United States">United States</option>
+                                <option value="Singapore">Singapore</option>
+                                <option value="Japan">Japan</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Set as Default -->
+                    <div class="flex items-center gap-3">
+                        <input type="checkbox" id="set-default" name="isDefault" class="w-5 h-5 accent-primary bg-surface-highlight border-border-color rounded" />
+                        <label for="set-default" class="text-sm text-text-muted cursor-pointer">
+                            Set as default delivery address
+                        </label>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="flex justify-end gap-4 mt-8">
+                        <a href="@Url.Action("Addresses", "Account")"
+                           class="px-6 py-2.5 bg-surface-highlight border border-border-color rounded-lg text-white hover:bg-surface-highlight/80 transition-colors">
+                            Cancel
+                        </a>
+                        <button type="submit"
+                                class="px-6 py-2.5 bg-primary text-background-dark font-bold rounded-lg shadow-lg hover:bg-primary-hover transition-all flex items-center gap-2">
+                            <span class="material-symbols-outlined">save</span>
+                            Save Address
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </main>
     </div>
 </div>

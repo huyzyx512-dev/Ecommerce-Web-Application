@@ -1,6 +1,8 @@
-﻿using Dapper;
+﻿using BCrypt.Net;
+using Dapper;
+using Microsoft.Data.SqlClient;
 using SV22T1080013.DomainModels;
-using System.Threading.Tasks;
+
 
 namespace SV22T1080013.DataLayers
 {
@@ -157,7 +159,82 @@ namespace SV22T1080013.DataLayers
             var parameters = new { id };
 
             return await connection.ExecuteScalarAsync<bool>(sql, parameters, commandType: System.Data.CommandType.Text);
+        }
 
+        /// <summary>
+        /// Kiểm tra tên đăng nhập và mật khẩu.
+        /// Nếu hợp lệ trả về thông tin của tài khoản, ngược lại thì trả về null
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        public async Task<Customer?> AuthenticateAsync(string email, string password)
+        {
+            using var conn = await OpenConnectionAsync();
+
+            var user = await conn.QuerySingleOrDefaultAsync<Customer>(
+                "SELECT * FROM Customers WHERE Email = @Email AND IsLocked = 0",
+                new { Email = email });
+
+            if (user == null)
+                return null;
+
+            // VERIFY HASH
+            if (!BCrypt.Net.BCrypt.Verify(password, user.Password))
+                return null;
+
+            return user;
+        }
+
+
+        /// <summary>
+        /// Đăng ký người dùng mới 
+        /// </summary>
+        /// <param name="fullName">CustomerName</param>
+        /// <param name="email">Email</param>
+        /// <param name="password">Password</param>
+        /// <returns></returns>
+        public async Task<bool> RegisterAsync(string fullName, string email, string password)
+        {
+            using var connection = await OpenConnectionAsync();
+
+            var sql = @"INSERT INTO Customers(CustomerName, ContactName, Email, Password, IsLocked)
+                VALUES (@CustomerName, @CustomerName, @Email, @Password, 0);";
+
+            try
+            {
+                await connection.ExecuteAsync(sql, new
+                {
+                    CustomerName = fullName,
+                    Email = email,
+                    Password = password
+                });
+
+                return true;
+            }
+            catch (SqlException ex) when (ex.Number == 2627 || ex.Number == 2601)
+            {
+                // Email đã tồn tại
+                return false;
+            }
+        }
+
+
+        /// <summary>
+        /// Thay đổi mật khẩu
+        /// </summary>
+        /// <param name="userID"></param>
+        /// <param name="oldPassword"></param>
+        /// <param name="newPassword"></param>
+        /// <returns></returns>
+        public async Task<bool> ChangePasswordAsync(int userID, string oldPassword, string newPassword)
+        {
+            using var connection = await OpenConnectionAsync();
+            var sql = @"UPDATE	Employees 
+                        SET		Password = @newPassword 
+                        WHERE	EmployeeID = @userID AND Password = @oldPassword";
+            var parameters = new { userID, oldPassword, newPassword };
+            return (await connection.ExecuteAsync(sql: sql, param: parameters, commandType: System.Data.CommandType.Text)) > 0;
         }
     }
 }

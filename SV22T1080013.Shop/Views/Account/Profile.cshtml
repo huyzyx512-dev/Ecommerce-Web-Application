@@ -4,52 +4,8 @@
 
 <div class="flex-1 flex justify-center py-8 px-4 sm:px-6 lg:px-8">
     <div class="max-w-7xl w-full flex flex-col lg:flex-row gap-8">
-        <!-- Sidebar Navigation (giữ nguyên như trang Orders) -->
-        <aside class="w-full lg:w-72 flex-shrink-0">
-            <div class="sticky top-24 flex flex-col gap-6">
-                <!-- User Profile Snippet -->
-                <div class="flex items-center gap-4 p-4 rounded-xl bg-surface-dark border border-border-color shadow-lg">
-                    <div class="relative size-12 rounded-full overflow-hidden border-2 border-primary">
-                        <img alt="Profile avatar"
-                             class="object-cover w-full h-full"
-                             src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhfgIoeLk1jItW11caqandd4BZbdhGRpaACKfeDTKlcf-sJYa4SKmfNdGh2hsQCUETzVJN1H0z4yVaOaafCJyRUgopnHGrgwUfG4kF_DBzVJcV0PZMnCHNubdoz5jhEF2xvRLAi665FFMDQHfNDXSCFPbhfhXX6g8EoN2Eb2zkFNQGD-5hhnPMtK_SH4s5AQ0IXh7GtfLDcbfGjm-AGmtNGwNb8n4jbacvQYkslrFmIj357rb4u0EsvZML_3jPZQCfXxvva5v92g" />
-                    </div>
-                    <div class="flex flex-col">
-                        <h1 class="text-white font-bold leading-tight">Alex Chen</h1>
-                        <p class="text-primary text-xs font-medium">Tech Elite Member</p>
-                    </div>
-                </div>
-
-                <nav class="flex flex-col gap-2">
-                    <a class="flex items-center gap-3 px-4 py-3 rounded-lg bg-surface-highlight border-l-4 border-primary text-white shadow-[0_0_15px_rgba(0,0,0,0.3)] transition-all"
-                       href="#">
-                        <span class="material-symbols-outlined text-primary">person</span>
-                        <span class="font-bold">Profile</span>
-                    </a>
-                    <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-text-muted hover:bg-surface-highlight hover:text-white transition-all group"
-                       href="#">
-                        <span class="material-symbols-outlined group-hover:text-primary transition-colors">shopping_bag</span>
-                        <span class="font-medium">Orders</span>
-                    </a>
-                    <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-text-muted hover:bg-surface-highlight hover:text-white transition-all group"
-                       href="#">
-                        <span class="material-symbols-outlined group-hover:text-primary transition-colors">location_on</span>
-                        <span class="font-medium">Addresses</span>
-                    </a>
-                    <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-text-muted hover:bg-surface-highlight hover:text-white transition-all group"
-                       href="#">
-                        <span class="material-symbols-outlined group-hover:text-primary transition-colors">credit_card</span>
-                        <span class="font-medium">Payment Methods</span>
-                    </a>
-                    <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-text-muted hover:bg-surface-highlight hover:text-white transition-all group mt-4 border-t border-border-color pt-6"
-                       href="#">
-                        <span class="material-symbols-outlined group-hover:text-red-400 transition-colors">logout</span>
-                        <span class="font-medium">Sign Out</span>
-                    </a>
-                </nav>
-            </div>
-        </aside>
-
+        <!-- Thay thế toàn bộ phần aside cũ bằng dòng này -->
+        @await Html.PartialAsync("_AccountSidebar", null, new ViewDataDictionary(ViewData) { { "ActivePage", "Profile" } })
         <!-- Main Content -->
         <main class="flex-1 min-w-0 flex flex-col gap-6">
             <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-4 border-b border-border-color">

@@ -79,7 +79,6 @@ namespace SV22T1080013.Admin.Controllers
 
         public async Task<IActionResult> ItemsOrder(int orderID)
         {
-            //TODO: fix hiển thị itemsOrder ở Detail view
             var items = await OrderDataService.OrderDB.ListDetailsAsync(orderID);
             return View(items);
         }
